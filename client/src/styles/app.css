@@ -1,0 +1,11 @@
+.app-main {
+  min-height: 86%;
+  height: 86%;
+}
+.app-main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  height: 100%;
+}
