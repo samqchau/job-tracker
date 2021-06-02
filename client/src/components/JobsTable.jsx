@@ -1,5 +1,5 @@
-import React from 'react';
-import { Table, Button } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Table, Button, Modal } from 'react-bootstrap';
 import AddIcon from '@material-ui/icons/Add';
 
 const rows = [
@@ -30,42 +30,63 @@ const rows = [
 ];
 
 const JobsTable = () => {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
-    <Table size='sm' striped bordered hover>
-      <thead>
-        <tr>
-          <th>
-            <Button variant='success' size='sm'>
-              <AddIcon></AddIcon>
-            </Button>
-          </th>
-        </tr>
-        <tr>
-          <th>Company Name</th>
-          <th>Favorite</th>
-          <th>Job Title</th>
-          <th>Date Applied</th>
-          <th>Last Updated</th>
-          <th>Status</th>
-          <th>Buttons area</th>
-        </tr>
-      </thead>
-      <tbody>
-        {rows.map((row, i) => (
-          <tr key={i}>
-            <td>{row.companyName}</td>
-            <td>{row.favorited ? 'favorited' : 'not favoriated'}</td>
-            <td>{row.jobTitle}</td>
-            <td>{new Date(row.dateApplied).toLocaleString()}</td>
-            <td>{new Date(row.lastUpdated).toLocaleString()}</td>
-            <td>{row.status}</td>
-            <td>
-              <Button variant='dark'>Details</Button>
-            </td>
+    <>
+      <Table size='sm' striped bordered hover>
+        <thead>
+          <tr>
+            <th>
+              <Button variant='success' size='sm'>
+                <AddIcon onClick={handleShow}></AddIcon>
+              </Button>
+            </th>
           </tr>
-        ))}
-      </tbody>
-    </Table>
+          <tr>
+            <th>Company Name</th>
+            <th>Favorite</th>
+            <th>Job Title</th>
+            <th>Date Applied</th>
+            <th>Last Updated</th>
+            <th>Status</th>
+            <th>Buttons area</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row, i) => (
+            <tr key={i}>
+              <td>{row.companyName}</td>
+              <td>{row.favorited ? 'favorited' : 'not favoriated'}</td>
+              <td>{row.jobTitle}</td>
+              <td>{new Date(row.dateApplied).toLocaleString()}</td>
+              <td>{new Date(row.lastUpdated).toLocaleString()}</td>
+              <td>{row.status}</td>
+              <td>
+                <Button variant='dark'>Details</Button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header>
+          <Modal.Title>Track a new application</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Footer>
+          <Button variant='secondary' onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant='primary' onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
   );
 };
 
