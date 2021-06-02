@@ -17,10 +17,23 @@ CREATE TABLE applications (
   job_title VARCHAR(20) NOT NULL,
   date_applied TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  status INTEGER REFERENCES status(id)
+  status INTEGER REFERENCES status(id),
+  user_id uuid REFERENCES users(_id)
 );
 
 CREATE TABLE status (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(20) NOT NULL,
+  name VARCHAR(20) NOT NULL
 );
+
+CREATE TABLE notes (
+  id uuid DEFAULT uuid_generate_v4 () PRIMARY KEY,
+  application uuid REFERENCES applications,
+  content TEXT NOT NULL 
+);
+
+INSERT INTO status (name) VALUES ('pending');
+
+SELECT * FROM applications LEFT JOIN status WHERE applications.status = status.id;
+
+SELECT applications.id, company_name, status.name FROM applications INNER JOIN status ON applications.status=status.id;

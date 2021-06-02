@@ -16,3 +16,5 @@ const pool = new Pool({
   port,
   database,
 });
+
+export default pool;
