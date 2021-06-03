@@ -1,6 +1,7 @@
 import expressAsyncHandler from 'express-async-handler';
 import pool from '../database/db.js';
 import bcrypt from 'bcryptjs';
+import generateToken from '../utils/generateToken.js';
 
 export const registerUser = expressAsyncHandler(async (req, res, next) => {
   const { password, firstName, familyName, email } = req.body;
@@ -16,12 +17,15 @@ export const registerUser = expressAsyncHandler(async (req, res, next) => {
     throw new Error('This email is connected to another account');
   }
 
-  const user = await pool.query(
+  let user = await pool.query(
     'INSERT INTO users (first_name, family_name, email, password) values($1, $2, $3, $4) RETURNING *',
     [firstName, familyName, email, password]
   );
   if (user) {
-    res.json(user.rows[0]);
+    user = user.rows[0];
+    user.token = generateToken(user._id);
+    delete user.password;
+    res.json(user);
   } else {
     throw new Error('Invalid user data');
     res.status(400);
