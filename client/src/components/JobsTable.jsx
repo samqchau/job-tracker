@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Table, Button, Modal } from 'react-bootstrap';
+import { Table, Button } from 'react-bootstrap';
 import AddIcon from '@material-ui/icons/Add';
+import NewAppModal from './NewAppModal';
 
 const rows = [
   {
@@ -37,7 +38,7 @@ const JobsTable = () => {
 
   return (
     <>
-      <Table size='sm' striped bordered hover>
+      <Table striped bordered hover size='sm'>
         <thead>
           <tr>
             <th>
@@ -72,20 +73,7 @@ const JobsTable = () => {
           ))}
         </tbody>
       </Table>
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header>
-          <Modal.Title>Track a new application</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-        <Modal.Footer>
-          <Button variant='secondary' onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant='primary' onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <NewAppModal show={show} handleClose={handleClose} />
     </>
   );
 };

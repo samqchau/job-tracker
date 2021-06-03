@@ -10,3 +10,8 @@ body {
   height: 100%;
   width: 100%;
 }
+
+.table {
+  --bs-table-striped-bg: rgba(0, 0, 0, 0.15);
+  --bs-table-hover-bg: rgba(0, 73, 182, 0.2);
+}

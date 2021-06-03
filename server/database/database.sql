@@ -37,3 +37,5 @@ INSERT INTO status (name) VALUES ('pending');
 SELECT * FROM applications LEFT JOIN status WHERE applications.status = status.id;
 
 SELECT applications.id, company_name, status.name FROM applications INNER JOIN status ON applications.status=status.id;
+
+INSERT INTO applications (company_name, job_title, status) VALUES ('Amazon', 'Frontend 1', 3);
