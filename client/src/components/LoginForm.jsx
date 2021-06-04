@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Row, Col, Form, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -9,6 +9,15 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  useEffect(() => {
+    if (userInfo) {
+      setEmail('');
+      setPassword('');
+    }
+  }, [userInfo]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -16,7 +25,7 @@ const LoginForm = () => {
     dispatch(loginUser(user));
   };
 
-  return (
+  return !userInfo ? (
     <div className='d-flex' style={{ background: 'wheat' }}>
       <div>
         <Form as={Row} onSubmit={submitHandler}>
@@ -46,7 +55,7 @@ const LoginForm = () => {
         Login
       </Button>
     </div>
-  );
+  ) : null;
 };
 
 export default LoginForm;
