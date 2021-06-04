@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Table, Button } from 'react-bootstrap';
 import AddIcon from '@material-ui/icons/Add';
-import NewAppModal from './NewAppModal';
+import NewAppModal from './modals/NewAppModal';
 
 const rows = [
   {

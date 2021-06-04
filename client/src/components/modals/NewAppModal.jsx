@@ -47,9 +47,10 @@ const NewAppModal = ({ show, handleClose }) => {
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={submitHandler} as={Row}>
-          <Form.Group as={Col} controlId='companyName' lg={6}>
+          <Form.Group as={Col} controlId='companyName' xs={12} sm={6}>
             <Form.Label>Company Name</Form.Label>
             <Form.Control
+              required
               placeholder='Company Name'
               value={companyName}
               onChange={(e) => {
@@ -57,9 +58,10 @@ const NewAppModal = ({ show, handleClose }) => {
               }}
             ></Form.Control>
           </Form.Group>
-          <Form.Group controlId='jobTitle' as={Col} lg={6}>
+          <Form.Group controlId='jobTitle' as={Col} xs={12} sm={6}>
             <Form.Label>Job Title</Form.Label>
             <Form.Control
+              required
               placeholder='Enter Job Title'
               value={jobTitle}
               onChange={(e) => {
@@ -68,9 +70,10 @@ const NewAppModal = ({ show, handleClose }) => {
             ></Form.Control>
           </Form.Group>
 
-          <Form.Group controlId='status' as={Col} lg={6}>
+          <Form.Group controlId='status' as={Col} xs={12} sm={6}>
             <Form.Label>Status of Application</Form.Label>
             <Form.Control
+              required
               as='select'
               value={status}
               onChange={(e) => {
@@ -85,9 +88,10 @@ const NewAppModal = ({ show, handleClose }) => {
             </Form.Control>
           </Form.Group>
 
-          <Form.Group controlId='status' as={Col} lg={6}>
+          <Form.Group controlId='status' as={Col} xs={12} sm={6}>
             <Form.Label>Date Applied</Form.Label>
             <Form.Control
+              required
               type='date'
               value={date}
               onChange={(e) => {
