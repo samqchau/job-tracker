@@ -39,3 +39,6 @@ SELECT * FROM applications LEFT JOIN status WHERE applications.status = status.i
 SELECT applications.id, company_name, status.name FROM applications INNER JOIN status ON applications.status=status.id;
 
 INSERT INTO applications (company_name, job_title, status) VALUES ('Amazon', 'Frontend 1', 3);
+
+GET USER BY email
+SELECT * FROM users WHERE email = 'sam@example.com';

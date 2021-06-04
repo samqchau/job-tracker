@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
-
+import { useDispatch } from 'react-redux';
 import RegisterModal from './modals/RegisterModal';
+import { USER_REGISTER_RESET } from '../constants/userConstants';
 
 const Header = () => {
   const [showRegister, setShowRegister] = useState(false);
 
-  const closeRegisterModal = () => setShowRegister(false);
+  const dispatch = useDispatch();
+
+  const closeRegisterModal = () => {
+    setShowRegister(false);
+    dispatch({ type: USER_REGISTER_RESET });
+  };
   const showRegisterModal = () => setShowRegister(true);
 
   return (
