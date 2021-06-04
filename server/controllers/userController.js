@@ -28,8 +28,8 @@ export const registerUser = expressAsyncHandler(async (req, res) => {
     delete user._id;
     res.json(user);
   } else {
-    throw new Error('Invalid user data');
     res.status(400);
+    throw new Error('Invalid user data');
   }
 });
 
@@ -40,11 +40,16 @@ export const loginUser = expressAsyncHandler(async (req, res) => {
   if (user) {
     if (password === user.password) {
       const timestamp = new Date().toLocaleString('en-US');
-      console.log(timestamp);
       await pool.query('UPDATE users SET last_logged = $1 WHERE email = $2', [
         timestamp,
         email,
       ]);
+      user.token = generateToken(user._id);
+      delete user._id;
+      delete user.password;
+      delete user.registered;
+      delete user.last_logged;
+      delete user.is_admin;
       res.json(user);
     } else {
       res.status(400);
