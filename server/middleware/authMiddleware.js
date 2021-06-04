@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import asyncHandler from 'express-async-handler';
-import pool from '../database/db';
+import pool from '../database/db.js';
 
 export const protect = asyncHandler(async (req, res, next) => {
   let token;
@@ -10,10 +10,11 @@ export const protect = asyncHandler(async (req, res, next) => {
   ) {
     try {
       token = req.headers.authorization.split(' ')[1];
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const decoded = jwt.verify(token, process.env.JWT_SECRET).id;
       req.user = await pool.query('SELECT * FROM users WHERE id = $1', [
         decoded,
       ]);
+      req.user = req.user.rows[0];
       next();
     } catch (error) {
       console.error(error.message);

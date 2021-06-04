@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form, Col, Row } from 'react-bootstrap';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 const NewAppModal = ({ show, handleClose }) => {
   let today = new Date(Date());
@@ -22,20 +23,23 @@ const NewAppModal = ({ show, handleClose }) => {
     'Offer',
   ];
 
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   const submitHandler = async (e) => {
     e.preventDefault();
-    console.log('submitted');
     let application = {
       companyName,
       jobTitle,
       status,
     };
+
     let config = {
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    console.log(status);
     let { data } = await axios.post('/api/apps', application, config);
     console.log(data);
   };

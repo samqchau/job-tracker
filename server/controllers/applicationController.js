@@ -4,10 +4,12 @@ import pool from '../database/db.js';
 export const createNewApplication = expressAsyncHandler(async (req, res) => {
   try {
     const { companyName, jobTitle, status } = req.body;
+    console.log(req.user);
+    const { id } = req.user;
 
     const newApplication = await pool.query(
-      'INSERT INTO applications (company_name, job_title, status) VALUES($1, $2, $3) RETURNING *',
-      [companyName, jobTitle, status]
+      'INSERT INTO applications (company_name, job_title, status, user_id) VALUES($1, $2, $3, $4) RETURNING *',
+      [companyName, jobTitle, status, id]
     );
 
     res.json(newApplication.rows[0]);

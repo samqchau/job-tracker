@@ -25,8 +25,8 @@ export const registerUser = expressAsyncHandler(async (req, res) => {
   );
   if (user) {
     user = user.rows[0];
-    user.token = generateToken(user._id);
-    delete user._id;
+    user.token = generateToken(user.id);
+    delete user.id;
     res.json(user);
   } else {
     res.status(400);
@@ -45,8 +45,8 @@ export const loginUser = expressAsyncHandler(async (req, res) => {
         timestamp,
         email,
       ]);
-      user.token = generateToken(user._id);
-      delete user._id;
+      user.token = generateToken(user.id);
+      delete user.id;
       delete user.password;
       delete user.registered;
       delete user.last_logged;
