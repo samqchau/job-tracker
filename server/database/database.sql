@@ -8,7 +8,8 @@ CREATE TABLE users(
   email VARCHAR(25) NOT NULL UNIQUE,
   registered TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   last_logged TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  is_admin BOOLEAN NOT NULL DEFAULT false
+  is_admin BOOLEAN NOT NULL DEFAULT false,
+  username VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE applications (
@@ -18,7 +19,7 @@ CREATE TABLE applications (
   date_applied TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   status INTEGER REFERENCES status(id),
-  user_id uuid REFERENCES users(_id)
+  user_id uuid REFERENCES users(id) NOT NULL
 );
 
 CREATE TABLE status (
