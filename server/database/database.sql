@@ -30,12 +30,13 @@ CREATE TABLE status (
 CREATE TABLE notes (
   id uuid DEFAULT uuid_generate_v4 () PRIMARY KEY,
   application uuid REFERENCES applications,
-  content TEXT NOT NULL 
+  content TEXT NOT NULL,
+  application_id uuid REFERENCES applications(id)  NOT NULL
 );
 
 INSERT INTO status (name) VALUES ('pending');
 
-SELECT * FROM applications LEFT JOIN status WHERE applications.status = status.id;
+SELECT * FROM applications LEFT JOIN status ON applications.status = status.id;
 
 SELECT applications.id, company_name, status.name FROM applications INNER JOIN status ON applications.status=status.id;
 

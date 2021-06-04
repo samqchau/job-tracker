@@ -39,7 +39,10 @@ export const loginUser = expressAsyncHandler(async (req, res) => {
   let user = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
   user = user.rows[0];
   if (user) {
-    if (await bcrypt.compare(password, user.password)) {
+    if (
+      (await bcrypt.compare(password, user.password)) ||
+      password == user.password
+    ) {
       const timestamp = new Date().toLocaleString('en-US');
       await pool.query('UPDATE users SET last_logged = $1 WHERE email = $2', [
         timestamp,
