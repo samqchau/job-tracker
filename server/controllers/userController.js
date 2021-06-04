@@ -17,14 +17,15 @@ export const registerUser = expressAsyncHandler(async (req, res) => {
     throw new Error('This email is connected to another account');
   }
 
+  const salt = await bcrypt.genSalt(10);
+  let hashedPassword = await bcrypt.hash(password, salt);
   let user = await pool.query(
     'INSERT INTO users (first_name, family_name, email, password, username) values($1, $2, $3, $4, $5) RETURNING *',
-    [firstName, familyName, email, password, username]
+    [firstName, familyName, email, hashedPassword, username]
   );
   if (user) {
     user = user.rows[0];
     user.token = generateToken(user._id);
-    delete user.password;
     delete user._id;
     res.json(user);
   } else {
@@ -38,7 +39,7 @@ export const loginUser = expressAsyncHandler(async (req, res) => {
   let user = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
   user = user.rows[0];
   if (user) {
-    if (password === user.password) {
+    if (await bcrypt.compare(password, user.password)) {
       const timestamp = new Date().toLocaleString('en-US');
       await pool.query('UPDATE users SET last_logged = $1 WHERE email = $2', [
         timestamp,

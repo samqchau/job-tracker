@@ -2,7 +2,7 @@ CREATE DATABASE jobtracker;
 
 CREATE TABLE users(
   id  uuid DEFAULT uuid_generate_v4 () PRIMARY KEY,
-  user_password TEXT NOT NULL,
+  password TEXT NOT NULL,
   first_name VARCHAR(15) NOT NULL,
   family_name VARCHAR(25) NOT NULL,
   email VARCHAR(25) NOT NULL UNIQUE,
