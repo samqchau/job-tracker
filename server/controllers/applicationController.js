@@ -4,7 +4,6 @@ import pool from '../database/db.js';
 export const createNewApplication = expressAsyncHandler(async (req, res) => {
   try {
     const { companyName, jobTitle, status } = req.body;
-    console.log(req.user);
     const { id } = req.user;
 
     const newApplication = await pool.query(
@@ -20,7 +19,10 @@ export const createNewApplication = expressAsyncHandler(async (req, res) => {
 
 export const getApplicationsByUserId = expressAsyncHandler(async (req, res) => {
   try {
-    const applications = await pool.query('SELECT * FROM applications');
+    const applications = await pool.query(
+      'SELECT * FROM applications WHERE user_id = $1',
+      [req.user.id]
+    );
     res.json(applications.rows);
   } catch (error) {
     console.error(error.message);
