@@ -19,7 +19,6 @@ const App = () => {
           <Container className='app-main-container'>
             <Route component={LandingScreen} path='/' exact />
             <Route component={HomeScreen} path='/home' />
-            <JobsTable />
           </Container>
         </main>
         <Footer />

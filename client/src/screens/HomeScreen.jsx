@@ -1,15 +1,17 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import JobsTable from '../components/JobsTable';
 
 const HomeScreen = ({ history }) => {
-  const userInfo = useSelector((state) => state.userInfo);
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
   useEffect(() => {
     if (!userInfo) {
       history.push('/');
     }
   }, [userInfo, history]);
 
-  return <div>Home</div>;
+  return <JobsTable></JobsTable>;
 };
 
 export default HomeScreen;

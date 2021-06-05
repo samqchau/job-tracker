@@ -48,7 +48,7 @@ const JobsTable = () => {
 
   useEffect(() => {
     dispatch(fetchUserApps());
-  }, [userInfo, dispatch]);
+  }, [dispatch]);
 
   return userInfo ? (
     <>
