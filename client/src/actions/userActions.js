@@ -42,6 +42,7 @@ export const loginUser = (emailAndPassword) => async (dispatch, getState) => {
       config
     );
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
+    sessionStorage.setItem('userInfo', JSON.stringify(data));
   } catch (error) {
     dispatch({
       type: USER_LOGIN_FAIL,
@@ -55,4 +56,5 @@ export const loginUser = (emailAndPassword) => async (dispatch, getState) => {
 
 export const logoutUser = () => (dispatch) => {
   dispatch({ type: USER_LOGOUT });
+  sessionStorage.removeItem('userInfo');
 };

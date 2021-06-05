@@ -11,7 +11,13 @@ const reducer = combineReducers({
   userRegister: userRegisterReducer,
 });
 
-const initialState = {};
+const userInfoFromStorage = sessionStorage.getItem('userInfo')
+  ? JSON.parse(sessionStorage.getItem('userInfo'))
+  : null;
+
+const initialState = {
+  userLogin: { userInfo: userInfoFromStorage },
+};
 
 const middleware = [thunk];
 
