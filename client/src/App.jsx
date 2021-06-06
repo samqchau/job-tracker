@@ -15,10 +15,10 @@ const App = () => {
       <Router>
         <Header />
         <main className='app-main'>
-          <Container className='app-main-container'>
+          <div className='app-main-container'>
             <Route component={LandingScreen} path='/' exact />
             <Route component={HomeScreen} path='/home' />
-          </Container>
+          </div>
         </main>
         <Footer />
       </Router>
