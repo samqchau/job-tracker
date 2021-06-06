@@ -19,7 +19,11 @@ CREATE TABLE applications (
   date_applied TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   status INTEGER REFERENCES status(id),
-  user_id uuid REFERENCES users(id) NOT NULL
+  user_id uuid REFERENCES users(id) NOT NULL,
+  salary INTEGER DEFAULT null,
+  url TEXT default null,
+  color VARCHAR(7) DEFAULT '#FFFFFF',
+  list INTEGER REFERENCES lists(id) NOT NULL DEFAULT 1
 );
 
 CREATE TABLE status (
@@ -33,6 +37,8 @@ CREATE TABLE notes (
   content TEXT NOT NULL,
   application_id uuid REFERENCES applications(id)  NOT NULL
 );
+
+CREATE TABLE lists (id SERIAL PRIMARY KEY, name VARCHAR(15) NOT NULL);
 
 INSERT INTO status (name) VALUES ('pending');
 
