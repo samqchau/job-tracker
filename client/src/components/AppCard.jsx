@@ -1,15 +1,15 @@
 import React from 'react';
 import '../styles/appCard.css';
+import '../styles/colorPalette.css';
 import { Draggable } from 'react-beautiful-dnd';
 
 const AppCard = ({ app, index }) => {
-  const { company_name, job_title, favorited, color, id } = app;
+  const { company_name, job_title, favorited, id, color } = app;
   return (
     <Draggable draggableId={id} index={index}>
       {(provided) => (
         <div
-          className='app-card'
-          style={{ backgroundColor: color }}
+          className={`app-card ${color}`}
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}

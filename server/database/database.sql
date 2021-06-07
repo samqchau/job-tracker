@@ -50,3 +50,5 @@ INSERT INTO applications (company_name, job_title, status) VALUES ('Amazon', 'Fr
 
 GET USER BY email
 SELECT * FROM users WHERE email = 'sam@example.com';
+
+UPDATE applications SET color = '#ffffff' WHERE color = '#FFFFFF';
