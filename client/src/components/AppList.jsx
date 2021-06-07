@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import '../styles/appList.css';
 import AppCard from './AppCard';
+import { Droppable } from 'react-beautiful-dnd';
 
 const AppList = ({ name, icon, nameValue }) => {
   const userApps = useSelector((state) => state.userApps);
@@ -30,12 +31,23 @@ const AppList = ({ name, icon, nameValue }) => {
         <div className='list-add'>
           <i className='fas fa-plus' />
         </div>
-        <div className='list-body-main'>
-          {apps &&
-            apps
-              .filter((app) => app.list === nameValue)
-              .map((app) => <AppCard app={app} key={app.id} />)}
-        </div>
+        <Droppable droppableId={name}>
+          {(provided) => (
+            <div
+              className='list-body-main'
+              ref={provided.innerRef}
+              {...provided.droppableProps}
+            >
+              {apps &&
+                apps
+                  .filter((app) => app.list === nameValue)
+                  .map((app, index) => (
+                    <AppCard app={app} key={app.id} index={index} />
+                  ))}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
       </div>
     </>
   );

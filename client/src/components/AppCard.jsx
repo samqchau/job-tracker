@@ -1,21 +1,32 @@
 import React from 'react';
 import '../styles/appCard.css';
+import { Draggable } from 'react-beautiful-dnd';
 
-const AppCard = ({ app }) => {
-  const { company_name, job_title, favorited, color } = app;
+const AppCard = ({ app, index }) => {
+  const { company_name, job_title, favorited, color, id } = app;
   return (
-    <div className='app-card' style={{ backgroundColor: color }}>
-      <div className='app-card-body'>
-        <div className='app-card-body-left'>
-          <span>{job_title}</span>
-          <span>{company_name}</span>
+    <Draggable draggableId={id} index={index}>
+      {(provided) => (
+        <div
+          className='app-card'
+          style={{ backgroundColor: color }}
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+        >
+          <div className='app-card-body'>
+            <div className='app-card-body-left'>
+              <span>{job_title}</span>
+              <span>{company_name}</span>
+            </div>
+            <div className='app-card-body-right'>
+              <i className={`${favorited ? 'fas' : 'far'} fa-star`} />
+            </div>
+          </div>
+          <div className='app-card-footer'></div>
         </div>
-        <div className='app-card-body-right'>
-          <i className={`${favorited ? 'fas' : 'far'} fa-star`} />
-        </div>
-      </div>
-      <div className='app-card-footer'></div>
-    </div>
+      )}
+    </Draggable>
   );
 };
 
