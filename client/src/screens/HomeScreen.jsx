@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import JobsTable from '../components/JobsTable';
+import { useDispatch, useSelector } from 'react-redux';
 import AppList from '../components/AppList';
+import { fetchUserApps } from '../actions/appActions';
 
 const HomeScreen = ({ history }) => {
+  const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   useEffect(() => {
@@ -12,15 +13,18 @@ const HomeScreen = ({ history }) => {
     }
   }, [userInfo, history]);
 
+  useEffect(() => {
+    dispatch(fetchUserApps());
+  }, [dispatch]);
+
   return (
     <>
-      <AppList name='wishlist' icon='far fa-star' />
-      <AppList name='applied' icon='far fa-file' />
-      <AppList name='phone' icon='fas fa-phone-square-alt' />
-      <AppList name='on site' icon='fas fa-map-marker-alt' />
-      <AppList name='offer' icon='fas fa-trophy' />
-      <AppList name='rejected' icon='far fa-thumbs-down' />
-      <JobsTable></JobsTable>
+      <AppList name='wishlist' icon='far fa-star' nameValue={1} />
+      <AppList name='applied' icon='far fa-file' nameValue={2} />
+      <AppList name='phone' icon='fas fa-phone-square-alt' nameValue={3} />
+      <AppList name='on site' icon='fas fa-map-marker-alt' nameValue={4} />
+      <AppList name='offer' icon='fas fa-trophy' nameValue={5} />
+      <AppList name='rejected' icon='far fa-thumbs-down' nameValue={6} />
     </>
   );
 };

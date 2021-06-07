@@ -47,4 +47,10 @@
 }
 .list-cards-container {
   padding: 3px;
+  height: 500px;
+  background-color: aqua;
+}
+.list-body-main {
+  background-color: #ece9f2;
+  min-height: 300px;
 }
