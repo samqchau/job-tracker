@@ -1,3 +1,67 @@
 .white {
   background-color: white;
 }
+.red {
+  background-color: #ff3300;
+  color: white;
+}
+.salmon {
+  background-color: #ff6b6b;
+  color: white;
+}
+.orange {
+  background-color: #ff8162;
+  color: white;
+}
+.gold {
+  background-color: #fec405;
+  color: white;
+}
+.yellow {
+  background-color: #ffcd60;
+  color: black;
+}
+.light-green {
+  background-color: #80ffbb;
+  color: black;
+}
+.green {
+  background-color: #45e878;
+  color: white;
+}
+.dark-green {
+  background-color: #25c47b;
+  color: white;
+}
+.blue-green {
+  background-color: #4ecdc4;
+  color: white;
+}
+.light-blue {
+  background-color: #1ca8e3;
+  color: white;
+}
+.blue {
+  background-color: #0070fb;
+  color: white;
+}
+.navy {
+  background-color: #1c3554;
+  color: white;
+}
+.purple {
+  background-color: #6a4feb;
+  color: white;
+}
+.black {
+  background-color: #190445;
+  color: white;
+}
+.gray {
+  background-color: #d4d8dd;
+  color: black;
+}
+.off-purple {
+  background-color: #ada8c6;
+  color: white;
+}
