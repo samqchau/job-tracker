@@ -8,7 +8,19 @@ import {
   POST_APP_FAIL,
 } from '../constants/appConstants';
 
-export const userAppsReducer = (state = { apps: [] }, action) => {
+export const userAppsReducer = (
+  state = {
+    apps: {
+      wishlist: [],
+      applied: [],
+      phone: [],
+      onSite: [],
+      offer: [],
+      rejected: [],
+    },
+  },
+  action
+) => {
   switch (action.type) {
     case USER_APPS_REQUEST:
       return { ...state, loading: true };
@@ -17,7 +29,16 @@ export const userAppsReducer = (state = { apps: [] }, action) => {
     case USER_APPS_FAIL:
       return { ...state, loading: false, error: action.payload };
     case USER_APPS_RESET:
-      return { apps: [] };
+      return {
+        apps: {
+          wishlist: [],
+          applied: [],
+          phone: [],
+          'on site': [],
+          offer: [],
+          rejected: [],
+        },
+      };
     default:
       return { ...state };
   }

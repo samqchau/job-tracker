@@ -5,7 +5,7 @@ import AppCard from './AppCard';
 import { Droppable } from 'react-beautiful-dnd';
 import NewAppModal from './modals/NewAppModal';
 
-const AppList = ({ name, icon, nameValue }) => {
+const AppList = ({ name, icon, nameNumValue }) => {
   const [showModal, setShowModal] = useState(false);
 
   const userApps = useSelector((state) => state.userApps);
@@ -29,10 +29,7 @@ const AppList = ({ name, icon, nameValue }) => {
           <div className='list-header-main'>
             <div className='list-header-main-title'>{name}</div>
             <div className='list-header-main-count'>
-              {apps && apps.filter((app) => app.list === nameValue).length > 0
-                ? apps.filter((app) => app.list === nameValue).length
-                : 0}{' '}
-              jobs
+              {apps[name] && apps[name].length ? apps[name].length : 0} jobs
             </div>
           </div>
           <span className='list-header-options'>
@@ -49,12 +46,10 @@ const AppList = ({ name, icon, nameValue }) => {
               ref={provided.innerRef}
               {...provided.droppableProps}
             >
-              {apps &&
-                apps
-                  .filter((app) => app.list === nameValue)
-                  .map((app, index) => (
-                    <AppCard app={app} key={app.id} index={index} />
-                  ))}
+              {apps[name] &&
+                apps[name].map((app, index) => (
+                  <AppCard app={app} key={app.id} index={index} />
+                ))}
               {provided.placeholder}
             </div>
           )}
@@ -63,7 +58,7 @@ const AppList = ({ name, icon, nameValue }) => {
       <NewAppModal
         show={showModal}
         handleClose={handleClose}
-        listValue={nameValue}
+        listValue={nameNumValue}
       />
     </>
   );

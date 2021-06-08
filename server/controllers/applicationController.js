@@ -39,8 +39,6 @@ export const createNewApplication = expressAsyncHandler(async (req, res) => {
       );
     }
 
-    console.log(updatedApps.rows);
-
     res.json(newApplication);
   } catch (error) {
     console.error(error.message);

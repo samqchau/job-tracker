@@ -46,7 +46,6 @@ const NewAppModal = ({ show, handleClose, listValue }) => {
       description,
     };
 
-    console.log(application);
     dispatch(addAppToList(application));
   };
 

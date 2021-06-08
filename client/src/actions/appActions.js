@@ -7,6 +7,7 @@ import {
   POST_APP_SUCCESS,
   POST_APP_FAIL,
 } from '../constants/appConstants';
+import listNameValuePairs from '../data/lookUpTables/listNameValuePairs';
 
 export const fetchUserApps = () => async (dispatch, getState) => {
   try {
@@ -23,7 +24,16 @@ export const fetchUserApps = () => async (dispatch, getState) => {
 
     let { data } = await axios.get('/api/apps', config);
     data.sort((a, b) => a.index - b.index);
-    dispatch({ type: USER_APPS_SUCCESS, payload: data });
+
+    let sortedApps = {};
+    data.forEach((app) => {
+      if (!sortedApps[listNameValuePairs[app.list]]) {
+        sortedApps[listNameValuePairs[app.list]] = [app];
+      } else {
+        sortedApps[listNameValuePairs[app.list]].push(app);
+      }
+    });
+    dispatch({ type: USER_APPS_SUCCESS, payload: sortedApps });
   } catch (error) {
     dispatch({
       type: USER_APPS_FAIL,
@@ -50,19 +60,23 @@ export const addAppToList = (application) => async (dispatch, getState) => {
     };
 
     let { data } = await axios.post('/api/apps', application, config);
+
     dispatch({ type: POST_APP_SUCCESS });
+
     const {
       userApps: { apps },
     } = getState();
-    let newApps = apps;
-    newApps.forEach((app) => {
-      if (app.list === application.list) {
-        app.index++;
-      }
+
+    let list = listNameValuePairs[application.list];
+
+    let appsCopy = apps;
+    appsCopy[list].forEach((app) => {
+      app.index++;
     });
-    newApps.sort((a, b) => a.list - b.list);
-    newApps.sort((a, b) => a.index - b.index);
-    dispatch({ type: USER_APPS_SUCCESS, payload: [data, ...newApps] });
+    appsCopy[list].sort((a, b) => a.index - b.index);
+    appsCopy[list].unshift(data);
+
+    dispatch({ type: USER_APPS_SUCCESS, payload: appsCopy });
   } catch (error) {
     dispatch({
       type: POST_APP_FAIL,
