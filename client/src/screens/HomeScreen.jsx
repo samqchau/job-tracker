@@ -8,6 +8,9 @@ const HomeScreen = ({ history }) => {
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+  const userApps = useSelector((state) => state.userApps);
+  const { apps } = userApps;
+
   useEffect(() => {
     if (!userInfo) {
       history.push('/');

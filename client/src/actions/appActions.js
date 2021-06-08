@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { bindActionCreators } from 'redux';
 import {
   USER_APPS_REQUEST,
   USER_APPS_SUCCESS,
@@ -37,8 +36,6 @@ export const fetchUserApps = () => async (dispatch, getState) => {
 };
 
 export const addAppToList = (application) => async (dispatch, getState) => {
-  //use userAppsReducer to update apps state
-  //use getstate to get current apps state and add new app to front of current state after making post request
   dispatch({ type: POST_APP_REQUEST });
   try {
     const {
@@ -63,8 +60,8 @@ export const addAppToList = (application) => async (dispatch, getState) => {
         app.index++;
       }
     });
-    newApps.sort((a, b) => a.list < b.list);
-    newApps.sort((a, b) => a.index < b.index);
+    newApps.sort((a, b) => a.list - b.list);
+    newApps.sort((a, b) => a.index - b.index);
     dispatch({ type: USER_APPS_SUCCESS, payload: [data, ...newApps] });
   } catch (error) {
     dispatch({

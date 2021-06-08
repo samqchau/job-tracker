@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { USER_APPS_RESET } from '../constants/appConstants';
 import {
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
@@ -56,5 +57,6 @@ export const loginUser = (emailAndPassword) => async (dispatch, getState) => {
 
 export const logoutUser = () => (dispatch) => {
   dispatch({ type: USER_LOGOUT });
+  dispatch({ type: USER_APPS_RESET });
   sessionStorage.removeItem('userInfo');
 };
