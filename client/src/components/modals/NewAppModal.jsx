@@ -1,9 +1,22 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form, Col, Row } from 'react-bootstrap';
-import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import '../../styles/newAppModal.css';
+import { colorsArr } from '../../styles/colorPallet';
+import { addAppToList } from '../../actions/appActions';
 
-const NewAppModal = ({ show, handleClose }) => {
+const listValues = [
+  'Wishlist',
+  'Applied',
+  'Phone',
+  'On Site',
+  'Offer',
+  'Rejected',
+];
+
+const NewAppModal = ({ show, handleClose, listValue }) => {
+  const dispatch = useDispatch();
+
   let today = new Date(Date());
   let dd = String(today.getDate()).padStart(2, '0');
   let mm = String(today.getMonth() + 1).padStart(2, '0');
@@ -11,41 +24,41 @@ const NewAppModal = ({ show, handleClose }) => {
 
   const [companyName, setCompanyName] = useState('');
   const [jobTitle, setJobTitle] = useState('');
-  const [status, setStatus] = useState(3);
+  const [list, setList] = useState(listValue);
   const [date, setDate] = useState(`${yyyy}-${mm}-${dd}`);
-
-  const statusArr = [
-    'Pending',
-    'In Progress',
-    'Declined',
-    'Rejected',
-    'Accepted',
-    'Offer',
-  ];
-
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const [url, setUrl] = useState('');
+  const [salary, setSalary] = useState('');
+  const [location, setLocation] = useState('');
+  const [color, setColor] = useState('');
+  const [description, setDescription] = useState('');
 
   const submitHandler = async (e) => {
     e.preventDefault();
     let application = {
       companyName,
       jobTitle,
-      status,
+      list,
+      date,
+      url,
+      salary,
+      location,
+      color,
+      description,
     };
 
-    let config = {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${userInfo.token}`,
-      },
-    };
-    let { data } = await axios.post('/api/apps', application, config);
-    console.log(data);
+    console.log(application);
+    dispatch(addAppToList(application));
   };
 
   return (
-    <Modal show={show} onHide={handleClose} centered size='md'>
+    <Modal
+      show={show}
+      onHide={handleClose}
+      centered
+      size='md'
+      className='newAppModal'
+      contentClassName='newAppCustomModal'
+    >
       <Modal.Header>
         <Modal.Title>Track a new application</Modal.Title>
       </Modal.Header>
@@ -74,25 +87,25 @@ const NewAppModal = ({ show, handleClose }) => {
             ></Form.Control>
           </Form.Group>
 
-          <Form.Group controlId='status' as={Col} xs={12} sm={6}>
-            <Form.Label>Status of Application</Form.Label>
+          <Form.Group controlId='list' as={Col} xs={12} sm={6}>
+            <Form.Label>List</Form.Label>
             <Form.Control
               required
               as='select'
-              value={status}
+              value={list}
               onChange={(e) => {
-                setStatus(e.target.value);
+                setList(e.target.value);
               }}
             >
-              {statusArr.map((item, i) => (
+              {listValues.map((item, i) => (
                 <option value={i + 1} key={i + 1}>
-                  {statusArr[i]}
+                  {listValues[i]}
                 </option>
               ))}
             </Form.Control>
           </Form.Group>
 
-          <Form.Group controlId='status' as={Col} xs={12} sm={6}>
+          <Form.Group controlId='dateApplied' as={Col} xs={12} sm={6}>
             <Form.Label>Date Applied</Form.Label>
             <Form.Control
               required
@@ -103,13 +116,78 @@ const NewAppModal = ({ show, handleClose }) => {
               }}
             ></Form.Control>
           </Form.Group>
+
+          <Form.Group controlId='url' as={Col} xs={12} sm={6}>
+            <Form.Label>URL</Form.Label>
+            <Form.Control
+              placeholder='+  Add URL'
+              value={url}
+              onChange={(e) => {
+                setUrl(e.target.value);
+              }}
+            ></Form.Control>
+          </Form.Group>
+
+          <Form.Group controlId='salary' as={Col} xs={12} sm={6}>
+            <Form.Label>Salary</Form.Label>
+            <Form.Control
+              placeholder='Salary'
+              value={salary}
+              onChange={(e) => {
+                setSalary(e.target.value);
+              }}
+            ></Form.Control>
+          </Form.Group>
+
+          <Form.Group controlId='location' as={Col} xs={12} sm={6}>
+            <Form.Label>Location</Form.Label>
+            <Form.Control
+              placeholder='Location'
+              value={location}
+              onChange={(e) => {
+                setLocation(e.target.value);
+              }}
+            ></Form.Control>
+          </Form.Group>
+
+          <Form.Group controlId='color' as={Col} xs={12} sm={6}>
+            <Form.Label>Color</Form.Label>
+            <Form.Control
+              as='select'
+              placeholder='Color'
+              value={color}
+              onChange={(e) => {
+                setColor(e.target.value);
+              }}
+            >
+              {colorsArr.map((item, i) => (
+                <option key={i} value={item}>
+                  {item}
+                </option>
+              ))}
+            </Form.Control>
+          </Form.Group>
+
+          <Form.Group controlId='description'>
+            <Form.Label>Description</Form.Label>
+            <Form.Control
+              placeholder='Job Description'
+              value={description}
+              type='text'
+              onChange={(e) => {
+                setDescription(e.target.value);
+              }}
+            ></Form.Control>
+          </Form.Group>
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant='secondary' onClick={handleClose}>
+        <Button variant='dark' onClick={handleClose}>
           Close
         </Button>
-        <Button onClick={submitHandler}>Submit</Button>
+        <Button onClick={submitHandler} variant='success'>
+          Save
+        </Button>
       </Modal.Footer>
     </Modal>
   );

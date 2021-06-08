@@ -3,15 +3,45 @@ import pool from '../database/db.js';
 
 export const createNewApplication = expressAsyncHandler(async (req, res) => {
   try {
-    const { companyName, jobTitle, status } = req.body;
+    let {
+      companyName,
+      jobTitle,
+      list,
+      url,
+      salary,
+      location,
+      color,
+      description,
+    } = req.body;
     const { id } = req.user;
-
-    const newApplication = await pool.query(
-      'INSERT INTO applications (company_name, job_title, status, user_id) VALUES($1, $2, $3, $4) RETURNING *',
-      [companyName, jobTitle, status, id]
+    list = Number(list);
+    salary = Number(salary);
+    let newApplication = await pool.query(
+      'INSERT INTO applications (company_name, job_title, user_id, list, url, color, salary, location, description, index) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, 0) RETURNING *',
+      [
+        companyName,
+        jobTitle,
+        id,
+        list,
+        url,
+        color,
+        salary,
+        location,
+        description,
+      ]
     );
+    newApplication = newApplication.rows[0];
+    let updatedApps;
+    if (newApplication) {
+      updatedApps = await pool.query(
+        'UPDATE applications SET index = index + 1 WHERE $1 = user_id AND list = $2 AND id != $3 RETURNING *',
+        [id, list, newApplication.id]
+      );
+    }
 
-    res.json(newApplication.rows[0]);
+    console.log(updatedApps.rows);
+
+    res.json(newApplication);
   } catch (error) {
     console.error(error.message);
   }

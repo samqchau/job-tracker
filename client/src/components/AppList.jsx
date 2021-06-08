@@ -1,12 +1,29 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import '../styles/appList.css';
 import AppCard from './AppCard';
 import { Droppable } from 'react-beautiful-dnd';
+import { addAppToList } from '../actions/appActions';
+import NewAppModal from './modals/NewAppModal';
 
 const AppList = ({ name, icon, nameValue }) => {
+  const [showModal, setShowModal] = useState(false);
+
+  const dispatch = useDispatch();
   const userApps = useSelector((state) => state.userApps);
   const { apps } = userApps;
+
+  const addAppToListHandler = () => {
+    dispatch(addAppToList);
+  };
+
+  const handleClose = () => {
+    setShowModal(false);
+  };
+
+  const showAppModal = () => {
+    setShowModal(true);
+  };
 
   return (
     <>
@@ -28,7 +45,7 @@ const AppList = ({ name, icon, nameValue }) => {
             <i className='fas fa-ellipsis-v' />
           </span>
         </div>
-        <div className='list-add'>
+        <div className='list-add' onClick={showAppModal}>
           <i className='fas fa-plus' />
         </div>
         <Droppable droppableId={name}>
@@ -49,6 +66,11 @@ const AppList = ({ name, icon, nameValue }) => {
           )}
         </Droppable>
       </div>
+      <NewAppModal
+        show={showModal}
+        handleClose={handleClose}
+        listValue={nameValue}
+      />
     </>
   );
 };

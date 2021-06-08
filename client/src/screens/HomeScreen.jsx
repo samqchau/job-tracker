@@ -20,6 +20,24 @@ const HomeScreen = ({ history }) => {
 
   const onDragEnd = (result) => {
     console.log(result);
+    const { destination, source, draggableId } = result;
+    if (!destination) return;
+
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }
+
+    /*
+      if destination and source id are the same, change index of app
+    */
+
+    /*
+      if destination.droppableId !== source.droppableId
+        write reducer to find application by app id and change app's list to new list value
+    */
   };
 
   return (

@@ -9,7 +9,7 @@ const AppCard = ({ app, index }) => {
     <Draggable draggableId={id} index={index}>
       {(provided) => (
         <div
-          className={`app-card ${color}`}
+          className={`app-card ${color ? color : 'white'}`}
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}

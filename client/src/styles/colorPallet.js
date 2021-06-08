@@ -18,4 +18,24 @@ let colors = {
   offPurple: 'off-purple',
 };
 
+export let colorsArr = [
+  'white',
+  'red',
+  'salmon',
+  'orange',
+  'gold',
+  'yellow',
+  'light-green',
+  'green',
+  'dark-green',
+  'dark-blue',
+  'blue-green',
+  'light-blue',
+  'blue',
+  'navy',
+  'purple',
+  'black',
+  'gray',
+  'off-purple',
+];
 export default colors;
