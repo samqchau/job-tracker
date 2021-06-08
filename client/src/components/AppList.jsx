@@ -1,21 +1,15 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import '../styles/appList.css';
 import AppCard from './AppCard';
 import { Droppable } from 'react-beautiful-dnd';
-import { addAppToList } from '../actions/appActions';
 import NewAppModal from './modals/NewAppModal';
 
 const AppList = ({ name, icon, nameValue }) => {
   const [showModal, setShowModal] = useState(false);
 
-  const dispatch = useDispatch();
   const userApps = useSelector((state) => state.userApps);
   const { apps } = userApps;
-
-  const addAppToListHandler = () => {
-    dispatch(addAppToList);
-  };
 
   const handleClose = () => {
     setShowModal(false);

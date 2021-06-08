@@ -22,7 +22,8 @@ export const fetchUserApps = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get('/api/apps', config);
+    let { data } = await axios.get('/api/apps', config);
+    data.sort((a, b) => a.index - b.index);
     dispatch({ type: USER_APPS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form, Col, Row } from 'react-bootstrap';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import '../../styles/newAppModal.css';
 import { colorsArr } from '../../styles/colorPallet';
 import { addAppToList } from '../../actions/appActions';
