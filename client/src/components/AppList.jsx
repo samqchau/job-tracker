@@ -5,7 +5,7 @@ import AppCard from './AppCard';
 import { Droppable } from 'react-beautiful-dnd';
 import NewAppModal from './modals/NewAppModal';
 
-const AppList = ({ name, icon, nameNumValue }) => {
+const AppList = ({ name, icon, listIntFromDB }) => {
   const [showModal, setShowModal] = useState(false);
 
   const userApps = useSelector((state) => state.userApps);
@@ -58,7 +58,7 @@ const AppList = ({ name, icon, nameNumValue }) => {
       <NewAppModal
         show={showModal}
         handleClose={handleClose}
-        listValue={nameNumValue}
+        listValue={listIntFromDB}
       />
     </>
   );

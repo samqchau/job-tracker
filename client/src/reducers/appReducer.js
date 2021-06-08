@@ -14,7 +14,7 @@ export const userAppsReducer = (
       wishlist: [],
       applied: [],
       phone: [],
-      onSite: [],
+      'on site': [],
       offer: [],
       rejected: [],
     },
@@ -25,7 +25,7 @@ export const userAppsReducer = (
     case USER_APPS_REQUEST:
       return { ...state, loading: true };
     case USER_APPS_SUCCESS:
-      return { ...state, loading: false, apps: action.payload, success: true };
+      return { loading: false, apps: action.payload, success: true };
     case USER_APPS_FAIL:
       return { ...state, loading: false, error: action.payload };
     case USER_APPS_RESET:
