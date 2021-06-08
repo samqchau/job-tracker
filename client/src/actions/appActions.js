@@ -70,6 +70,9 @@ export const addAppToList = (application) => async (dispatch, getState) => {
     let list = listNameValuePairs[application.list];
 
     let appsCopy = apps;
+    if (!appsCopy[list]) {
+      appsCopy[list] = [];
+    }
     appsCopy[list].forEach((app) => {
       app.index++;
     });

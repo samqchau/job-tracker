@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import AppList from '../components/AppList';
 import { fetchUserApps } from '../actions/appActions';
 import { DragDropContext } from 'react-beautiful-dnd';
+import { USER_APPS_SUCCESS } from '../constants/appConstants';
 
 const HomeScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -22,25 +23,39 @@ const HomeScreen = ({ history }) => {
   }, [dispatch]);
 
   const onDragEnd = (result) => {
-    console.log(result);
     const { destination, source, draggableId } = result;
     if (!destination) return;
 
     if (
       destination.droppableId === source.droppableId &&
       destination.index === source.index
-    ) {
+    )
+      return;
+
+    let appsCopy = apps;
+
+    if (destination.droppableId === source.droppableId) {
+      let listName = destination.droppableId;
+      let arr = appsCopy[listName];
+      let app = arr.splice(source.index, 1);
+      app = app[0];
+
+      if (source.index < destination.index) {
+        for (let i = source.index; i < destination.index; i++) {
+          arr[i].index = arr[i].index - 1;
+        }
+      } else {
+        for (let i = destination.index; i < source.index; i++) {
+          arr[i].index = arr[i].index + 1;
+        }
+      }
+      app.index = destination.index;
+      arr.splice(destination.index, 0, app);
+      appsCopy[listName] = arr;
+      dispatch({ type: USER_APPS_SUCCESS, payload: appsCopy });
+
       return;
     }
-
-    /*
-      if destination and source id are the same, change index of app
-    */
-
-    /*
-      if destination.droppableId !== source.droppableId
-        write reducer to find application by app id and change app's list to new list value
-    */
   };
 
   return (

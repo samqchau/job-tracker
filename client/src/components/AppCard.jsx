@@ -3,8 +3,8 @@ import '../styles/appCard.css';
 import '../styles/colorPalette.css';
 import { Draggable } from 'react-beautiful-dnd';
 
-const AppCard = ({ app, index }) => {
-  const { company_name, job_title, favorited, id, color } = app;
+const AppCard = ({ app }) => {
+  const { company_name, job_title, favorited, id, color, index } = app;
   return (
     <Draggable draggableId={id} index={index}>
       {(provided) => (
@@ -23,7 +23,7 @@ const AppCard = ({ app, index }) => {
               <i className={`${favorited ? 'fas' : 'far'} fa-star`} />
             </div>
           </div>
-          <div className='app-card-footer'></div>
+          <div className='app-card-footer'>{index}</div>
         </div>
       )}
     </Draggable>
