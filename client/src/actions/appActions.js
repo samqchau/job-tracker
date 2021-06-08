@@ -15,6 +15,8 @@ export const fetchUserApps = () => async (dispatch, getState) => {
     const {
       userLogin: { userInfo },
     } = getState();
+    const { userApps } = getState();
+    const { apps } = userApps;
     const config = {
       headers: {
         'Content-Type': 'application/json',
@@ -25,13 +27,9 @@ export const fetchUserApps = () => async (dispatch, getState) => {
     let { data } = await axios.get('/api/apps', config);
     data.sort((a, b) => a.index - b.index);
 
-    let sortedApps = {};
+    let sortedApps = apps;
     data.forEach((app) => {
-      if (!sortedApps[listNameValuePairs[app.list]]) {
-        sortedApps[listNameValuePairs[app.list]] = [app];
-      } else {
-        sortedApps[listNameValuePairs[app.list]].push(app);
-      }
+      sortedApps[listNameValuePairs[app.list]].push(app);
     });
     dispatch({ type: USER_APPS_SUCCESS, payload: sortedApps });
   } catch (error) {
@@ -70,9 +68,7 @@ export const addAppToList = (application) => async (dispatch, getState) => {
     let list = listNameValuePairs[application.list];
 
     let appsCopy = apps;
-    if (!appsCopy[list]) {
-      appsCopy[list] = [];
-    }
+
     appsCopy[list].forEach((app) => {
       app.index++;
     });
