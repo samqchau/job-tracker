@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { DragDropContext } from 'react-beautiful-dnd';
 import { useDispatch, useSelector } from 'react-redux';
 import { USER_APPS_SUCCESS } from '../constants/appConstants';
@@ -6,11 +7,13 @@ import { USER_APPS_SUCCESS } from '../constants/appConstants';
 const DragDropContextComponent = ({ children }) => {
   const dispatch = useDispatch();
 
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
   const userApps = useSelector((state) => state.userApps);
   const { apps } = userApps;
 
-  const onDragEnd = (result) => {
-    const { destination, source } = result;
+  const onDragEnd = async (result) => {
+    const { destination, source, draggableId } = result;
     if (!destination) return;
 
     if (
@@ -20,6 +23,21 @@ const DragDropContextComponent = ({ children }) => {
       return;
 
     let appsCopy = apps;
+
+    let config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+        'Content-Type': 'application/json',
+      },
+    };
+    console.log(source.droppableId);
+    let moveData = {
+      sourceIndex: source.index,
+      destinationIndex: destination.index,
+      sourceList: source.droppableId,
+      destinationList: destination.droppableId,
+      appId: draggableId,
+    };
 
     if (destination.droppableId === source.droppableId) {
       let listName = destination.droppableId;
@@ -39,6 +57,9 @@ const DragDropContextComponent = ({ children }) => {
       app.index = destination.index;
       arr.splice(destination.index, 0, app);
       appsCopy[listName] = arr;
+
+      await axios.put('/api/apps/update/index', moveData, config);
+
       dispatch({ type: USER_APPS_SUCCESS, payload: appsCopy });
       return;
     }
@@ -58,6 +79,9 @@ const DragDropContextComponent = ({ children }) => {
       destinationArr.splice(destination.index, 0, app);
       appsCopy[source.droppableId] = sourceArr;
       appsCopy[destination.droppableId] = destinationArr;
+
+      await axios.put('/api/apps/update/index', moveData, config);
+
       dispatch({ type: USER_APPS_SUCCESS, payload: appsCopy });
     }
   };
