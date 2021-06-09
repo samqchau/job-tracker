@@ -86,3 +86,34 @@ export const addAppToList = (application) => async (dispatch, getState) => {
     });
   }
 };
+
+export const deleteAppById = (app) => async (dispatch, getState) => {
+  const {
+    userLogin: { userInfo },
+  } = getState();
+  const {
+    userApps: { apps },
+  } = getState();
+  const { id, list, index } = app;
+
+  let config = {
+    headers: {
+      Authorization: `Bearer ${userInfo.token}`,
+      'Content-Type': 'application/json',
+    },
+  };
+
+  let data = { ...config, data: { id, index } };
+
+  let appsCopy = apps;
+  let listName = listNameValuePairs[list];
+  let appsArr = appsCopy[listName];
+  appsArr.forEach((app) => {
+    if (app.index > index) app.index -= 1;
+  });
+  appsArr = appsArr.filter((app) => app.id !== id);
+  appsCopy[listName] = appsArr;
+  dispatch({ type: USER_APPS_SUCCESS, payload: appsCopy });
+
+  await axios.delete('/api/apps', data);
+};

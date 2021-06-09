@@ -3,16 +3,18 @@ import {
   createNewApplication,
   getApplicationsByUserId,
   updateAppIndices,
+  deleteAppById,
 } from '../controllers/applicationController.js';
 import { protect } from '../middleware/authMiddleware.js';
 
 const applicationRouter = express.Router();
 
-//create new application
+// ROUTE (/api/apps)
 applicationRouter
   .route('/')
   .post(protect, createNewApplication)
-  .get(protect, getApplicationsByUserId);
+  .get(protect, getApplicationsByUserId)
+  .delete(protect, deleteAppById);
 //get application by id
 //edit application by id
 //delete application by id
