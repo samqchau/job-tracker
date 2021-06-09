@@ -4,11 +4,13 @@
   padding: 15px 20px;
   border: 1px solid black;
   border-radius: 7px;
+  width: 100%;
+  max-width: 260px;
+  min-width: 190px;
 }
 .app-card-body {
   display: flex;
   justify-content: space-between;
-  min-width: 205px;
 }
 .app-card-body-left {
   display: flex;

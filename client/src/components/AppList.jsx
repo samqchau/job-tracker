@@ -4,6 +4,7 @@ import '../styles/appList.css';
 import AppCard from './AppCard';
 import { Droppable } from 'react-beautiful-dnd';
 import NewAppModal from './modals/NewAppModal';
+import { Col } from 'react-bootstrap';
 
 const AppList = ({ name, icon, listIntFromDB }) => {
   const [showModal, setShowModal] = useState(false);
@@ -21,7 +22,7 @@ const AppList = ({ name, icon, listIntFromDB }) => {
 
   return (
     <>
-      <div className='list-container'>
+      <Col className='list-container' xs={6} sm={4} md={4} lg={4} xl={2}>
         <div className='list-header'>
           <span className='list-header-icon'>
             <i className={icon}></i>
@@ -54,7 +55,7 @@ const AppList = ({ name, icon, listIntFromDB }) => {
             </div>
           )}
         </Droppable>
-      </div>
+      </Col>
       <NewAppModal
         show={showModal}
         handleClose={handleClose}

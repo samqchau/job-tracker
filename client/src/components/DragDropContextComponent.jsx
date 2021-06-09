@@ -30,7 +30,7 @@ const DragDropContextComponent = ({ children }) => {
         'Content-Type': 'application/json',
       },
     };
-    console.log(source.droppableId);
+
     let moveData = {
       sourceIndex: source.index,
       destinationIndex: destination.index,

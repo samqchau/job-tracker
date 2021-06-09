@@ -90,9 +90,6 @@ export const updateAppIndices = expressAsyncHandler(async (req, res) => {
         ]);
       }
     } else {
-      console.log(sourceListId);
-      console.log(destinationListId);
-      console.log(sourceIndex);
       await pool.query(
         'UPDATE applications SET index = index - 1 WHERE (user_id = $1 AND list = $2 AND index > $3)',
         [userId, sourceListId, sourceIndex]

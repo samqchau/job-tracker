@@ -1,11 +1,10 @@
 .list-container {
-  width: 307px;
   vertical-align: top;
   padding: 10px 10px 0 10px;
-  box-sizing: border-box;
-  border-left: 1px solid #ece9f2;
-  height: 100%;
+  border-left: 1px solid #ddcdff;
+  border-right: 1px solid #ddcdff;
   background-color: #fafafa;
+  max-width: 300px;
 }
 .list-header {
   display: flex;
@@ -46,12 +45,44 @@
 .list-add:hover {
   box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.3);
 }
-.list-cards-container {
-  padding: 3px;
-  height: 500px;
-  background-color: aqua;
-}
 .list-body-main {
   background-color: #ece9f2;
   min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: scroll;
+  scrollbar-width: 0px;
+  height: calc(46vh - 119px);
+}
+.list-body-main::-webkit-scrollbar {
+  display: none;
+}
+@media only screen and (max-width: 1200px) {
+  .list-container {
+    height: 50%;
+    min-width: 260px !important;
+    max-width: 300px !important;
+    margin-bottom: 5px;
+    box-shadow: 1px 2px 5px rgb(25 4 69);
+  }
+  .list-body-main {
+    height: calc(46vh - 119px);
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .list-container {
+    height: 98%;
+  }
+  .list-body-main {
+    height: calc(100% - 119px);
+  }
+}
+
+@media only screen and (max-width: 536px) {
+  .list-container {
+    box-shadow: 1px 2px 5px rgb(25 4 69);
+    margin-bottom: 5px;
+  }
 }

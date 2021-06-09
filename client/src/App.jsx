@@ -2,11 +2,11 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from './components/Header';
-import Footer from './components/Footer';
 import HomeScreen from './screens/HomeScreen';
 import LandingScreen from './screens/LandingScreen';
 import store from './stores/store.js';
 import './styles/app.css';
+import { Row } from 'react-bootstrap';
 
 const App = () => {
   return (
@@ -14,12 +14,11 @@ const App = () => {
       <Router>
         <Header />
         <main className='app-main'>
-          <div className='app-main-container'>
+          <Row className='app-main-container'>
             <Route component={LandingScreen} path='/' exact />
             <Route component={HomeScreen} path='/home' />
-          </div>
+          </Row>
         </main>
-        <Footer />
       </Router>
     </Provider>
   );

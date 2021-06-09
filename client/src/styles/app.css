@@ -1,13 +1,19 @@
 .app-main {
-  min-height: 86%;
+  min-height: 94%;
   height: 86%;
+  display: flex;
+  justify-content: center;
 }
 .app-main-container {
   display: flex;
   justify-content: center;
-  align-items: center;
-  border: 1px solid black;
+  align-items: flex-start;
   height: 100%;
   width: 100%;
-  overflow: auto;
+  max-width: 1920px;
+}
+@media only screen and (max-width: 1200px) {
+  .app-main-container {
+    justify-content: space-evenly;
+  }
 }
