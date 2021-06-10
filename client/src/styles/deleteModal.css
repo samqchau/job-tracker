@@ -1,0 +1,49 @@
+.deleteModal .modal-content {
+  border-radius: 8px;
+  width: 300px;
+  height: 300px;
+  transform: translateX(33.5%);
+  text-transform: capitalize;
+}
+.deleteModal-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 75px 50px 70px;
+  text-align: center;
+}
+.deleteModal-body > h4 {
+  letter-spacing: 1px !important;
+  text-transform: unset;
+  font-size: 18px;
+}
+.deleteModal-body > p {
+  margin: 10px 0 26px;
+  font-size: 16px;
+  text-transform: none;
+  width: 220px;
+  letter-spacing: 0px !important;
+  color: rgb(123, 123, 123) !important;
+}
+.deleteModal-body-button-container > button {
+  padding: 0 10px;
+  margin-right: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  height: 30px;
+  cursor: pointer;
+  border-radius: 4px;
+  text-transform: unset;
+  font-size: 13px;
+}
+.deleteModal-body-button-container > button:hover {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  filter: brightness(95%);
+}
+.deleteModal-delete-button {
+  background-color: rgb(106, 79, 235) !important;
+}
+.deleteModal-cancel-button {
+  background-color: white !important;
+  color: black !important;
+}

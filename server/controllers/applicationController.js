@@ -112,11 +112,11 @@ export const updateAppIndices = expressAsyncHandler(async (req, res) => {
 });
 
 export const deleteAppById = expressAsyncHandler(async (req, res) => {
-  const { id, index } = req.body;
+  const { id, index, list } = req.body;
 
   await pool.query(
-    'UPDATE applications SET index = index - 1 WHERE index > $1',
-    [index]
+    'UPDATE applications SET index = index - 1 WHERE (index > $1 and list = $2)',
+    [index, list]
   );
   await pool.query('DELETE FROM applications WHERE id = $1', [id]);
   res.end();

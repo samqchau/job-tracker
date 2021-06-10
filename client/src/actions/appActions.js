@@ -103,11 +103,12 @@ export const deleteAppById = (app) => async (dispatch, getState) => {
     },
   };
 
-  let data = { ...config, data: { id, index } };
+  let data = { ...config, data: { id, index, list } };
 
   let appsCopy = apps;
   let listName = listNameValuePairs[list];
   let appsArr = appsCopy[listName];
+  console.log(listName);
   appsArr.forEach((app) => {
     if (app.index > index) app.index -= 1;
   });

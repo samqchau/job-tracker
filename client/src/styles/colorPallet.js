@@ -28,7 +28,6 @@ export let colorsArr = [
   'light-green',
   'green',
   'dark-green',
-  'dark-blue',
   'blue-green',
   'light-blue',
   'blue',

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { DragDropContext } from 'react-beautiful-dnd';
 import { useDispatch, useSelector } from 'react-redux';
 import { USER_APPS_SUCCESS } from '../constants/appConstants';
+import nameValuePairs from '../data/lookUpTables/listNameValuePairs';
 
 const DragDropContextComponent = ({ children }) => {
   const dispatch = useDispatch();
@@ -66,10 +67,12 @@ const DragDropContextComponent = ({ children }) => {
 
     if (destination.droppableId !== source.droppableId) {
       let sourceArr = appsCopy[source.droppableId];
+
       let destinationArr = appsCopy[destination.droppableId];
       let app = sourceArr.splice(source.index, 1);
       app = app[0];
       app.index = destination.index;
+      app.list = nameValuePairs.indexOf(destination.droppableId);
       for (let i = source.index; i < sourceArr.length; i++) {
         sourceArr[i].index -= 1;
       }
@@ -80,9 +83,8 @@ const DragDropContextComponent = ({ children }) => {
       appsCopy[source.droppableId] = sourceArr;
       appsCopy[destination.droppableId] = destinationArr;
 
-      await axios.put('/api/apps/update/index', moveData, config);
-
       dispatch({ type: USER_APPS_SUCCESS, payload: appsCopy });
+      await axios.put('/api/apps/update/index', moveData, config);
     }
   };
 
