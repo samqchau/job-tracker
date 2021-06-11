@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, Button, Col, Row, Form } from 'react-bootstrap';
 import '../../styles/appDetailsModal.css';
+import ColorSelect from '../ColorSelect';
 
 const AppDetailsModal = ({ app, show, handleClose }) => {
   const [company, setCompany] = useState(app.company_name);
@@ -27,6 +28,10 @@ const AppDetailsModal = ({ app, show, handleClose }) => {
 
   const handleCloseButtonClick = (e) => {
     handleClose();
+  };
+
+  const changeColorTo = (color) => {
+    setColor(color);
   };
 
   return (
@@ -126,12 +131,7 @@ const AppDetailsModal = ({ app, show, handleClose }) => {
           </Form.Group>
           <Form.Group as={Col} xs={12} sm={6} md={4}>
             <Form.Label>Color</Form.Label>
-            <Form.Control
-              value={color}
-              onChange={(e) => {
-                setColor(e.target.value);
-              }}
-            ></Form.Control>
+            <ColorSelect color={color} setColor={changeColorTo} />
           </Form.Group>
           <Form.Group as={Col} xs={12}>
             <Form.Label>Description</Form.Label>

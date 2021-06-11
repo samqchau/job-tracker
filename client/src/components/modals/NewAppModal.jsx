@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import '../../styles/newAppModal.css';
 import { colorsArr } from '../../styles/colorPallet';
 import { addAppToList } from '../../actions/appActions';
+import ColorSelect from '../ColorSelect';
 
 const listValues = [
   'Wishlist',
@@ -47,6 +48,10 @@ const NewAppModal = ({ show, handleClose, listValue }) => {
     };
 
     dispatch(addAppToList(application));
+  };
+
+  const changeColorTo = (color) => {
+    setColor(color);
   };
 
   return (
@@ -147,20 +152,7 @@ const NewAppModal = ({ show, handleClose, listValue }) => {
 
           <Form.Group controlId='color' as={Col} xs={12} sm={6}>
             <Form.Label>Color</Form.Label>
-            <Form.Control
-              as='select'
-              placeholder='Color'
-              value={color}
-              onChange={(e) => {
-                setColor(e.target.value);
-              }}
-            >
-              {colorsArr.map((item, i) => (
-                <option key={i} value={item}>
-                  {item}
-                </option>
-              ))}
-            </Form.Control>
+            <ColorSelect color={color} setColor={changeColorTo} />
           </Form.Group>
 
           <Form.Group controlId='description' as={Col} xs={12}>
