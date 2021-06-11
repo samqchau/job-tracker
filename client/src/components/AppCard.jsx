@@ -3,15 +3,18 @@ import { useDispatch } from 'react-redux';
 import '../styles/appCard.css';
 import '../styles/colorPalette.css';
 import { Draggable } from 'react-beautiful-dnd';
-import DeleteAppModal from './modals/DeleteAppModal';
-
 import { deleteAppById } from '../actions/appActions';
+
+import DeleteAppModal from './modals/DeleteAppModal';
+import AppDetailsModal from './modals/AppDetailsModal';
 
 const AppCard = ({ app }) => {
   const dispatch = useDispatch();
   const { company_name, job_title, favorited, id, color, index } = app;
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [detailsModalDisabled, setDetailsModalDisabled] = useState(false);
 
   const deleteHandler = (e) => {
     dispatch(deleteAppById(app));
@@ -26,6 +29,24 @@ const AppCard = ({ app }) => {
     setShowDeleteModal(false);
   };
 
+  const openDetailsModal = () => {
+    if (!detailsModalDisabled) {
+      setShowDetailsModal(true);
+    }
+  };
+
+  const closeDetailsModal = () => {
+    setShowDetailsModal(false);
+  };
+
+  const disableDetailsModal = () => {
+    setDetailsModalDisabled(true);
+  };
+
+  const enableDetailsModal = () => {
+    setDetailsModalDisabled(false);
+  };
+
   return (
     <>
       <Draggable draggableId={id} index={index}>
@@ -35,13 +56,18 @@ const AppCard = ({ app }) => {
             ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
+            onClick={openDetailsModal}
           >
             <div className='app-card-body'>
               <div className='app-card-body-left'>
                 <span>{job_title}</span>
                 <span>{company_name}</span>
               </div>
-              <div className='app-card-body-right'>
+              <div
+                className='app-card-body-right'
+                onMouseOver={disableDetailsModal}
+                onMouseLeave={enableDetailsModal}
+              >
                 <i className={`${favorited ? 'fas' : 'far'} fa-star`} />
                 <i className='far fa-trash-alt' onClick={openDeleteModal}></i>
               </div>
@@ -54,6 +80,11 @@ const AppCard = ({ app }) => {
         show={showDeleteModal}
         handleClose={closeDeleteModal}
         deleteHandler={deleteHandler}
+      />
+      <AppDetailsModal
+        app={app}
+        show={showDetailsModal}
+        handleClose={closeDetailsModal}
       />
     </>
   );

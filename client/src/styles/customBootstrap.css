@@ -1,0 +1,43 @@
+.modal-button {
+  padding: 0px 10px;
+  margin-right: 8px;
+  border: 1px solid rgb(201, 201, 201);
+  height: 30px;
+  cursor: pointer;
+  border-radius: 5px;
+  text-transform: unset;
+  font-size: 13px;
+  filter: brightness(100%);
+}
+
+.modal-button:hover {
+  filter: brightness(112%);
+  border: 1px solid rgb(201, 201, 201);
+}
+.form-label {
+  font-weight: 500;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+textarea.form-control {
+  height: 130px;
+}
+
+@media only screen and (max-width: 576px) {
+  .modal-dialog {
+    max-width: 600px;
+    margin: 1.75rem auto;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .modal-dialog {
+    max-width: 700px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .modal-xl {
+    max-width: 700px;
+  }
+}

@@ -1,0 +1,76 @@
+.detailModal-header-nav {
+  width: 100%;
+  margin: unset !important;
+}
+.detailModal-header {
+  margin-bottom: 16px;
+}
+.detailModal-header-nav-buttonContainer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.detail-modal-moveButton {
+  background-color: var(--indigo) !important;
+}
+.detail-modal-updateButton {
+  background-color: var(--green) !important;
+}
+.detailModal-header-main {
+  padding: 5px 45px 5px 20px;
+  width: 100%;
+  display: flex;
+}
+.detailModal-header-main-favorited {
+  cursor: pointer;
+  margin-left: 10px;
+  padding-top: 3px;
+}
+.detailModal-header-main-text-company {
+  color: rgb(24, 0, 69);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  letter-spacing: 0px;
+  margin: 0px 0px 7px;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 35px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+.detailModal-header-main-text-job {
+  font-size: 1.1rem;
+}
+.detailModal-body-right-content > .form-group {
+  padding: 0px 13px;
+}
+.detailModal-updateButton-xs {
+  width: 100%;
+  margin: 0 12px;
+}
+.detailModal-date-container {
+  display: flex;
+}
+.detailModal-date-clear {
+  margin-left: auto;
+  cursor: pointer;
+  border-bottom: 1px solid white;
+  transition: border-bottom 0.2s;
+}
+.detailModal-date-clear:hover {
+  border-bottom: 1px solid black;
+}
+@media only screen and (max-width: 768px) {
+  .detailModal-updateButton-xs {
+    display: block;
+    align-self: center;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .detailModal-updateButton-xs {
+    display: none !important;
+  }
+}

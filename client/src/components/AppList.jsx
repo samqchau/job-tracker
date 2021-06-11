@@ -33,9 +33,6 @@ const AppList = ({ name, icon, listIntFromDB }) => {
               {apps[name] && apps[name].length ? apps[name].length : 0} jobs
             </div>
           </div>
-          <span className='list-header-options'>
-            <i className='fas fa-ellipsis-v' />
-          </span>
         </div>
         <div className='list-add' onClick={showAppModal}>
           <i className='fas fa-plus' />

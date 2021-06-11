@@ -62,11 +62,10 @@ const NewAppModal = ({ show, handleClose, listValue }) => {
         <Modal.Title>Track a new application</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form onSubmit={submitHandler} as={Row}>
+        <Form as={Row}>
           <Form.Group as={Col} controlId='companyName' xs={12} sm={6}>
             <Form.Label>Company Name</Form.Label>
             <Form.Control
-              required
               placeholder='Company Name'
               value={companyName}
               onChange={(e) => {
@@ -77,7 +76,6 @@ const NewAppModal = ({ show, handleClose, listValue }) => {
           <Form.Group controlId='jobTitle' as={Col} xs={12} sm={6}>
             <Form.Label>Job Title</Form.Label>
             <Form.Control
-              required
               placeholder='Enter Job Title'
               value={jobTitle}
               onChange={(e) => {
@@ -89,7 +87,6 @@ const NewAppModal = ({ show, handleClose, listValue }) => {
           <Form.Group controlId='list' as={Col} xs={12} sm={6}>
             <Form.Label>List</Form.Label>
             <Form.Control
-              required
               as='select'
               value={list}
               onChange={(e) => {
@@ -107,7 +104,6 @@ const NewAppModal = ({ show, handleClose, listValue }) => {
           <Form.Group controlId='dateApplied' as={Col} xs={12} sm={6}>
             <Form.Label>Date Applied</Form.Label>
             <Form.Control
-              required
               type='date'
               value={date}
               onChange={(e) => {
@@ -167,12 +163,12 @@ const NewAppModal = ({ show, handleClose, listValue }) => {
             </Form.Control>
           </Form.Group>
 
-          <Form.Group controlId='description'>
+          <Form.Group controlId='description' as={Col} xs={12}>
             <Form.Label>Description</Form.Label>
             <Form.Control
               placeholder='Job Description'
               value={description}
-              type='text'
+              as='textarea'
               onChange={(e) => {
                 setDescription(e.target.value);
               }}

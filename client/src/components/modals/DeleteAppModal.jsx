@@ -15,10 +15,16 @@ const DeleteAppModal = ({ show, handleClose, deleteHandler }) => {
         <h4>Delete Job</h4>
         <p>Are you sure you want to delete this job?</p>
         <div className='deleteModal-body-button-container'>
-          <Button className='deleteModal-delete-button' onClick={deleteHandler}>
+          <Button
+            className='modal-button deleteModal-delete-button'
+            onClick={deleteHandler}
+          >
             Delete
           </Button>
-          <Button className='deleteModal-cancel-button' onClick={handleClose}>
+          <Button
+            className='modal-button deleteModal-cancel-button'
+            onClick={handleClose}
+          >
             Cancel
           </Button>
         </div>
