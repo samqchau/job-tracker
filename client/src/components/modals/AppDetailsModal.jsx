@@ -81,8 +81,12 @@ const AppDetailsModal = ({ app, show, handleClose }) => {
           </div>
           <div className='detailModal-header-main'>
             <div className='detailModal-header-main-text'>
-              <p className='detailModal-header-main-text-company'>{company}</p>
-              <p className='detailModal-header-main-text-job'>{jobTitle}</p>
+              <p className='detailModal-header-main-text-company'>
+                {app.company_name}
+              </p>
+              <p className='detailModal-header-main-text-job'>
+                {app.job_title}
+              </p>
             </div>
             <i
               className={`detailModal-header-main-favorited ${`${
