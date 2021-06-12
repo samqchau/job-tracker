@@ -3,24 +3,25 @@ import { Row, Col } from 'react-bootstrap';
 import '../styles/colorSelect.css';
 import { colorsArr } from '../styles/colorPallet';
 
-const ColorSelect = ({ color, setColor }) => {
-  const [showColorSelect, setShowColorSelect] = useState(false);
-
-  const closeColorSelect = () => {
-    setShowColorSelect(false);
-  };
-
-  const openColorSelect = () => {
-    setShowColorSelect(true);
-  };
-
+const ColorSelect = ({
+  color,
+  setColor,
+  show,
+  openColorSelect,
+  closeColorSelect,
+}) => {
   return (
     <>
       <div className='colorSelect' onClick={openColorSelect}>
         <div className={`colorSelect-content ${color}`}></div>
       </div>
-      {showColorSelect && (
-        <Row className='colorSelect-menu' onMouseLeave={closeColorSelect}>
+      {show && (
+        <Row
+          className='colorSelect-menu'
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        >
           {colorsArr.map((clr, i) => (
             <Col
               xs={1}
@@ -32,6 +33,7 @@ const ColorSelect = ({ color, setColor }) => {
                 className='colorSelect-menu-option-border'
                 onClick={(e) => {
                   setColor(clr);
+                  closeColorSelect();
                 }}
               >
                 <div className={`${clr} colorSelect-menu-option`}></div>

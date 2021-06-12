@@ -19,7 +19,7 @@
   border: 1px solid #ced4da;
   z-index: 1;
   background: white;
-  margin-left: 0px;
+  margin-left: 0px !important;
   border-radius: 3px;
   display: flex;
   justify-content: space-evenly;
@@ -44,4 +44,8 @@
   cursor: pointer;
   position: relative;
   margin: 3px;
+}
+.colorSelect-menu-option-container {
+  width: 30px;
+  padding: 0px !important;
 }

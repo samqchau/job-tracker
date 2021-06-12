@@ -33,6 +33,8 @@ const NewAppModal = ({ show, handleClose, listValue }) => {
   const [color, setColor] = useState('');
   const [description, setDescription] = useState('');
 
+  const [showColorSelect, setShowColorSelect] = useState(false);
+
   const submitHandler = async (e) => {
     e.preventDefault();
     let application = {
@@ -54,6 +56,14 @@ const NewAppModal = ({ show, handleClose, listValue }) => {
     setColor(color);
   };
 
+  const openColorSelect = () => {
+    setShowColorSelect(true);
+  };
+
+  const closeColorSelect = () => {
+    setShowColorSelect(false);
+  };
+
   return (
     <Modal
       show={show}
@@ -62,6 +72,11 @@ const NewAppModal = ({ show, handleClose, listValue }) => {
       size='md'
       className='newAppModal'
       contentClassName='newAppCustomModal'
+      onClick={() => {
+        if (showColorSelect) {
+          closeColorSelect();
+        }
+      }}
     >
       <Modal.Header>
         <Modal.Title>Track a new application</Modal.Title>
@@ -152,7 +167,13 @@ const NewAppModal = ({ show, handleClose, listValue }) => {
 
           <Form.Group controlId='color' as={Col} xs={12} sm={6}>
             <Form.Label>Color</Form.Label>
-            <ColorSelect color={color} setColor={changeColorTo} />
+            <ColorSelect
+              color={color}
+              setColor={changeColorTo}
+              show={showColorSelect}
+              openColorSelect={openColorSelect}
+              closeColorSelect={closeColorSelect}
+            />
           </Form.Group>
 
           <Form.Group controlId='description' as={Col} xs={12}>

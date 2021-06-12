@@ -22,6 +22,8 @@ const AppDetailsModal = ({ app, show, handleClose }) => {
     app.offer_acceptance
   );
 
+  const [showColorSelect, setShowColorSelect] = useState(false);
+
   const handleUpdateButtonClick = (e) => {};
 
   const handleMoveButtonClick = (e) => {};
@@ -34,6 +36,14 @@ const AppDetailsModal = ({ app, show, handleClose }) => {
     setColor(color);
   };
 
+  const openColorSelect = () => {
+    setShowColorSelect(true);
+  };
+
+  const closeColorSelect = () => {
+    setShowColorSelect(false);
+  };
+
   return (
     <Modal
       show={show}
@@ -41,6 +51,11 @@ const AppDetailsModal = ({ app, show, handleClose }) => {
       centered
       size='xl'
       className='detailModal'
+      onClick={() => {
+        if (showColorSelect) {
+          closeColorSelect();
+        }
+      }}
     >
       <Modal.Header className='detailModal-header'>
         <Row className='detailModal-header-nav'>
@@ -131,7 +146,13 @@ const AppDetailsModal = ({ app, show, handleClose }) => {
           </Form.Group>
           <Form.Group as={Col} xs={12} sm={6} md={4}>
             <Form.Label>Color</Form.Label>
-            <ColorSelect color={color} setColor={changeColorTo} />
+            <ColorSelect
+              color={color}
+              setColor={changeColorTo}
+              show={showColorSelect}
+              openColorSelect={openColorSelect}
+              closeColorSelect={closeColorSelect}
+            />
           </Form.Group>
           <Form.Group as={Col} xs={12}>
             <Form.Label>Description</Form.Label>
