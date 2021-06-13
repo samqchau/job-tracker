@@ -17,6 +17,7 @@ const FavoriteButton = ({ app }) => {
     <i
       className={` ${`${favorited ? 'fas' : 'far'} fa-star`} favoriteButton`}
       onClick={handleClick}
+      title='Favorite'
     ></i>
   );
 };

@@ -70,7 +70,11 @@ const AppCard = ({ app }) => {
                 onMouseLeave={enableDetailsModal}
               >
                 <FavoriteButton app={app} />
-                <i className='far fa-trash-alt' onClick={openDeleteModal}></i>
+                <i
+                  className='far fa-trash-alt'
+                  onClick={openDeleteModal}
+                  title='Delete'
+                ></i>
               </div>
             </div>
             <div className='app-card-footer'></div>

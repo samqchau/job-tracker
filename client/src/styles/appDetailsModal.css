@@ -21,6 +21,9 @@
   width: 100%;
   display: flex;
 }
+.detailModal-header-main-text {
+  margin-right: 15px;
+}
 .detailModal-header-main-favorited {
   cursor: pointer;
   margin-left: 10px;
