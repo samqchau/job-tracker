@@ -118,3 +118,27 @@ export const deleteAppById = (app) => async (dispatch, getState) => {
 
   await axios.delete('/api/apps', data);
 };
+
+export const updateAppById = (app) => async (dispatch, getState) => {
+  let {
+    userLogin: { userInfo },
+  } = getState();
+
+  let {
+    userApps: { apps },
+  } = getState();
+  let list = listNameValuePairs[app.list];
+  let appsCopy = apps;
+  let arr = apps[list];
+  arr[arr.indexOf((e) => (e.id = app.id))] = app;
+  appsCopy[list] = arr;
+
+  let config = {
+    headers: {
+      Authorization: `Bearer ${userInfo.token}`,
+    },
+  };
+
+  dispatch({ type: USER_APPS_SUCCESS, payload: appsCopy });
+  await axios.put('/api/apps', app, config);
+};

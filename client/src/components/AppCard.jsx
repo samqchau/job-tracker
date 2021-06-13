@@ -7,6 +7,7 @@ import { deleteAppById } from '../actions/appActions';
 
 import DeleteAppModal from './modals/DeleteAppModal';
 import AppDetailsModal from './modals/AppDetailsModal';
+import FavoriteButton from './FavoriteButton';
 
 const AppCard = ({ app }) => {
   const dispatch = useDispatch();
@@ -68,7 +69,7 @@ const AppCard = ({ app }) => {
                 onMouseOver={disableDetailsModal}
                 onMouseLeave={enableDetailsModal}
               >
-                <i className={`${favorited ? 'fas' : 'far'} fa-star`} />
+                <FavoriteButton app={app} />
                 <i className='far fa-trash-alt' onClick={openDeleteModal}></i>
               </div>
             </div>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Modal, Button, Col, Row, Form } from 'react-bootstrap';
 import '../../styles/appDetailsModal.css';
 import ColorSelect from '../ColorSelect';
+import FavoriteButton from '../FavoriteButton';
 
 const AppDetailsModal = ({ app, show, handleClose }) => {
   const [company, setCompany] = useState(app.company_name);
@@ -42,6 +43,10 @@ const AppDetailsModal = ({ app, show, handleClose }) => {
 
   const closeColorSelect = () => {
     setShowColorSelect(false);
+  };
+
+  const toggleFavorited = () => {
+    setFavorited((favorited) => !favorited);
   };
 
   return (
@@ -88,11 +93,7 @@ const AppDetailsModal = ({ app, show, handleClose }) => {
                 {app.job_title}
               </p>
             </div>
-            <i
-              className={`detailModal-header-main-favorited ${`${
-                favorited ? 'fas' : 'far'
-              } fa-star`}`}
-            ></i>
+            <FavoriteButton app={app} />
           </div>
         </Row>
       </Modal.Header>
