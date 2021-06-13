@@ -9,7 +9,6 @@ const FavoriteButton = ({ app }) => {
 
   const handleClick = () => {
     let updatedApp = app;
-    console.log(app);
     updatedApp.favorited = !favorited;
     dispatch(updateAppById(updatedApp));
   };

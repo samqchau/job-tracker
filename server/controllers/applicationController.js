@@ -49,7 +49,7 @@ export const createNewApplication = expressAsyncHandler(async (req, res) => {
 export const getApplicationsByUserId = expressAsyncHandler(async (req, res) => {
   try {
     const applications = await pool.query(
-      'SELECT * FROM applications WHERE user_id = $1',
+      'SELECT id, company_name, job_title, date_applied, last_updated, favorited, list, url, color, salary, location, description, index, deadline, application, offer, offer_acceptance, interview FROM applications WHERE user_id = $1',
       [req.user.id]
     );
     res.json(applications.rows);
@@ -123,26 +123,9 @@ export const deleteAppById = expressAsyncHandler(async (req, res) => {
 });
 
 export const updateAppById = expressAsyncHandler(async (req, res) => {
-  const {
-    id,
-    company_name,
-    job_title,
-    favorited,
-    url,
-    color,
-    salary,
-    location,
-    description,
-    deadline,
-    application,
-    offer,
-    offer_acceptance,
-    interview,
-  } = req.body;
-
-  await pool.query(
-    'UPDATE applications SET company_name = $1, job_title = $2, favorited = $3, url = $4, color = $5, salary = $6, location = $7, description = $8, deadline = $9, application = $10, offer = $11, offer_acceptance = $12, interview = $13 where id = $14;',
-    [
+  try {
+    let {
+      id,
       company_name,
       job_title,
       favorited,
@@ -156,9 +139,30 @@ export const updateAppById = expressAsyncHandler(async (req, res) => {
       offer,
       offer_acceptance,
       interview,
-      id,
-    ]
-  );
+    } = req.body;
 
-  res.end();
+    await pool.query(
+      'UPDATE applications SET company_name = $1, job_title = $2, favorited = $3, url = $4, color = $5, salary = $6, location = $7, description = $8, deadline = $9, application = $10, offer = $11, offer_acceptance = $12, interview = $13 where id = $14;',
+      [
+        company_name,
+        job_title,
+        favorited,
+        url,
+        color,
+        salary,
+        location,
+        description,
+        deadline,
+        application,
+        offer,
+        offer_acceptance,
+        interview,
+        id,
+      ]
+    );
+
+    res.end();
+  } catch (error) {
+    console.error(error.message);
+  }
 });

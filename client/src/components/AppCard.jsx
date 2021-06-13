@@ -61,8 +61,8 @@ const AppCard = ({ app }) => {
           >
             <div className='app-card-body'>
               <div className='app-card-body-left'>
-                <span>{job_title}</span>
-                <span>{company_name}</span>
+                <span className='app-card-body-job'>{job_title}</span>
+                <span className='app-card-body-company'>{company_name}</span>
               </div>
               <div
                 className='app-card-body-right'

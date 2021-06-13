@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { Modal, Button, Col, Row, Form } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import { updateAppById } from '../../actions/appActions';
+import trimDate from '../../helpers/trimDate';
+
 import '../../styles/appDetailsModal.css';
 import ColorSelect from '../ColorSelect';
 import FavoriteButton from '../FavoriteButton';
@@ -7,7 +11,6 @@ import FavoriteButton from '../FavoriteButton';
 const AppDetailsModal = ({ app, show, handleClose }) => {
   const [company, setCompany] = useState(app.company_name);
   const [jobTitle, setJobTitle] = useState(app.job_title);
-  const [favorited, setFavorited] = useState(app.favorited);
   const [list, setList] = useState(app.list);
   const [url, setUrl] = useState(app.url);
   const [color, setColor] = useState(app.color);
@@ -15,17 +18,43 @@ const AppDetailsModal = ({ app, show, handleClose }) => {
   const [location, setLocation] = useState(app.location);
   const [description, setDescription] = useState(app.description);
 
-  const [deadline, setDeadline] = useState(app.deadline);
-  const [applicationDate, setApplicationDate] = useState(app.application);
-  const [interviewDate, setInterviewDate] = useState(app.interview);
-  const [offerDate, setOfferDate] = useState(app.offer);
+  const [deadline, setDeadline] = useState(
+    app.deadline ? trimDate(app.deadline) : ''
+  );
+  const [applicationDate, setApplicationDate] = useState(
+    app.application ? trimDate(app.application) : ''
+  );
+  const [interviewDate, setInterviewDate] = useState(
+    app.interview ? trimDate(app.interview) : ''
+  );
+  const [offerDate, setOfferDate] = useState(
+    app.offer ? trimDate(app.offer) : ''
+  );
   const [offerAcceptanceDate, setOfferAcceptanceDate] = useState(
-    app.offer_acceptance
+    app.offer_acceptance ? trimDate(app.offer_acceptance) : ''
   );
 
   const [showColorSelect, setShowColorSelect] = useState(false);
 
-  const handleUpdateButtonClick = (e) => {};
+  const dispatch = useDispatch();
+
+  const handleUpdateButtonClick = (e) => {
+    let updatedApp = app;
+    updatedApp.company_name = company;
+    updatedApp.job_title = jobTitle;
+    updatedApp.url = url;
+    updatedApp.color = color;
+    updatedApp.salary = salary;
+    updatedApp.location = location;
+    updatedApp.description = description;
+    updatedApp.deadline = deadline;
+    updatedApp.application = applicationDate;
+    updatedApp.offer = offerDate;
+    updatedApp.offer_acceptance = offerAcceptanceDate;
+    updatedApp.interview = interviewDate;
+
+    dispatch(updateAppById(updatedApp));
+  };
 
   const handleMoveButtonClick = (e) => {};
 
@@ -43,10 +72,6 @@ const AppDetailsModal = ({ app, show, handleClose }) => {
 
   const closeColorSelect = () => {
     setShowColorSelect(false);
-  };
-
-  const toggleFavorited = () => {
-    setFavorited((favorited) => !favorited);
   };
 
   return (
@@ -229,7 +254,7 @@ const AppDetailsModal = ({ app, show, handleClose }) => {
                 type='date'
                 value={interviewDate}
                 onChange={(e) => {
-                  setInterviewDate(e.target.valu);
+                  setInterviewDate(e.target.value);
                 }}
               ></Form.Control>
             </Form.Group>
