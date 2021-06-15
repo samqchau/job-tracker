@@ -1,0 +1,24 @@
+.favoritesModal {
+  overflow-y: hidden !important;
+}
+.favoritesModal > .modal-dialog {
+  max-width: 297px;
+}
+.favoritesModal::-webkit-scrollbar {
+  display: none;
+}
+.favoritesModal-body {
+  padding: 0px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 600px;
+}
+.favoritesModal-body .list-container {
+  width: 297px;
+  height: 100%;
+  padding: 0px;
+}
+.favoritesModal-body > .list-container > .list-body-main {
+  height: 525px;
+}
