@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import '../styles/favoriteButton.css';
-import { updateAppById } from '../actions/appActions';
+import { favoriteAppById } from '../actions/appActions';
 
 const FavoriteButton = ({ app }) => {
   const dispatch = useDispatch();
@@ -10,7 +10,7 @@ const FavoriteButton = ({ app }) => {
   const handleClick = () => {
     let updatedApp = app;
     updatedApp.favorited = !favorited;
-    dispatch(updateAppById(updatedApp));
+    dispatch(favoriteAppById(updatedApp));
   };
 
   return (

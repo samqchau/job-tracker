@@ -13,31 +13,31 @@ const FavoritedAppsModal = ({ show, onHide }) => {
   for (let list in apps) {
     favoritedApps = [...favoritedApps, ...apps[list]];
   }
-  favoritedApps = favoritedApps.filter((app) => app.favorited === true);
 
   return (
-    <Modal
-      show={show}
-      onHide={onHide}
-      centered
-      size='xl'
-      className='favoritesModal'
-      onClick={() => {}}
-    >
-      <Modal.Body className='favoritesModal-body'>
-        <div className='list-container'>
-          <div className='list-header'>
-            <span className='list-header-icon'>
-              <i className='far fa-star' />
-            </span>
-            <div className='list-header-main'>
-              <div className='list-header-main-title'>Favorited</div>
-              <div className='list-header-main-count'>
-                {favoritedApps.length === 0 ? 0 : favoritedApps.length} jobs
+    <FavoritedDragDropContext>
+      <Modal
+        show={show}
+        onHide={onHide}
+        centered
+        size='xl'
+        className='favoritesModal'
+        onClick={() => {}}
+      >
+        <Modal.Body className='favoritesModal-body'>
+          <div className='list-container'>
+            <div className='list-header'>
+              <span className='list-header-icon'>
+                <i className='far fa-star' />
+              </span>
+              <div className='list-header-main'>
+                <div className='list-header-main-title'>Favorited</div>
+                <div className='list-header-main-count'>
+                  {favoritedApps.length === 0 ? 0 : favoritedApps.length} jobs
+                </div>
               </div>
             </div>
-          </div>
-          <FavoritedDragDropContext>
+
             <Droppable droppableId='favorited'>
               {(provided) => (
                 <div
@@ -46,17 +46,25 @@ const FavoritedAppsModal = ({ show, onHide }) => {
                   {...provided.droppableProps}
                 >
                   {favoritedApps &&
-                    favoritedApps.map((app, index) => (
-                      <AppCard app={app} key={app.id} index={index} />
-                    ))}
+                    favoritedApps
+                      .filter((app) => app.favorited === true)
+                      .sort((a, b) => a.fav_index - b.fav_index)
+                      .map((app) => (
+                        <AppCard
+                          app={app}
+                          key={app.id}
+                          favslist
+                          index={app.fav_index}
+                        />
+                      ))}
                   {provided.placeholder}
                 </div>
               )}
             </Droppable>
-          </FavoritedDragDropContext>
-        </div>
-      </Modal.Body>
-    </Modal>
+          </div>
+        </Modal.Body>
+      </Modal>
+    </FavoritedDragDropContext>
   );
 };
 

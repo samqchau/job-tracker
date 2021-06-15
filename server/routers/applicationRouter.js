@@ -5,6 +5,8 @@ import {
   updateAppIndices,
   deleteAppById,
   updateAppById,
+  toggleFavorited,
+  updateFavIndices,
 } from '../controllers/applicationController.js';
 import { protect } from '../middleware/authMiddleware.js';
 import { validateAppData } from '../middleware/validateAppData.js';
@@ -24,5 +26,9 @@ applicationRouter
 //get all applications with user id
 
 applicationRouter.route('/update/index').put(protect, updateAppIndices);
+
+applicationRouter.route('/update/fav').put(protect, toggleFavorited);
+
+applicationRouter.route('/update/fav_index').put(protect, updateFavIndices);
 
 export default applicationRouter;

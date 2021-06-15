@@ -49,7 +49,7 @@ export const createNewApplication = expressAsyncHandler(async (req, res) => {
 export const getApplicationsByUserId = expressAsyncHandler(async (req, res) => {
   try {
     const applications = await pool.query(
-      'SELECT id, company_name, job_title, date_applied, last_updated, favorited, list, url, color, salary, location, description, index, deadline, application, offer, offer_acceptance, interview FROM applications WHERE user_id = $1',
+      'SELECT id, company_name, job_title, date_applied, last_updated, favorited, list, url, color, salary, location, description, index, deadline, application, offer, offer_acceptance, interview, fav_index FROM applications WHERE user_id = $1',
       [req.user.id]
     );
     res.json(applications.rows);
@@ -112,13 +112,76 @@ export const updateAppIndices = expressAsyncHandler(async (req, res) => {
 });
 
 export const deleteAppById = expressAsyncHandler(async (req, res) => {
-  const { id, index, list } = req.body;
+  const { id, index, list, fav_index, favorited } = req.body;
+  const { id: userId } = req.user;
 
   await pool.query(
-    'UPDATE applications SET index = index - 1 WHERE (index > $1 and list = $2)',
-    [index, list]
+    'UPDATE applications SET index = index - 1 WHERE (index > $1 and list = $2 and user_id = $3)',
+    [index, list, userId]
   );
   await pool.query('DELETE FROM applications WHERE id = $1', [id]);
+  if (favorited) {
+    await pool.query(
+      'UPDATE applications SET fav_index = fav_index - 1 WHERE (fav_index >= $1 AND user_id = $2)',
+      [fav_index, userId]
+    );
+  }
+  res.end();
+});
+
+export const toggleFavorited = expressAsyncHandler(async (req, res) => {
+  const { favorited, id } = req.body;
+  const { id: userId } = req.user;
+  if (favorited) {
+    await pool.query(
+      'UPDATE applications SET fav_index = fav_index + 1 WHERE (fav_index >= 0 and user_id = $1);',
+      [userId]
+    );
+    await pool.query('UPDATE applications SET fav_index = 0 WHERE (id = $1);', [
+      id,
+    ]);
+  } else {
+    let prevFavIndex = await pool.query(
+      'SELECT fav_index FROM applications WHERE id = $1',
+      [id]
+    );
+    prevFavIndex = prevFavIndex.rows[0];
+
+    await pool.query(
+      'UPDATE applications SET fav_index = fav_index - 1 WHERE (fav_index > $1 and user_id = $2)',
+      [prevFavIndex.fav_index, userId]
+    );
+    await pool.query(
+      'UPDATE applications SET fav_index = NULL WHERE (id = $1);',
+      [id]
+    );
+  }
+  res.end();
+});
+
+export const updateFavIndices = expressAsyncHandler(async (req, res) => {
+  const { sourceIndex, destinationIndex, appId } = req.body;
+
+  const { id: userId } = req.user;
+  if (sourceIndex < destinationIndex) {
+    await pool.query(
+      'UPDATE applications SET fav_index = fav_index - 1 WHERE (user_id = $1 AND fav_index > $2 AND fav_index <= $3);',
+      [userId, sourceIndex, destinationIndex]
+    );
+    await pool.query('UPDATE applications SET fav_index = $1 WHERE (id = $2)', [
+      destinationIndex,
+      appId,
+    ]);
+  } else {
+    await pool.query(
+      'UPDATE applications SET fav_index = fav_index + 1 WHERE (fav_index < $1 AND fav_index >= $2 AND user_id = $3)',
+      [sourceIndex, destinationIndex, userId]
+    );
+    await pool.query('UPDATE applications SET fav_index = $1 WHERE (id = $2)', [
+      destinationIndex,
+      appId,
+    ]);
+  }
   res.end();
 });
 

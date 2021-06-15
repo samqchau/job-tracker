@@ -9,9 +9,9 @@ import DeleteAppModal from './modals/DeleteAppModal';
 import AppDetailsModal from './modals/AppDetailsModal';
 import FavoriteButton from './FavoriteButton';
 
-const AppCard = ({ app }) => {
+const AppCard = ({ app, favslist, index }) => {
   const dispatch = useDispatch();
-  const { company_name, job_title, favorited, id, color, index } = app;
+  const { company_name, job_title, id, color } = app;
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showDetailsModal, setShowDetailsModal] = useState(false);
