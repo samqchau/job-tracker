@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import '../styles/appCard.css';
-import '../styles/colorPalette.css';
 import { Draggable } from 'react-beautiful-dnd';
 import { deleteAppById } from '../actions/appActions';
+import { UPDATE_APP_RESET } from '../constants/appConstants';
 
 import FooterEvent from './FooterEvent';
 import DeleteAppModal from './modals/DeleteAppModal';
 import AppDetailsModal from './modals/AppDetailsModal';
 import FavoriteButton from './FavoriteButton';
-import { UPDATE_APP_RESET } from '../constants/appConstants';
+
+import '../styles/appCard.css';
+import '../styles/colorPalette.css';
 
 const AppCard = ({ app, favslist, index }) => {
   const dispatch = useDispatch();

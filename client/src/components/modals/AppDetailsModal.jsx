@@ -5,26 +5,36 @@ import { updateAppById } from '../../actions/appActions';
 import { UPDATE_APP_RESET } from '../../constants/appConstants';
 import { trimDate } from '../../helpers/dateHelpers';
 
-import '../../styles/appDetailsModal.css';
 import ColorSelect from '../ColorSelect';
 import FavoriteButton from '../FavoriteButton';
 import Message from '../Message';
+import ListSelect from '../ListSelect';
+
+import '../../styles/appDetailsModal.css';
 
 const AppDetailsModal = ({ app, show, handleClose }) => {
   const dispatch = useDispatch();
 
   const updateApp = useSelector((state) => state.updateApp);
-  const { loading, success, error } = updateApp;
+  const { success, error } = updateApp;
 
   const [company, setCompany] = useState(app.company_name);
   const [jobTitle, setJobTitle] = useState(app.job_title);
-  const [list, setList] = useState(app.list);
   const [url, setUrl] = useState(app.url);
   const [color, setColor] = useState(app.color);
   const [salary, setSalary] = useState(app.salary);
   const [location, setLocation] = useState(app.location);
   const [description, setDescription] = useState(app.description);
   const [validationMessages, setValidationMessages] = useState([]);
+  const [showListSelect, setShowListSelect] = useState(false);
+
+  const openListSelect = () => {
+    setShowListSelect(true);
+  };
+
+  const closeListSelect = () => {
+    setShowListSelect(false);
+  };
 
   const [deadline, setDeadline] = useState(
     app.deadline ? trimDate(app.deadline) : ''
@@ -82,8 +92,6 @@ const AppDetailsModal = ({ app, show, handleClose }) => {
     }
   };
 
-  const handleMoveButtonClick = (e) => {};
-
   const handleCloseButtonClick = (e) => {
     handleClose();
   };
@@ -119,17 +127,25 @@ const AppDetailsModal = ({ app, show, handleClose }) => {
         if (showColorSelect) {
           closeColorSelect();
         }
+        if (showListSelect) {
+          closeListSelect();
+        }
       }}
     >
       <Modal.Header className='detailModal-header'>
         <Row className='detailModal-header-nav'>
           <div className='detailModal-header-nav-buttonContainer'>
-            <Button
-              className='modal-button detail-modal-moveButton'
-              onClick={handleMoveButtonClick}
-            >
-              Move
-            </Button>
+            <div className='detailModal-moveButton-container'>
+              <Button
+                className='modal-button detail-modal-moveButton'
+                onClick={openListSelect}
+              >
+                Move
+              </Button>
+              {showListSelect && (
+                <ListSelect close={closeListSelect} app={app} />
+              )}
+            </div>
             <Button
               className='modal-button detail-modal-updateButton'
               onClick={handleUpdateButtonClick}

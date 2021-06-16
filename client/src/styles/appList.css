@@ -61,6 +61,7 @@
   scrollbar-width: 0px;
   height: calc(46vh - 119px);
   width: 98%;
+  border-radius: 5px;
 }
 .list-body-main::-webkit-scrollbar {
   display: none;

@@ -5,7 +5,7 @@ import '../../styles/newAppModal.css';
 import { addAppToList } from '../../actions/appActions';
 import ColorSelect from '../ColorSelect';
 import Message from '../Message';
-import { POST_APP_RESET, UPDATE_APP_RESET } from '../../constants/appConstants';
+import { POST_APP_RESET } from '../../constants/appConstants';
 
 const listValues = [
   'Wishlist',

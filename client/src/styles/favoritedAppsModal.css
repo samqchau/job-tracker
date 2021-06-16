@@ -13,11 +13,13 @@
   justify-content: center;
   align-items: center;
   height: 600px;
+  border-radius: 10px;
 }
 .favoritesModal-body .list-container {
-  width: 297px;
+  width: 100%;
   height: 100%;
-  padding: 0px;
+  max-width: 297px;
+  padding-bottom: 10px;
 }
 .favoritesModal-body > .list-container > .list-body-main {
   height: 525px;

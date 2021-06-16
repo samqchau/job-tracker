@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Container } from 'react-bootstrap';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import RegisterModal from './modals/RegisterModal';
-import { USER_REGISTER_RESET } from '../constants/userConstants';
 import LoginForm from './LoginForm';
 import LogoutButton from './LogoutButton';
 
@@ -10,7 +9,7 @@ const Header = () => {
   const [showRegister, setShowRegister] = useState(false);
 
   const userLogin = useSelector((state) => state.userLogin);
-  const { loading: loginLoading, error: loginError, userInfo } = userLogin;
+  const { error: loginError, userInfo } = userLogin;
 
   const closeRegisterModal = () => {
     setShowRegister(false);
