@@ -8,6 +8,7 @@ import { deleteAppById } from '../actions/appActions';
 import DeleteAppModal from './modals/DeleteAppModal';
 import AppDetailsModal from './modals/AppDetailsModal';
 import FavoriteButton from './FavoriteButton';
+import { UPDATE_APP_RESET } from '../constants/appConstants';
 
 const AppCard = ({ app, favslist, index }) => {
   const dispatch = useDispatch();
@@ -38,6 +39,9 @@ const AppCard = ({ app, favslist, index }) => {
 
   const closeDetailsModal = () => {
     setShowDetailsModal(false);
+    setTimeout(() => {
+      dispatch({ type: UPDATE_APP_RESET });
+    }, 500);
   };
 
   const disableDetailsModal = () => {

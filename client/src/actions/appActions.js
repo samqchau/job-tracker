@@ -6,6 +6,9 @@ import {
   POST_APP_REQUEST,
   POST_APP_SUCCESS,
   POST_APP_FAIL,
+  UPDATE_APP_REQUEST,
+  UPDATE_APP_SUCCESS,
+  UPDATE_APP_FAIL,
 } from '../constants/appConstants';
 import listNameValuePairs from '../data/lookUpTables/listNameValuePairs';
 
@@ -130,27 +133,39 @@ export const deleteAppById = (app) => async (dispatch, getState) => {
 };
 
 export const updateAppById = (app) => async (dispatch, getState) => {
-  let {
-    userLogin: { userInfo },
-  } = getState();
+  try {
+    dispatch({ type: UPDATE_APP_REQUEST });
+    let {
+      userLogin: { userInfo },
+    } = getState();
 
-  let {
-    userApps: { apps },
-  } = getState();
-  let list = listNameValuePairs[app.list];
-  let appsCopy = apps;
-  let arr = apps[list];
-  arr[arr.indexOf((e) => (e.id = app.id))] = app;
-  appsCopy[list] = arr;
+    let {
+      userApps: { apps },
+    } = getState();
+    let list = listNameValuePairs[app.list];
+    let appsCopy = apps;
+    let arr = apps[list];
+    arr[arr.indexOf((e) => (e.id = app.id))] = app;
+    appsCopy[list] = arr;
 
-  let config = {
-    headers: {
-      Authorization: `Bearer ${userInfo.token}`,
-    },
-  };
+    let config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
 
-  dispatch({ type: USER_APPS_SUCCESS, payload: appsCopy });
-  await axios.put('/api/apps', app, config);
+    dispatch({ type: USER_APPS_SUCCESS, payload: appsCopy });
+    await axios.put('/api/apps', app, config);
+    dispatch({ type: UPDATE_APP_SUCCESS });
+  } catch (error) {
+    dispatch({
+      type: UPDATE_APP_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
 };
 
 export const favoriteAppById = (app) => async (dispatch, getState) => {

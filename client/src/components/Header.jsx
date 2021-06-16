@@ -9,13 +9,11 @@ import LogoutButton from './LogoutButton';
 const Header = () => {
   const [showRegister, setShowRegister] = useState(false);
 
-  const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { loading: loginLoading, error: loginError, userInfo } = userLogin;
 
   const closeRegisterModal = () => {
     setShowRegister(false);
-    dispatch({ type: USER_REGISTER_RESET });
   };
   const showRegisterModal = () => setShowRegister(true);
 

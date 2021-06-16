@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form, Col, Row } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import '../../styles/newAppModal.css';
-import { colorsArr } from '../../styles/colorPallet';
 import { addAppToList } from '../../actions/appActions';
 import ColorSelect from '../ColorSelect';
+import Message from '../Message';
+import { POST_APP_RESET, UPDATE_APP_RESET } from '../../constants/appConstants';
 
 const listValues = [
   'Wishlist',
@@ -17,6 +18,8 @@ const listValues = [
 
 const NewAppModal = ({ show, handleClose, listValue }) => {
   const dispatch = useDispatch();
+  const postApp = useSelector((state) => state.postApp);
+  const { success, error } = postApp;
 
   let today = new Date(Date());
   let dd = String(today.getDate()).padStart(2, '0');
@@ -32,24 +35,66 @@ const NewAppModal = ({ show, handleClose, listValue }) => {
   const [location, setLocation] = useState('');
   const [color, setColor] = useState('');
   const [description, setDescription] = useState('');
+  const [validationMessages, setValidationMessages] = useState([]);
 
   const [showColorSelect, setShowColorSelect] = useState(false);
 
+  const resetForm = () => {
+    handleClose();
+    setCompanyName('');
+    setJobTitle('');
+    setList(listValue);
+    setDate(`${yyyy}-${mm}-${dd}`);
+    setUrl('');
+    setSalary('');
+    setColor('');
+    setDescription('');
+    setTimeout(() => {
+      dispatch({ type: POST_APP_RESET });
+    }, 500);
+    setValidationMessages([]);
+  };
+
+  useEffect(() => {
+    if (success) {
+      setTimeout(resetForm, 1000);
+    }
+  }, [success]);
+
+  const validateForm = () => {
+    let arr = [];
+    if (companyName.length < 1) {
+      arr.push('Company name is a required field');
+    }
+    if (jobTitle.length < 1) {
+      arr.push('Job title is a required field');
+    }
+    if (arr.length < 1) {
+      setValidationMessages([]);
+      return true;
+    } else {
+      setValidationMessages(arr);
+      return false;
+    }
+  };
+
   const submitHandler = async (e) => {
     e.preventDefault();
-    let application = {
-      companyName,
-      jobTitle,
-      list,
-      date,
-      url,
-      salary,
-      location,
-      color,
-      description,
-    };
-
-    dispatch(addAppToList(application));
+    setValidationMessages([]);
+    if (validateForm()) {
+      let application = {
+        companyName,
+        jobTitle,
+        list,
+        date,
+        url,
+        salary,
+        location,
+        color,
+        description,
+      };
+      dispatch(addAppToList(application));
+    }
   };
 
   const changeColorTo = (color) => {
@@ -82,9 +127,24 @@ const NewAppModal = ({ show, handleClose, listValue }) => {
         <Modal.Title>Track a new application</Modal.Title>
       </Modal.Header>
       <Modal.Body>
+        {validationMessages.length > 0 && (
+          <Message variant='danger'>
+            <ul className='validation-list'>
+              {validationMessages.map((message, i) => (
+                <li key={i}>{message}</li>
+              ))}
+            </ul>
+          </Message>
+        )}
+        {success && (
+          <Message variant='success'>
+            Your application has been saved successfully
+          </Message>
+        )}
+        {error && <Message variant='danger'>{error}</Message>}
         <Form as={Row}>
           <Form.Group as={Col} controlId='companyName' xs={12} sm={6}>
-            <Form.Label>Company Name</Form.Label>
+            <Form.Label>Company Name *</Form.Label>
             <Form.Control
               placeholder='Company Name'
               value={companyName}
@@ -94,7 +154,7 @@ const NewAppModal = ({ show, handleClose, listValue }) => {
             ></Form.Control>
           </Form.Group>
           <Form.Group controlId='jobTitle' as={Col} xs={12} sm={6}>
-            <Form.Label>Job Title</Form.Label>
+            <Form.Label>Job Title *</Form.Label>
             <Form.Control
               placeholder='Enter Job Title'
               value={jobTitle}

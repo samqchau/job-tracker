@@ -42,7 +42,8 @@ export const createNewApplication = expressAsyncHandler(async (req, res) => {
 
     res.json(newApplication);
   } catch (error) {
-    console.error(error.message);
+    res.status(400);
+    throw new Error(error.message);
   }
 });
 

@@ -3,12 +3,18 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import { userLoginReducer, userRegisterReducer } from '../reducers/userReducer';
-import { userAppsReducer } from '../reducers/appReducer';
+import {
+  userAppsReducer,
+  postAppReducer,
+  updateAppReducer,
+} from '../reducers/appReducer';
 
 const reducer = combineReducers({
   userApps: userAppsReducer,
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
+  postApp: postAppReducer,
+  updateApp: updateAppReducer,
 });
 
 const userInfoFromStorage = sessionStorage.getItem('userInfo')

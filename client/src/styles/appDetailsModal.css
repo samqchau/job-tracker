@@ -46,6 +46,10 @@
 .detailModal-header-main-text-job {
   font-size: 1.1rem;
 }
+.detailModal-message-container {
+  width: 90%;
+  margin: auto;
+}
 .detailModal-body-right-content > .form-group {
   padding: 0px 13px;
 }

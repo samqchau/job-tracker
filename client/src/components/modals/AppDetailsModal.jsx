@@ -1,14 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal, Button, Col, Row, Form } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { updateAppById } from '../../actions/appActions';
+import { UPDATE_APP_RESET } from '../../constants/appConstants';
 import trimDate from '../../helpers/trimDate';
 
 import '../../styles/appDetailsModal.css';
 import ColorSelect from '../ColorSelect';
 import FavoriteButton from '../FavoriteButton';
+import Message from '../Message';
 
 const AppDetailsModal = ({ app, show, handleClose }) => {
+  const dispatch = useDispatch();
+
+  const updateApp = useSelector((state) => state.updateApp);
+  const { loading, success, error } = updateApp;
+
   const [company, setCompany] = useState(app.company_name);
   const [jobTitle, setJobTitle] = useState(app.job_title);
   const [list, setList] = useState(app.list);
@@ -17,6 +24,7 @@ const AppDetailsModal = ({ app, show, handleClose }) => {
   const [salary, setSalary] = useState(app.salary);
   const [location, setLocation] = useState(app.location);
   const [description, setDescription] = useState(app.description);
+  const [validationMessages, setValidationMessages] = useState([]);
 
   const [deadline, setDeadline] = useState(
     app.deadline ? trimDate(app.deadline) : ''
@@ -36,24 +44,42 @@ const AppDetailsModal = ({ app, show, handleClose }) => {
 
   const [showColorSelect, setShowColorSelect] = useState(false);
 
-  const dispatch = useDispatch();
+  const validateForm = () => {
+    let arr = [];
+    if (company.length < 1) {
+      arr.push('Company name is a required field');
+    }
+    if (jobTitle.length < 1) {
+      arr.push('Job title is a required field');
+    }
+    if (arr.length < 1) {
+      return true;
+    } else {
+      setValidationMessages(arr);
+      return false;
+    }
+  };
 
   const handleUpdateButtonClick = (e) => {
-    let updatedApp = app;
-    updatedApp.company_name = company;
-    updatedApp.job_title = jobTitle;
-    updatedApp.url = url;
-    updatedApp.color = color;
-    updatedApp.salary = salary;
-    updatedApp.location = location;
-    updatedApp.description = description;
-    updatedApp.deadline = deadline;
-    updatedApp.application = applicationDate;
-    updatedApp.offer = offerDate;
-    updatedApp.offer_acceptance = offerAcceptanceDate;
-    updatedApp.interview = interviewDate;
+    dispatch({ type: UPDATE_APP_RESET });
 
-    dispatch(updateAppById(updatedApp));
+    if (validateForm()) {
+      let updatedApp = app;
+      updatedApp.company_name = company;
+      updatedApp.job_title = jobTitle;
+      updatedApp.url = url;
+      updatedApp.color = color;
+      updatedApp.salary = salary;
+      updatedApp.location = location;
+      updatedApp.description = description;
+      updatedApp.deadline = deadline;
+      updatedApp.application = applicationDate;
+      updatedApp.offer = offerDate;
+      updatedApp.offer_acceptance = offerAcceptanceDate;
+      updatedApp.interview = interviewDate;
+
+      dispatch(updateAppById(updatedApp));
+    }
   };
 
   const handleMoveButtonClick = (e) => {};
@@ -73,6 +99,14 @@ const AppDetailsModal = ({ app, show, handleClose }) => {
   const closeColorSelect = () => {
     setShowColorSelect(false);
   };
+
+  useEffect(() => {
+    if (success) {
+      setTimeout(() => {
+        handleClose();
+      }, 1000);
+    }
+  }, [success]);
 
   return (
     <Modal
@@ -123,6 +157,24 @@ const AppDetailsModal = ({ app, show, handleClose }) => {
         </Row>
       </Modal.Header>
       <Modal.Body className='detailModal-body' as={Row}>
+        <div className='detailModal-message-container'>
+          {validationMessages.length > 0 && (
+            <Message variant='danger'>
+              <ul className='validation-list'>
+                {validationMessages.map((message, i) => (
+                  <li key={i}>{message}</li>
+                ))}
+              </ul>
+            </Message>
+          )}
+          {success && (
+            <Message variant='success'>
+              Your application has been saved successfully
+            </Message>
+          )}
+          {error && <Message variant='danger'>{error}</Message>}
+        </div>
+
         <Col xs={12} sm={12} md={8} className='detailModal-body-left' as={Row}>
           <Form.Group as={Col} xs={12} sm={6} md={6} lg={6}>
             <Form.Label>Company</Form.Label>
