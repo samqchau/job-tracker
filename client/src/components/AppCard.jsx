@@ -5,6 +5,7 @@ import '../styles/colorPalette.css';
 import { Draggable } from 'react-beautiful-dnd';
 import { deleteAppById } from '../actions/appActions';
 
+import FooterEvent from './FooterEvent';
 import DeleteAppModal from './modals/DeleteAppModal';
 import AppDetailsModal from './modals/AppDetailsModal';
 import FavoriteButton from './FavoriteButton';
@@ -81,7 +82,12 @@ const AppCard = ({ app, favslist, index }) => {
                 ></i>
               </div>
             </div>
-            <div className='app-card-footer'></div>
+            <div className='app-card-footer'>
+              <div className='app-card-footer-border'></div>
+              <div className='app-card-footer-content'>
+                <FooterEvent app={app} />
+              </div>
+            </div>
           </div>
         )}
       </Draggable>

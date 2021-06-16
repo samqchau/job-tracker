@@ -3,7 +3,7 @@ import { Modal, Button, Col, Row, Form } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateAppById } from '../../actions/appActions';
 import { UPDATE_APP_RESET } from '../../constants/appConstants';
-import trimDate from '../../helpers/trimDate';
+import { trimDate } from '../../helpers/dateHelpers';
 
 import '../../styles/appDetailsModal.css';
 import ColorSelect from '../ColorSelect';
