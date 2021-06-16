@@ -30,7 +30,8 @@ const AppList = ({ name, icon, listIntFromDB }) => {
           <div className='list-header-main'>
             <div className='list-header-main-title'>{name}</div>
             <div className='list-header-main-count'>
-              {apps[name] && apps[name].length ? apps[name].length : 0} jobs
+              {apps[name] && apps[name].length ? apps[name].length : 0} job
+              {`${apps[name].length === 1 ? '' : 's'}`}
             </div>
           </div>
         </div>
