@@ -24,9 +24,10 @@
 .app-card-body-job {
   font-weight: bold;
   font-size: 17px;
+  text-transform: capitalize;
 }
 .app-card-body-company {
-  filter: contrast(80%);
+  text-transform: capitalize;
 }
 .app-card-body-right {
   display: flex;
@@ -45,12 +46,14 @@
   justify-content: center;
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0.5);
-  opacity: 75%;
   cursor: pointer;
   visibility: hidden;
+  background-color: white;
+  color: black;
 }
 .app-card-body-right i:hover {
-  background-color: rgba(230, 230, 230, 0.644);
+  color: black;
+  border: 2px solid black;
 }
 .app-card-footer {
   height: 15px;

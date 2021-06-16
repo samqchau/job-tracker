@@ -3,8 +3,12 @@
   color: black;
 }
 .red {
-  background-color: #ff3300;
+  background-color: #ff0000;
   color: white;
+}
+.light-red {
+  background-color: rgb(255, 189, 189);
+  color: black;
 }
 .salmon {
   background-color: #ff6b6b;
@@ -14,29 +18,57 @@
   background-color: #ff8162;
   color: white;
 }
-.gold {
-  background-color: #fec405;
-  color: white;
+.light-yellow {
+  background-color: rgb(255, 254, 182);
+  color: black;
 }
-.yellow {
+.gold {
   background-color: #ffcd60;
   color: black;
 }
+.yellow {
+  background-color: rgb(251, 255, 0);
+  color: black;
+}
+.off-white {
+  background-color: cornsilk;
+  color: black;
+}
+.orange {
+  background-color: rgb(255, 166, 0);
+  color: black;
+}
+.hot-pink {
+  background-color: rgb(255, 0, 179);
+  color: white;
+}
+.light-orange {
+  background-color: rgb(255, 213, 183);
+  color: black;
+}
 .light-green {
-  background-color: #80ffbb;
+  background-color: #85ffae;
   color: black;
 }
 .green {
-  background-color: #45e878;
   color: white;
+  background-color: #00e448;
 }
 .dark-green {
   background-color: #25c47b;
   color: white;
 }
-.blue-green {
-  background-color: #4ecdc4;
-  color: white;
+.cyan {
+  background-color: rgb(0, 255, 255);
+  color: black;
+}
+.light-cyan {
+  background-color: rgb(184, 255, 255);
+  color: black;
+}
+.baby-blue {
+  background-color: #8bfff7;
+  color: rgb(0, 0, 0);
 }
 .light-blue {
   background-color: #1ca8e3;
@@ -46,12 +78,24 @@
   background-color: #0070fb;
   color: white;
 }
+.true-blue {
+  background-color: #0004ff;
+  color: white;
+}
 .navy {
   background-color: #1c3554;
   color: white;
 }
+.royal-purple {
+  background-color: rgb(81, 0, 128);
+  color: white;
+}
 .purple {
   background-color: #6a4feb;
+  color: white;
+}
+.light-purple {
+  background-color: rgb(188, 43, 255);
   color: white;
 }
 .black {
@@ -59,10 +103,22 @@
   color: white;
 }
 .gray {
-  background-color: #d4d8dd;
+  background-color: #5c636b;
+  color: white;
+}
+.light-pink {
+  background-color: #ffdbfd;
   color: black;
 }
-.off-purple {
-  background-color: #ada8c6;
+.bubblegum {
+  background-color: rgb(255, 167, 255);
   color: white;
+}
+.silver {
+  background-color: rgb(216, 216, 216);
+  color: black;
+}
+.ashe {
+  background-color: azure;
+  color: black;
 }

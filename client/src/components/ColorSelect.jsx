@@ -27,6 +27,7 @@ const ColorSelect = ({
               xs={1}
               sm={2}
               md={4}
+              key={i}
               className='colorSelect-menu-option-container'
             >
               <div
