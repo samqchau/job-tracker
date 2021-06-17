@@ -1,3 +1,6 @@
+body {
+  letter-spacing: 0px;
+}
 a:hover {
   text-decoration: unset;
   color: #1a1a1a;
