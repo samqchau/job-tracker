@@ -45,6 +45,7 @@
   white-space: normal;
   -webkit-line-clamp: 3;
   overflow: hidden;
+  text-transform: capitalize;
 }
 .detailModal-header-main-text-job {
   font-size: 1.1rem;

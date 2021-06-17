@@ -191,6 +191,7 @@ const DetailModal = ({ app, handleClose }) => {
           <Form.Group as={Col} xs={12} sm={6} md={6} lg={6}>
             <Form.Label>Company</Form.Label>
             <Form.Control
+              className='capitalize'
               value={company}
               placeholder='+ Company Name'
               onChange={(e) => {
@@ -201,6 +202,7 @@ const DetailModal = ({ app, handleClose }) => {
           <Form.Group as={Col} xs={12} sm={6} md={6} lg={6}>
             <Form.Label>Job Title</Form.Label>
             <Form.Control
+              className='capitalize'
               value={jobTitle}
               onChange={(e) => {
                 setJobTitle(e.target.value);
@@ -231,6 +233,7 @@ const DetailModal = ({ app, handleClose }) => {
           <Form.Group as={Col} xs={12} sm={6} md={8}>
             <Form.Label>Location</Form.Label>
             <Form.Control
+              className='capitalize'
               value={location}
               onChange={(e) => {
                 setLocation(e.target.value);
