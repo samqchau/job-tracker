@@ -161,7 +161,7 @@ const DetailModal = ({ app, handleClose }) => {
             </div>
             <FavoriteButton app={app} />
           </div>
-          <DetailModalNav />
+          <DetailModalNav app={app} />
         </Row>
       </Modal.Header>
       <Modal.Body

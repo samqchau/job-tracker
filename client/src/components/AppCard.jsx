@@ -37,13 +37,13 @@ const AppCard = ({ app, favslist, index }) => {
 
   const openDetailsModal = () => {
     if (!detailsModalDisabled) {
-      history.push('/home/details');
+      history.push(`/app_details/${app.id}`);
       setShowDetailsModal(true);
     }
   };
 
   const closeDetailsModal = () => {
-    history.push('/home');
+    history.push('/');
     setShowDetailsModal(false);
     setTimeout(() => {
       dispatch({ type: UPDATE_APP_RESET });

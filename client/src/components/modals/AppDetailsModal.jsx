@@ -16,13 +16,13 @@ const AppDetailsModal = ({ app, show, handleClose }) => {
       className='detailModal'
     >
       <Route
-        path='/home/details'
+        path={`/app_details/${app.id}`}
         render={(props) => (
           <DetailModal {...props} app={app} handleClose={handleClose} />
         )}
       />
       <Route
-        path='/home/notes'
+        path={`/app_notes/${app.id}`}
         render={(props) => (
           <NotesModal {...props} app={app} handleClose={handleClose} />
         )}

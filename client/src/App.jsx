@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './components/Header';
 import HomeScreen from './screens/HomeScreen';
 import LandingScreen from './screens/LandingScreen';
@@ -15,8 +15,10 @@ const App = () => {
         <Header />
         <main className='app-main'>
           <Row className='app-main-container'>
-            <Route component={LandingScreen} path='/' exact />
-            <Route component={HomeScreen} path='/home' />
+            <Switch>
+              <Route component={LandingScreen} path='/info' />
+              <Route component={HomeScreen} path='/' />
+            </Switch>
           </Row>
         </main>
       </Router>

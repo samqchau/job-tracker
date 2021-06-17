@@ -12,7 +12,7 @@ const HomeScreen = ({ history }) => {
 
   useEffect(() => {
     if (!userInfo) {
-      history.push('/');
+      history.push('/info');
     }
   }, [userInfo, history]);
 

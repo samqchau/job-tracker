@@ -7,7 +7,7 @@ const LandingScreen = ({ history }) => {
 
   useEffect(() => {
     if (userInfo) {
-      history.push('/home');
+      history.push('/');
     }
   }, [history, userInfo]);
 
