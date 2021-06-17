@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Draggable } from 'react-beautiful-dnd';
 import { deleteAppById } from '../actions/appActions';
 import { UPDATE_APP_RESET } from '../constants/appConstants';
+import { useHistory } from 'react-router-dom';
 
 import FooterEvent from './FooterEvent';
 import DeleteAppModal from './modals/DeleteAppModal';
@@ -13,6 +14,7 @@ import '../styles/appCard.css';
 import '../styles/colorPalette.css';
 
 const AppCard = ({ app, favslist, index }) => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const { company_name, job_title, id, color } = app;
 
@@ -35,11 +37,13 @@ const AppCard = ({ app, favslist, index }) => {
 
   const openDetailsModal = () => {
     if (!detailsModalDisabled) {
+      history.push('/home/details');
       setShowDetailsModal(true);
     }
   };
 
   const closeDetailsModal = () => {
+    history.push('/home');
     setShowDetailsModal(false);
     setTimeout(() => {
       dispatch({ type: UPDATE_APP_RESET });

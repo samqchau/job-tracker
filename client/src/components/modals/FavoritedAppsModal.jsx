@@ -33,7 +33,17 @@ const FavoritedAppsModal = ({ show, onHide }) => {
               <div className='list-header-main'>
                 <div className='list-header-main-title'>Favorited</div>
                 <div className='list-header-main-count'>
-                  {favoritedApps.length === 0 ? 0 : favoritedApps.length} jobs
+                  {favoritedApps.filter((app) => app.favorited === true)
+                    .length === 0
+                    ? 0
+                    : favoritedApps.filter((app) => app.favorited === true)
+                        .length}{' '}
+                  {`job${
+                    favoritedApps.filter((app) => app.favorited === true)
+                      .length === 1
+                      ? ''
+                      : 's'
+                  }`}
                 </div>
               </div>
             </div>
