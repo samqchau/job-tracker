@@ -33,10 +33,14 @@ CREATE TABLE status (
 
 CREATE TABLE notes (
   id uuid DEFAULT uuid_generate_v4 () PRIMARY KEY,
-  application uuid REFERENCES applications,
+  application_id uuid REFERENCES applications(id) NOT NULL,
+  user_id uuid REFERENCES users(id) NOT NULL,
   content TEXT NOT NULL,
-  application_id uuid REFERENCES applications(id)  NOT NULL
+  created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+INSERT INTO notes (application_id, user_id, content) VALUES ('aed176d9-4481-4565-bdc2-00932ea3b54c', 'c925757d-6229-46a2-ba9e-117db3049213', 'This is my note for application');
 
 CREATE TABLE lists (id SERIAL PRIMARY KEY, name VARCHAR(15) NOT NULL);
 

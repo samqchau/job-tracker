@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { Modal, Button, Col, Row, Form } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import { Route } from 'react-router-dom';
 
 import NotesModal from '../NotesModal';

@@ -35,7 +35,7 @@ export const createNewApplication = expressAsyncHandler(async (req, res) => {
     let updatedApps;
     if (newApplication) {
       updatedApps = await pool.query(
-        'UPDATE applications SET index = index + 1 WHERE $1 = user_id AND list = $2 AND id != $3 RETURNING *',
+        'UPDATE applications SET index = index + 1 WHERE ($1 = user_id AND list = $2 AND id != $3) RETURNING *;',
         [id, list, newApplication.id]
       );
     }
@@ -50,7 +50,7 @@ export const createNewApplication = expressAsyncHandler(async (req, res) => {
 export const getApplicationsByUserId = expressAsyncHandler(async (req, res) => {
   try {
     const applications = await pool.query(
-      'SELECT id, company_name, job_title, date_applied, last_updated, favorited, list, url, color, salary, location, description, index, deadline, application, offer, offer_acceptance, interview, fav_index FROM applications WHERE user_id = $1',
+      'SELECT id, company_name, job_title, date_applied, last_updated, favorited, list, url, color, salary, location, description, index, deadline, application, offer, offer_acceptance, interview, fav_index FROM applications WHERE user_id = $1;',
       [req.user.id]
     );
     res.json(applications.rows);
@@ -71,17 +71,17 @@ export const updateAppIndices = expressAsyncHandler(async (req, res) => {
     if (sourceList === destinationList) {
       if (sourceIndex < destinationIndex) {
         await pool.query(
-          'UPDATE applications SET index = index - 1 WHERE (user_id = $1 AND list = $2 AND index > $3 AND index <= $4)',
+          'UPDATE applications SET index = index - 1 WHERE (user_id = $1 AND list = $2 AND index > $3 AND index <= $4);',
           [userId, sourceListId, sourceIndex, destinationIndex]
         );
 
-        await pool.query('UPDATE applications SET index = $1 WHERE id = $2', [
+        await pool.query('UPDATE applications SET index = $1 WHERE id = $2;', [
           destinationIndex,
           appId,
         ]);
       } else {
         await pool.query(
-          'UPDATE applications SET index = index + 1 WHERE (user_id = $1 AND list = $2 AND index < $3 AND index >= $4)',
+          'UPDATE applications SET index = index + 1 WHERE (user_id = $1 AND list = $2 AND index < $3 AND index >= $4);',
           [userId, sourceListId, sourceIndex, destinationIndex]
         );
 
@@ -92,17 +92,17 @@ export const updateAppIndices = expressAsyncHandler(async (req, res) => {
       }
     } else {
       await pool.query(
-        'UPDATE applications SET index = index - 1 WHERE (user_id = $1 AND list = $2 AND index > $3)',
+        'UPDATE applications SET index = index - 1 WHERE (user_id = $1 AND list = $2 AND index > $3);',
         [userId, sourceListId, sourceIndex]
       );
 
       await pool.query(
-        'UPDATE applications SET index = index + 1 WHERE (user_id = $1 AND list = $2 AND index >= $3)',
+        'UPDATE applications SET index = index + 1 WHERE (user_id = $1 AND list = $2 AND index >= $3);',
         [userId, destinationListId, destinationIndex]
       );
 
       await pool.query(
-        'UPDATE applications SET index = $1, list = $2 WHERE id = $3',
+        'UPDATE applications SET index = $1, list = $2 WHERE id = $3;',
         [destinationIndex, destinationListId, appId]
       );
     }
@@ -117,13 +117,13 @@ export const deleteAppById = expressAsyncHandler(async (req, res) => {
   const { id: userId } = req.user;
 
   await pool.query(
-    'UPDATE applications SET index = index - 1 WHERE (index > $1 and list = $2 and user_id = $3)',
+    'UPDATE applications SET index = index - 1 WHERE (index > $1 and list = $2 and user_id = $3);',
     [index, list, userId]
   );
-  await pool.query('DELETE FROM applications WHERE id = $1', [id]);
+  await pool.query('DELETE FROM applications WHERE id = $1;', [id]);
   if (favorited) {
     await pool.query(
-      'UPDATE applications SET fav_index = fav_index - 1 WHERE (fav_index >= $1 AND user_id = $2)',
+      'UPDATE applications SET fav_index = fav_index - 1 WHERE (fav_index >= $1 AND user_id = $2);',
       [fav_index, userId]
     );
   }
@@ -143,13 +143,13 @@ export const toggleFavorited = expressAsyncHandler(async (req, res) => {
     ]);
   } else {
     let prevFavIndex = await pool.query(
-      'SELECT fav_index FROM applications WHERE id = $1',
+      'SELECT fav_index FROM applications WHERE (id = $1);',
       [id]
     );
     prevFavIndex = prevFavIndex.rows[0];
 
     await pool.query(
-      'UPDATE applications SET fav_index = fav_index - 1 WHERE (fav_index > $1 and user_id = $2)',
+      'UPDATE applications SET fav_index = fav_index - 1 WHERE (fav_index > $1 and user_id = $2);',
       [prevFavIndex.fav_index, userId]
     );
     await pool.query(
@@ -169,19 +169,19 @@ export const updateFavIndices = expressAsyncHandler(async (req, res) => {
       'UPDATE applications SET fav_index = fav_index - 1 WHERE (user_id = $1 AND fav_index > $2 AND fav_index <= $3);',
       [userId, sourceIndex, destinationIndex]
     );
-    await pool.query('UPDATE applications SET fav_index = $1 WHERE (id = $2)', [
-      destinationIndex,
-      appId,
-    ]);
+    await pool.query(
+      'UPDATE applications SET fav_index = $1 WHERE (id = $2);',
+      [destinationIndex, appId]
+    );
   } else {
     await pool.query(
-      'UPDATE applications SET fav_index = fav_index + 1 WHERE (fav_index < $1 AND fav_index >= $2 AND user_id = $3)',
+      'UPDATE applications SET fav_index = fav_index + 1 WHERE (fav_index < $1 AND fav_index >= $2 AND user_id = $3);',
       [sourceIndex, destinationIndex, userId]
     );
-    await pool.query('UPDATE applications SET fav_index = $1 WHERE (id = $2)', [
-      destinationIndex,
-      appId,
-    ]);
+    await pool.query(
+      'UPDATE applications SET fav_index = $1 WHERE (id = $2);',
+      [destinationIndex, appId]
+    );
   }
   res.end();
 });
@@ -230,3 +230,17 @@ export const updateAppById = expressAsyncHandler(async (req, res) => {
     console.error(error.message);
   }
 });
+
+export const getNotesByApplicationId = expressAsyncHandler(async (req, res) => {
+  const { appId } = req.params;
+  let notes = await pool.query(
+    'SELECT id, application_id, content, created_on, last_updated FROM notes WHERE (application_id = $1)',
+    [appId]
+  );
+  notes = notes.rows;
+  res.json(notes);
+});
+
+export const createNote = expressAsyncHandler(async (req, res) => {});
+export const updateNoteById = expressAsyncHandler(async (req, res) => {});
+export const deleteNoteById = expressAsyncHandler(async (req, res) => {});

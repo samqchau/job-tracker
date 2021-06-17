@@ -8,7 +8,6 @@ import ListSelect from './ListSelect';
 import FavoriteButton from './FavoriteButton';
 import Message from './Message';
 import ColorSelect from './ColorSelect';
-import { Link } from 'react-router-dom';
 import DetailModalNav from './DetailModalNav';
 
 const DetailModal = ({ app, handleClose }) => {

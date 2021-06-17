@@ -7,6 +7,10 @@ import {
   updateAppById,
   toggleFavorited,
   updateFavIndices,
+  getNotesByApplicationId,
+  createNote,
+  updateNoteById,
+  deleteNoteById,
 } from '../controllers/applicationController.js';
 import { protect } from '../middleware/authMiddleware.js';
 import { validateAppData } from '../middleware/validateAppData.js';
@@ -24,6 +28,14 @@ applicationRouter
 //edit application by id
 //delete application by id
 //get all applications with user id
+
+applicationRouter
+  .route('/notes')
+  .post(protect, createNote)
+  .put(protect, updateNoteById)
+  .delete(protect, deleteNoteById);
+
+applicationRouter.route('/notes/:appId').get(protect, getNotesByApplicationId);
 
 applicationRouter.route('/update/index').put(protect, updateAppIndices);
 
