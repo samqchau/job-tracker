@@ -57,3 +57,29 @@ export const deleteNoteById = (app, noteId) => async (dispatch, getState) => {
   dispatch({ type: USER_APPS_SUCCESS, payload: appsCopy });
   await axios.delete(`/api/notes/${noteId}`, config);
 };
+
+export const updateNoteById = (app, note) => async (dispatch, getState) => {
+  const {
+    userLogin: { userInfo },
+  } = getState();
+  const {
+    userApps: { apps },
+  } = getState();
+  const config = {
+    headers: {
+      Authorization: `Bearer ${userInfo.token}`,
+      'Content-Type': 'application/json',
+    },
+  };
+
+  let { data } = await axios.put(`/api/notes/${note.noteId}`, note, config);
+  let appsCopy = apps;
+  let listName = nameValuePairs[app.list];
+  let arr = appsCopy[listName];
+
+  let index = arr.findIndex((e) => e.id === app.id);
+  let noteIndex = arr[index].notes.findIndex((e) => e.id === note.noteId);
+  arr[index].notes[noteIndex] = data;
+  appsCopy[listName] = arr;
+  dispatch({ type: USER_APPS_SUCCESS, payload: appsCopy });
+};

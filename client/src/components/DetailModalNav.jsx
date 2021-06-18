@@ -1,11 +1,9 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
 import '../styles/modalNav.css';
 
 const DetailModalNav = ({ app }) => {
   const location = useLocation();
-  const history = useHistory();
   const path = location.pathname;
   const routeName = path.split('/')[1];
 
@@ -15,7 +13,6 @@ const DetailModalNav = ({ app }) => {
         to={`/app_details/${app.id}`}
         onClick={(e) => {
           e.stopPropagation();
-          history.push(`/app_details/${app.id}`);
         }}
         className={`modal-nav-link ${
           routeName === 'app_details' ? 'modal-nav-link-active' : ''
@@ -24,13 +21,14 @@ const DetailModalNav = ({ app }) => {
         Details
       </Link>
       <Link
-        to={`/app_notes/${app.id}`}
+        to={`/app_notes/${app.id}${
+          (app.notes && app.notes.length) === 0 ? '/create' : ''
+        }`}
         className={`modal-nav-link ${
           routeName === 'app_notes' ? 'modal-nav-link-active' : ''
         }`}
         onClick={(e) => {
           e.stopPropagation();
-          history.push(`/app_notes/${app.id}`);
         }}
       >
         Notes

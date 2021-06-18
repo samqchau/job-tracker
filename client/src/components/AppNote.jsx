@@ -3,9 +3,10 @@ import { Button, Form } from 'react-bootstrap';
 import '../styles/note.css';
 import { trimDate, formatDate } from '../helpers/dateHelpers';
 import DeleteAppModal from './modals/DeleteAppModal';
-import { deleteNoteById } from '../actions/noteActions';
+import { deleteNoteById, updateNoteById } from '../actions/noteActions';
 import { useDispatch } from 'react-redux';
 import { useHistory, Route, useLocation } from 'react-router-dom';
+import Message from './Message';
 
 const AppNote = ({ note, app }) => {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ const AppNote = ({ note, app }) => {
   let noteId = location.pathname.split('/')[4];
   const [content, setContent] = useState(note.content);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const closeDeleteModal = () => {
     setShowDeleteModal(false);
   };
@@ -25,6 +27,20 @@ const AppNote = ({ note, app }) => {
   const deleteHandler = () => {
     dispatch(deleteNoteById(app, note.id));
     closeDeleteModal();
+  };
+
+  const handleUpdateClick = () => {
+    setErrorMessage('');
+    if (content.length !== 0) {
+      let note = {
+        noteId,
+        content,
+      };
+      dispatch(updateNoteById(app, note));
+      history.push(`/app_notes/${app.id}`);
+    } else {
+      setErrorMessage('Empty notes cannot be saved');
+    }
   };
 
   return (
@@ -84,10 +100,31 @@ const AppNote = ({ note, app }) => {
                     placeholder='Update note...'
                   ></Form.Control>
                   <div className='noteupdateform-update-button'>
+                    {errorMessage && (
+                      <Message
+                        variant='danger'
+                        style={{
+                          margin: '0px',
+                          padding: '0px',
+                          height: '30px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          paddingTop: '3px',
+                          paddingLeft: '23px',
+                          borderRadius: '5px',
+                          width: '561px',
+                        }}
+                      >
+                        {errorMessage}
+                      </Message>
+                    )}
                     <Button
                       className='modal-button detail-modal-updateButton'
                       style={{ marginRight: '5px' }}
-                      onClick={() => {}}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleUpdateClick();
+                      }}
                     >
                       Update
                     </Button>

@@ -17,7 +17,16 @@ export const createNote = expressAsyncHandler(async (req, res) => {
     throw new Error('Invalid content');
   }
 });
-export const updateNoteById = expressAsyncHandler(async (req, res) => {});
+export const updateNoteById = expressAsyncHandler(async (req, res) => {
+  let { content, noteId } = req.body;
+  let data = await pool.query(
+    'UPDATE notes SET content = $1, last_updated = CURRENT_TIMESTAMP WHERE id = $2 RETURNING *;',
+    [content, noteId]
+  );
+  data = data.rows[0];
+  delete data.user_id;
+  res.json(data);
+});
 export const deleteNoteById = expressAsyncHandler(async (req, res) => {
   const { id } = req.params;
   console.log(id);

@@ -7,7 +7,7 @@ import { protect } from '../middleware/authMiddleware.js';
 import express from 'express';
 
 const noteRouter = express.Router();
-
+// '/api/notes/
 noteRouter
   .route('/:id')
   .put(protect, updateNoteById)

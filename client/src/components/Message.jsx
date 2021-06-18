@@ -7,7 +7,7 @@ const messageStyle = {
 
 const Message = ({ variant, children, style }) => {
   return (
-    <Alert variant={variant} style={{ ...style, ...messageStyle }}>
+    <Alert variant={variant} style={{ ...messageStyle, ...style }}>
       {children}
     </Alert>
   );
