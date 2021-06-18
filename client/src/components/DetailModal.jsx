@@ -121,6 +121,7 @@ const DetailModal = ({ app, handleClose }) => {
         className='detailModal-header'
         onClick={(e) => {
           closeListSelect();
+          closeColorSelect();
         }}
       >
         <Row className='detailModal-header-nav'>
@@ -166,7 +167,10 @@ const DetailModal = ({ app, handleClose }) => {
       <Modal.Body
         className='detailModal-body'
         as={Row}
-        onClick={closeListSelect}
+        onClick={() => {
+          closeListSelect();
+          closeColorSelect();
+        }}
       >
         <div className='detailModal-message-container'>
           {validationMessages.length > 0 && (

@@ -8,13 +8,10 @@ import {
   toggleFavorited,
   updateFavIndices,
   getNotesByApplicationId,
-  createNote,
-  updateNoteById,
-  deleteNoteById,
 } from '../controllers/applicationController.js';
 import { protect } from '../middleware/authMiddleware.js';
 import { validateAppData } from '../middleware/validateAppData.js';
-
+import { createNote } from '../controllers/noteController.js';
 const applicationRouter = express.Router();
 
 // ROUTE (/api/apps)
@@ -29,11 +26,7 @@ applicationRouter
 //delete application by id
 //get all applications with user id
 
-applicationRouter
-  .route('/notes')
-  .post(protect, createNote)
-  .put(protect, updateNoteById)
-  .delete(protect, deleteNoteById);
+applicationRouter.route('/:id').post(protect, createNote);
 
 applicationRouter.route('/notes/:appId').get(protect, getNotesByApplicationId);
 

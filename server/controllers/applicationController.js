@@ -234,13 +234,9 @@ export const updateAppById = expressAsyncHandler(async (req, res) => {
 export const getNotesByApplicationId = expressAsyncHandler(async (req, res) => {
   const { appId } = req.params;
   let notes = await pool.query(
-    'SELECT id, application_id, content, created_on, last_updated FROM notes WHERE (application_id = $1)',
+    'SELECT id, application_id, content, created_on, last_updated FROM notes WHERE (application_id = $1) ORDER BY created_on DESC;',
     [appId]
   );
   notes = notes.rows;
   res.json(notes);
 });
-
-export const createNote = expressAsyncHandler(async (req, res) => {});
-export const updateNoteById = expressAsyncHandler(async (req, res) => {});
-export const deleteNoteById = expressAsyncHandler(async (req, res) => {});

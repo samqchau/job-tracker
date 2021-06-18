@@ -1,9 +1,17 @@
 .notesModal-body {
   height: 487px;
   padding: 16px;
+  overflow: scroll;
+  scrollbar-width: 0px;
+}
+.notesModal-body::-webkit-scrollbar {
+  display: none;
+}
+.notesModal-body-container {
+  padding-top: 20px;
 }
 .notesModal-body-create-container {
-  margin-bottom: 10px;
+  margin-bottom: 1px;
 }
 .notesModal-body-create-right {
   margin-right: auto;
@@ -13,10 +21,9 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  margin-left: 5px;
   padding-bottom: 1px;
   background-color: rgb(241, 241, 241);
-  border-radius: 5px;
+  border-radius: 5px 5px 0px 0px;
   box-shadow: slategrey 0px 0px 1px, slategrey 0px 0px 1px;
 }
 .square-corner {
@@ -25,17 +32,25 @@
 .notesModal-open-form-button {
   position: absolute;
   right: 0px;
-  bottom: 0px;
+  top: 171px;
+}
+.notesModal-open-form-button:hover {
+  padding: 2px;
 }
 .notesModal-body-create-right:hover {
   background-color: white;
-  box-shadow: slategrey 1px 1px 1px, slategrey -1px -1px 1px;
-  border-bottom: 1px solid black;
+  margin-top: -1px;
+  box-shadow: slategrey inset 1px 1px 1px, slategrey -1px -1px 1px;
   padding-bottom: 0px;
+}
+.notesModal-body-create-right:hover .notesModal-body-create-text {
+  margin-top: 2px;
 }
 .notesModal-body-button-container {
   display: flex;
   justify-content: flex-end;
+  margin-top: -22px;
+  align-items: center;
 }
 .notesModal-body-create-icon {
   background-color: rgb(36, 206, 36);
@@ -68,6 +83,6 @@
 }
 @media only screen and (max-width: 768px) {
   .notesModal-body {
-    height: 1000px;
+    height: 750px;
   }
 }

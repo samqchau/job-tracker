@@ -12,7 +12,13 @@ const ColorSelect = ({
 }) => {
   return (
     <>
-      <div className='colorSelect' onClick={openColorSelect}>
+      <div
+        className='colorSelect'
+        onClick={(e) => {
+          e.stopPropagation();
+          openColorSelect();
+        }}
+      >
         <div className={`colorSelect-content ${color}`}></div>
       </div>
       {show && (

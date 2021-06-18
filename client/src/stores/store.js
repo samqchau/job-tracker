@@ -8,13 +8,14 @@ import {
   postAppReducer,
   updateAppReducer,
 } from '../reducers/appReducer';
-
+import { notePostReducer } from '../reducers/noteReducer';
 const reducer = combineReducers({
   userApps: userAppsReducer,
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
   postApp: postAppReducer,
   updateApp: updateAppReducer,
+  notePost: notePostReducer,
 });
 
 const userInfoFromStorage = sessionStorage.getItem('userInfo')
