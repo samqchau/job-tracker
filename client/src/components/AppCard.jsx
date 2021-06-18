@@ -100,7 +100,7 @@ const AppCard = ({ app, favslist, index }) => {
         show={showDeleteModal}
         handleClose={closeDeleteModal}
         deleteHandler={deleteHandler}
-        item='job'
+        item={'job'}
       />
       <AppDetailsModal
         app={app}

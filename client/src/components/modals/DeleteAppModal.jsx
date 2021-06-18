@@ -10,6 +10,9 @@ const DeleteAppModal = ({ show, handleClose, deleteHandler, item }) => {
       centered
       size='md'
       className='deleteModal'
+      onClick={(e) => {
+        e.stopPropagation();
+      }}
     >
       <Modal.Body className='deleteModal-body'>
         <h4>Delete {`${item}`}</h4>

@@ -11,7 +11,8 @@
   align-items: center;
 }
 .note-header-date {
-  width: 100px;
+  width: 70px;
+  font-size: 12px;
   margin-right: 10px;
 }
 .note-header-border {
@@ -44,4 +45,33 @@
   margin: auto;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.updatenote-form-label-container {
+  display: flex;
+  align-items: center;
+}
+.updatenote-form-button-container {
+  margin-left: auto;
+}
+.updatenote-form-close-button {
+  cursor: pointer;
+  font-size: 18px;
+  margin-right: 6px;
+}
+.noteupdateform-update-button {
+  width: 100%;
+  display: flex;
+  padding-right: 10px;
+  justify-content: flex-end;
+}
+.noteupdate-textarea {
+  width: 95% !important;
+  margin: auto;
+  margin-top: 9px;
+  border-radius: 3px !important;
+}
+@media only screen and (max-width: 680px) {
+  .noteupdateform-update-button {
+    padding-right: 6px;
+  }
 }
