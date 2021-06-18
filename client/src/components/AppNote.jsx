@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import '../styles/note.css';
 import { trimDate, formatDate } from '../helpers/dateHelpers';
@@ -12,6 +12,7 @@ const AppNote = ({ note, app }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
+  let path = location.pathname;
   let noteId = location.pathname.split('/')[4];
   const [content, setContent] = useState(note.content);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -42,6 +43,15 @@ const AppNote = ({ note, app }) => {
       setErrorMessage('Empty notes cannot be saved');
     }
   };
+
+  useEffect(() => {
+    setErrorMessage('');
+    setContent(note.content);
+    return () => {
+      setErrorMessage('');
+      setContent(note.content);
+    };
+  }, [path]);
 
   return (
     <>

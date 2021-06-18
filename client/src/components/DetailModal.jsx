@@ -26,15 +26,6 @@ const DetailModal = ({ app, handleClose }) => {
   const [validationMessages, setValidationMessages] = useState([]);
   const [showListSelect, setShowListSelect] = useState(false);
 
-  const openListSelect = (e) => {
-    e.stopPropagation();
-    setShowListSelect(true);
-  };
-
-  const closeListSelect = () => {
-    setShowListSelect(false);
-  };
-
   const [deadline, setDeadline] = useState(
     app.deadline ? trimDate(app.deadline) : ''
   );
@@ -89,6 +80,15 @@ const DetailModal = ({ app, handleClose }) => {
 
       dispatch(updateAppById(updatedApp));
     }
+  };
+
+  const openListSelect = (e) => {
+    e.stopPropagation();
+    setShowListSelect(true);
+  };
+
+  const closeListSelect = () => {
+    setShowListSelect(false);
   };
 
   const handleCloseButtonClick = (e) => {
