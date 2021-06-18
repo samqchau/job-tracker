@@ -170,7 +170,9 @@ const NotesModal = ({ app, handleClose }) => {
           )}
 
           {app.notes &&
-            app.notes.map((note, i) => <AppNote note={note} key={i} />)}
+            app.notes.map((note, i) => (
+              <AppNote note={note} key={i} app={app} />
+            ))}
         </div>
       </Modal.Body>
       {!showNoteForm && (

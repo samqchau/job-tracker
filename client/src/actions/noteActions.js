@@ -37,3 +37,23 @@ export const saveNote = (app, content) => async (dispatch, getState) => {
     dispatch({ type: POST_NOTE_FAIL });
   }
 };
+
+export const deleteNoteById = (app, noteId) => async (dispatch, getState) => {
+  const {
+    userLogin: { userInfo },
+  } = getState();
+  const {
+    userApps: { apps },
+  } = getState();
+
+  const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
+
+  let appsCopy = apps;
+  let listName = nameValuePairs[app.list];
+  let arr = appsCopy[listName];
+  let index = arr.findIndex((e) => e.id === app.id);
+  arr[index].notes = arr[index].notes.filter((note) => note.id !== noteId);
+  appsCopy[listName] = arr;
+  dispatch({ type: USER_APPS_SUCCESS, payload: appsCopy });
+  await axios.delete(`/api/notes/${noteId}`, config);
+};

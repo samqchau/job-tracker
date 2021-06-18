@@ -18,4 +18,9 @@ export const createNote = expressAsyncHandler(async (req, res) => {
   }
 });
 export const updateNoteById = expressAsyncHandler(async (req, res) => {});
-export const deleteNoteById = expressAsyncHandler(async (req, res) => {});
+export const deleteNoteById = expressAsyncHandler(async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  await pool.query('DELETE FROM notes WHERE id = $1;', [id]);
+  res.end();
+});

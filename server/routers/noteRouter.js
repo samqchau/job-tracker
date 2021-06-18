@@ -2,6 +2,7 @@ import {
   updateNoteById,
   deleteNoteById,
 } from '../controllers/noteController.js';
+import { protect } from '../middleware/authMiddleware.js';
 
 import express from 'express';
 
