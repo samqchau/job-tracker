@@ -35,7 +35,7 @@ const Header = () => {
               <i className='fas fa-user-edit'></i>
             </div>
           )}
-          <LoginForm />
+
           <LogoutButton />
         </div>
 
