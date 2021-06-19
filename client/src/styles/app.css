@@ -3,6 +3,7 @@
   height: 86%;
   display: flex;
   justify-content: center;
+  padding-top: 30px;
 }
 .app-main-container {
   display: flex;
@@ -14,6 +15,11 @@
 }
 @media only screen and (max-width: 1200px) {
   .app-main-container {
-    justify-content: space-evenly;
+    justify-content: center;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .app-main {
+    padding-bottom: 30px;
   }
 }

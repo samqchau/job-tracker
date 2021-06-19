@@ -14,7 +14,11 @@ const LogoutButton = () => {
     history.push('/info');
     dispatch(logoutUser());
   };
-  return userInfo ? <Button onClick={logoutHandler}>Logout</Button> : null;
+  return userInfo ? (
+    <div className='header-icon' onClick={logoutHandler} title='Logout'>
+      <i className='fas fa-sign-out-alt'></i>
+    </div>
+  ) : null;
 };
 
 export default LogoutButton;

@@ -10,21 +10,17 @@ import nameValuePairs from '../data/lookUpTables/listNameValuePairs';
 import { USER_APPS_SUCCESS } from '../constants/appConstants';
 import AppNote from './AppNote';
 import { saveNote } from '../actions/noteActions';
-import { POST_NOTE_RESET } from '../constants/noteConstants';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 import Message from './Message';
 
 const NotesModal = ({ app, handleClose }) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const location = useLocation();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   const userApps = useSelector((state) => state.userApps);
   const { apps } = userApps;
-  const notePost = useSelector((state) => state.notePost);
-  const { loading, error, success } = notePost;
   const [errorMessage, setErrorMessage] = useState('Save a new note');
 
   const [showListSelect, setShowListSelect] = useState(false);

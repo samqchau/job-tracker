@@ -1,26 +1,19 @@
 .openFavorites {
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  background-color: white;
+  height: 40px;
+  width: 40px;
+  padding: 12px;
   cursor: pointer;
-  position: fixed;
-  bottom: 60px;
-  right: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
-  transition: all 0.3s ease-in;
-  filter: none;
+  color: white;
+  background-color: #ada6db;
+  margin-right: 8px;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.3) inset 10px 10px 5px,
+    rgba(0, 0, 0, 0.3) inset -10px -10px 5px;
+  transition: all 0.35s ease-in;
 }
 .openFavorites:hover {
-  background-color: black;
-}
-.openFavorites:hover > .openFavorites-icon {
-  color: yellow;
-}
-.openFavorites-icon {
-  color: black;
-  transition: all 0.2s linear;
+  filter: saturate(300%);
 }

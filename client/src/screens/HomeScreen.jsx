@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import AppList from '../components/AppList';
 import { fetchUserApps } from '../actions/appActions';
 import DragDropContextComponent from '../components/DragDropContextComponent';
-import OpenFavorites from '../components/OpenFavorites';
 
 const HomeScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -38,7 +37,6 @@ const HomeScreen = ({ history }) => {
         <AppList name='offer' icon='fas fa-trophy' listIntFromDB={5} />
         <AppList name='rejected' icon='far fa-thumbs-down' listIntFromDB={6} />
       </DragDropContextComponent>
-      <OpenFavorites />
     </>
   );
 };

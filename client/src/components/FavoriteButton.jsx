@@ -15,7 +15,9 @@ const FavoriteButton = ({ app }) => {
 
   return (
     <i
-      className={` ${`${favorited ? 'fas' : 'far'} fa-star`} favoriteButton`}
+      className={` ${`${
+        favorited ? 'fas' : 'far'
+      } fa-bookmark`} favoriteButton`}
       onClick={handleClick}
       title='Favorite'
     ></i>

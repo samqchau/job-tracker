@@ -113,19 +113,24 @@ export const updateAppIndices = expressAsyncHandler(async (req, res) => {
 });
 
 export const deleteAppById = expressAsyncHandler(async (req, res) => {
-  const { id, index, list, fav_index, favorited } = req.body;
-  const { id: userId } = req.user;
+  try {
+    const { id, index, list, fav_index, favorited } = req.body;
+    const { id: userId } = req.user;
 
-  await pool.query(
-    'UPDATE applications SET index = index - 1 WHERE (index > $1 and list = $2 and user_id = $3);',
-    [index, list, userId]
-  );
-  await pool.query('DELETE FROM applications WHERE id = $1;', [id]);
-  if (favorited) {
     await pool.query(
-      'UPDATE applications SET fav_index = fav_index - 1 WHERE (fav_index >= $1 AND user_id = $2);',
-      [fav_index, userId]
+      'UPDATE applications SET index = index - 1 WHERE (index > $1 and list = $2 and user_id = $3);',
+      [index, list, userId]
     );
+    await pool.query('DELETE FROM notes WHERE application_id = $1', [id]);
+    await pool.query('DELETE FROM applications WHERE id = $1;', [id]);
+    if (favorited) {
+      await pool.query(
+        'UPDATE applications SET fav_index = fav_index - 1 WHERE (fav_index >= $1 AND user_id = $2);',
+        [fav_index, userId]
+      );
+    }
+  } catch (error) {
+    console.error(error);
   }
   res.end();
 });

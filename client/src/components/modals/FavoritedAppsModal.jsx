@@ -28,7 +28,7 @@ const FavoritedAppsModal = ({ show, onHide }) => {
           <div className='list-container'>
             <div className='list-header'>
               <span className='list-header-icon'>
-                <i className='far fa-star' />
+                <i className='far fa-bookmark' />
               </span>
               <div className='list-header-main'>
                 <div className='list-header-main-title'>Favorited</div>

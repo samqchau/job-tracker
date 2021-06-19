@@ -4,6 +4,9 @@ import { useSelector } from 'react-redux';
 import RegisterModal from './modals/RegisterModal';
 import LoginForm from './LoginForm';
 import LogoutButton from './LogoutButton';
+import OpenFavorites from './OpenFavorites';
+import '../styles/header.css';
+import Logo from './Logo';
 
 const Header = () => {
   const [showRegister, setShowRegister] = useState(false);
@@ -17,17 +20,27 @@ const Header = () => {
   const showRegisterModal = () => setShowRegister(true);
 
   return (
-    <Container
-      className='d-flex'
-      style={{ justifyContent: 'space-evenly' }}
-      fluid
-    >
-      {userInfo && <div>Welcome back {userInfo.username}</div>}
-      <LoginForm />
-      <LogoutButton />
+    <Container fluid className='header-background'>
+      <Container className='header-container' fluid>
+        <div className='header-left'>
+          <Logo />
+          <span className='header-logo-text'>JobTrackr</span>
+        </div>
+        <div className='header-center'></div>
+        <div className='header-right'>
+          {!userInfo && <Button onClick={showRegisterModal}>Register</Button>}
+          {userInfo && <OpenFavorites />}
+          {userInfo && (
+            <div className='header-icon' title='Profile'>
+              <i className='fas fa-user-edit'></i>
+            </div>
+          )}
+          <LoginForm />
+          <LogoutButton />
+        </div>
 
-      {!userInfo && <Button onClick={showRegisterModal}>Register</Button>}
-      <RegisterModal show={showRegister} handleClose={closeRegisterModal} />
+        <RegisterModal show={showRegister} handleClose={closeRegisterModal} />
+      </Container>
     </Container>
   );
 };

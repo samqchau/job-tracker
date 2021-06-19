@@ -13,13 +13,13 @@ const OpenFavorites = () => {
     <>
       <div
         className='openFavorites'
-        title='Show Favorites'
+        title='Show Bookmarked'
         onClick={(e) => {
           e.stopPropagation();
           setShowFavorites(true);
         }}
       >
-        <i className='fas fa-star openFavorites-icon fa-lg' />
+        <i className='fas fa-bookmark openFavorites-icon fa-lg' />
       </div>
       <FavoritedAppsModal show={showFavorites} onHide={handleClose} />
     </>
