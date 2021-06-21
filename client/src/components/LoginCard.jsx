@@ -5,12 +5,17 @@ import {
   githubProvider,
   googleProvider,
 } from '../config/authMethods';
+import { loginFirebaseUser } from '../actions/userActions';
 import socialMediaAuth from '../service/auth';
+import { useDispatch } from 'react-redux';
 
 const LoginCard = () => {
+  const dispatch = useDispatch();
+
   const handleOnClick = async (provider) => {
     const res = await socialMediaAuth(provider);
-    console.log(res);
+    const { uid, email } = res;
+    dispatch(loginFirebaseUser({ email, uid }));
   };
 
   return (

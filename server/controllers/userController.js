@@ -3,6 +3,37 @@ import pool from '../database/db.js';
 import bcrypt from 'bcryptjs';
 import generateToken from '../utils/generateToken.js';
 
+export const loginFirebaseUser = expressAsyncHandler(async (req, res) => {
+  try {
+    const { email, uid } = req.body;
+    let user = await pool.query('SELECT * FROM users WHERE email = $1', [
+      email,
+    ]);
+
+    user = user.rows[0];
+    if (user) {
+      user.token = generateToken(user.id);
+      res.json(user);
+    } else {
+      let user = await pool.query(
+        'INSERT INTO users (email, id) VALUES ($1, $2) RETURNING *;',
+        [email, uid]
+      );
+      user = user.rows[0];
+      user.token = generateToken(user.id);
+      res.json(user);
+    }
+  } catch (error) {
+    res.status(400);
+    console.error(error.message);
+  }
+  /*
+    Check if email is already registered
+    If Not registered, save email and uid in database
+    if registered send generate token and send back user data
+  */
+});
+
 export const registerUser = expressAsyncHandler(async (req, res) => {
   const { password, firstName, familyName, email, username } = req.body;
   let userExists = await pool.query(

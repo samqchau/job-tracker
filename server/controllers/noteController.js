@@ -7,8 +7,8 @@ export const createNote = expressAsyncHandler(async (req, res) => {
     const { id } = req.params;
 
     let data = await pool.query(
-      'INSERT INTO notes (application_id, user_id, content) VALUES ($1, $2, $3) RETURNING *;',
-      [id, req.user.id, content]
+      'INSERT INTO notes (application_id, content) VALUES ($1, $2) RETURNING *;',
+      [id, content]
     );
     data = data.rows[0];
     res.json(data);
@@ -29,7 +29,6 @@ export const updateNoteById = expressAsyncHandler(async (req, res) => {
 });
 export const deleteNoteById = expressAsyncHandler(async (req, res) => {
   const { id } = req.params;
-  console.log(id);
   await pool.query('DELETE FROM notes WHERE id = $1;', [id]);
   res.end();
 });
