@@ -18,14 +18,42 @@ const LandingScreen = ({ history }) => {
 
   return (
     <>
-      <Row className='landing-main-container'>
-        <Col className='landing-main-center' sm={12} md={6}>
-          <LoginCard />
+      <div className='landing-main'>
+        <Row className='landing-main-container'>
+          <Col className='landing-main-center' sm={12} lg={6}>
+            <LoginCard />
+            <div className='landing-func-container'>
+              <div className='landing-func-header'>
+                Ground Control for your Job Hunt
+              </div>
+              <div className='landing-func-content'>
+                JobTrackr is a free, secure, easily-accessible web app that
+                helps users track and organize applications during the job hunt.
+                Visualize the state of your job search in a single board. See
+                how many applications, interviews and offers you’ve received in
+                one view.
+              </div>
+            </div>
+          </Col>
+          <Col className='landing-main-left' sm={12} lg={6}>
+            <div className='landing-main-left-demo-container'></div>
+            <div className='landing-func-container'>
+              <div className='landing-func-header'>
+                Changes are automatically saved
+              </div>
+              <div className='landing-func-content'>
+                JobTrackr is a free, secure, easily-accessible web app that
+                helps users track and organize applications during the job hunt.
+                Visualize the state of your job search in a single board. See
+                how many applications, interviews and offers you’ve received in
+                one view.
+              </div>
+            </div>
+          </Col>
           <LoginForm />
-        </Col>
-        <Col className='landing-main-left' sm={12} md={6}></Col>
-      </Row>
-      <Footer />
+        </Row>
+        <Footer />
+      </div>
     </>
   );
 };
