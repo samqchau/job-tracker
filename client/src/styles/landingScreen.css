@@ -10,4 +10,98 @@
   box-shadow: slategrey 4px 4px 5px, slategrey -4px -4px 5px;
   background-color: aliceblue;
   max-height: 798px;
+  max-width: 1000px;
+}
+.landing-main-center {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid black;
+  padding-top: 75px;
+}
+.landing-main-center-body-text {
+  position: relative;
+  top: 45px;
+}
+.landing-main-center-title {
+  border-top: 1px solid rgba(182, 145, 145, 0.541);
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  font-family: cursive;
+  cursor: default;
+  color: black;
+}
+.landing-main-center-body-text {
+  font-size: 16px;
+  text-justify: newspaper;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 225px;
+}
+.landing-main-center-card {
+  position: relative;
+  height: 360px;
+  width: 328px;
+  box-shadow: rgba(112, 128, 144, 0.5) 4px 4px 10px,
+    rgba(112, 128, 144, 0.5) -4px -4px 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.landing-main-center-logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  top: 35px;
+}
+.landing-main-center-logo {
+  display: flex;
+  align-items: center;
+}
+.landing-main-center-logo-text {
+  padding-top: 3px;
+  margin-left: 10px;
+  font-size: 42px;
+  font-weight: bold;
+  font-family: sans-serif;
+  cursor: default;
+  color: black;
+}
+.landing-main-center-icon-container {
+  display: flex;
+  border-bottom: 1px solid rgba(182, 145, 145, 0.541);
+  padding-top: 3px;
+  padding-bottom: 6px;
+}
+.landing-main-center-login-container {
+  position: relative;
+  top: 80px;
+}
+.landing-center-card-footer {
+  position: relative;
+  top: 110px;
+  font-family: cursive;
+}
+.landing-center-card-icon:hover > .landing-center-card-png {
+  transform: scale(103%);
+}
+.landing-center-card-png {
+  height: 20px;
+  width: 20px;
+  transition: transform 0.1s linear;
+}
+.fb-icon {
+  height: 22px;
+  width: 22px;
+}
+.gh-icon {
+  height: 25px;
+  width: 25px;
 }

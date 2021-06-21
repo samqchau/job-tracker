@@ -4,6 +4,7 @@ import LoginForm from '../components/LoginForm';
 import '../styles/landingScreen.css';
 import { Row, Col } from 'react-bootstrap';
 import Footer from '../components/Footer';
+import LoginCard from '../components/LoginCard';
 
 const LandingScreen = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
@@ -18,11 +19,11 @@ const LandingScreen = ({ history }) => {
   return (
     <>
       <Row className='landing-main-container'>
-        <Col xs={12} md={4}></Col>
-        <Col xs={12} md={4}>
+        <Col className='landing-main-center' sm={12} md={6}>
+          <LoginCard />
           <LoginForm />
         </Col>
-        <Col xs={12} md={4}></Col>
+        <Col className='landing-main-left' sm={12} md={6}></Col>
       </Row>
       <Footer />
     </>

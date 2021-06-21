@@ -28,7 +28,6 @@ const Header = () => {
         </div>
         <div className='header-center'></div>
         <div className='header-right'>
-          {!userInfo && <Button onClick={showRegisterModal}>Register</Button>}
           {userInfo && <OpenFavorites />}
           {userInfo && (
             <div className='header-icon' title='Profile'>
