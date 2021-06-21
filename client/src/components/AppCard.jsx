@@ -45,9 +45,7 @@ const AppCard = ({ app, favslist, index }) => {
   const closeDetailsModal = () => {
     history.push('/');
     setShowDetailsModal(false);
-    setTimeout(() => {
-      dispatch({ type: UPDATE_APP_RESET });
-    }, 500);
+    dispatch({ type: UPDATE_APP_RESET });
   };
 
   const disableDetailsModal = () => {

@@ -107,14 +107,6 @@ const DetailModal = ({ app, handleClose }) => {
     setShowColorSelect(false);
   };
 
-  useEffect(() => {
-    if (success) {
-      setTimeout(() => {
-        handleClose();
-      }, 1000);
-    }
-  }, [success]);
-
   return (
     <>
       <Modal.Header
@@ -184,7 +176,7 @@ const DetailModal = ({ app, handleClose }) => {
           )}
           {success && (
             <Message variant='success'>
-              Your application has been saved successfully
+              Your application has been updated successfully
             </Message>
           )}
           {error && <Message variant='danger'>{error}</Message>}

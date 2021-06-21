@@ -52,7 +52,15 @@ const NotesModal = ({ app, handleClose }) => {
     };
 
     fetchNotesByAppId();
-  }, [id, userInfo.token, apps, list, dispatch, history, app.id]);
+  }, [id, userInfo.token, apps, list, dispatch, history, app]);
+
+  useEffect(() => {
+    if (app.notes) {
+      if (app.notes.length === 0) {
+        history.push(`/app_notes/${app.id}/create`);
+      }
+    }
+  }, [app.notes, history, app.id]);
 
   const openListSelect = () => {
     setShowListSelect(true);

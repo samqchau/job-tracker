@@ -24,7 +24,6 @@ export const saveNote = (app, content) => async (dispatch, getState) => {
     };
 
     let { data } = await axios.post(`/api/apps/${app.id}`, { content }, config);
-    console.log(data);
     let appsCopy = apps;
     let listName = nameValuePairs[app.list];
     let arr = appsCopy[listName];
