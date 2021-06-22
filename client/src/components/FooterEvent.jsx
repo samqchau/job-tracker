@@ -14,11 +14,11 @@ const FooterEvent = ({ app }) => {
   let text;
 
   if (offer_acceptance) {
-    text = `Offer Deadline: ${formatDate(trimDate(offer_acceptance))}`;
+    text = `Accept Offer by: ${formatDate(trimDate(offer_acceptance))}`;
   } else if (offer) {
-    text = `Offer Recieved: ${formatDate(trimDate(offer))}`;
+    text = `Offer Recieved on: ${formatDate(trimDate(offer))}`;
   } else if (interview) {
-    text = `Interview: ${formatDate(trimDate(interview))}`;
+    text = `Interview Date: ${formatDate(trimDate(interview))}`;
   } else if (deadline) {
     text = `Application Deadline: ${formatDate(trimDate(deadline))}`;
   } else if (application) {
@@ -26,7 +26,7 @@ const FooterEvent = ({ app }) => {
   } else {
     text = `Created On: ${formatDate(trimDate(date_applied))}`;
   }
-  return <div>{text}</div>;
+  return <div style={{ fontSize: '11px' }}>{text}</div>;
 };
 
 export default FooterEvent;

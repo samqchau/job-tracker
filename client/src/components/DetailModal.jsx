@@ -262,7 +262,9 @@ const DetailModal = ({ app, handleClose }) => {
           <Row className='detailModal-body-right-content'>
             <Form.Group as={Col}>
               <Form.Label className='detailModal-date-container'>
-                <span className='detailModal-date-title'>Deadline</span>
+                <span className='detailModal-date-title'>
+                  Application Deadline
+                </span>
                 <span
                   className='detailModal-date-clear'
                   onClick={(e) => {
@@ -282,7 +284,7 @@ const DetailModal = ({ app, handleClose }) => {
             </Form.Group>
             <Form.Group as={Col}>
               <Form.Label className='detailModal-date-container'>
-                <span className='detailModal-date-title'>Application</span>
+                <span className='detailModal-date-title'>Applied on</span>
                 <span
                   className='detailModal-date-clear'
                   onClick={(e) => {
@@ -302,7 +304,7 @@ const DetailModal = ({ app, handleClose }) => {
             </Form.Group>
             <Form.Group as={Col}>
               <Form.Label className='detailModal-date-container'>
-                <span className='detailModal-date-title'>Interviews</span>
+                <span className='detailModal-date-title'>Interview Date</span>
                 <span
                   className='detailModal-date-clear'
                   onClick={(e) => {
@@ -322,7 +324,7 @@ const DetailModal = ({ app, handleClose }) => {
             </Form.Group>
             <Form.Group as={Col}>
               <Form.Label className='detailModal-date-container'>
-                <span className='detailModal-date-title'>Offer</span>
+                <span className='detailModal-date-title'>Offer Recieved</span>
                 <span
                   className='detailModal-date-clear'
                   onClick={(e) => {
@@ -342,7 +344,7 @@ const DetailModal = ({ app, handleClose }) => {
             </Form.Group>
             <Form.Group as={Col}>
               <Form.Label className='detailModal-date-container'>
-                <span className='detailModal-date-title'>Offer Acceptance</span>
+                <span className='detailModal-date-title'>Accept Offer by</span>
                 <span
                   className='detailModal-date-clear'
                   onClick={(e) => {
