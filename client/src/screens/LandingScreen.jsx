@@ -5,6 +5,7 @@ import '../styles/landingScreen.css';
 import { Row, Col } from 'react-bootstrap';
 import Footer from '../components/Footer';
 import LoginCard from '../components/LoginCard';
+import Demo from '../components/Demo';
 
 const LandingScreen = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
@@ -36,10 +37,14 @@ const LandingScreen = ({ history }) => {
             </div>
           </Col>
           <Col className='landing-main-left' sm={12} lg={6}>
+            <div
+              className='landing-section-title'
+              style={{ marginTop: '0px', marginBottom: '10px' }}
+            >
+              Drag & Drop for Quick Changes
+            </div>
             <div className='landing-main-left-demo-container'>
-              <div className='landing-section-title'>
-                Drag & Drop for Quick Changes
-              </div>
+              <Demo />
             </div>
 
             <div className='landing-section-title'>
@@ -53,9 +58,7 @@ const LandingScreen = ({ history }) => {
               view.
             </div>
           </Col>
-          <LoginForm />
         </Row>
-        <Footer />
       </div>
     </>
   );
