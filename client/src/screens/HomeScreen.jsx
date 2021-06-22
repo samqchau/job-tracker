@@ -22,8 +22,8 @@ const HomeScreen = ({ history }) => {
   return (
     <>
       <DragDropContextComponent>
-        <AppList name='wishlist' icon='far fa-star' listIntFromDB={1} />
-        <AppList name='applied' icon='far fa-file' listIntFromDB={2} />
+        <AppList name='wishlist' icon='fas fa-calendar-alt' listIntFromDB={1} />
+        <AppList name='applied' icon='far fa-paper-plane' listIntFromDB={2} />
         <AppList
           name='phone'
           icon='fas fa-phone-square-alt'
@@ -34,7 +34,7 @@ const HomeScreen = ({ history }) => {
           icon='fas fa-map-marker-alt'
           listIntFromDB={4}
         />
-        <AppList name='offer' icon='fas fa-trophy' listIntFromDB={5} />
+        <AppList name='offer' icon='fas fa-award' listIntFromDB={5} />
         <AppList name='rejected' icon='far fa-thumbs-down' listIntFromDB={6} />
       </DragDropContextComponent>
     </>

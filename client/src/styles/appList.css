@@ -16,6 +16,7 @@
 .list-header {
   display: flex;
   justify-content: center;
+  align-items: center;
   text-transform: uppercase;
   font-weight: bold;
 }
@@ -25,11 +26,19 @@
   flex-direction: column;
 }
 .list-header-main-title {
-  padding-bottom: 3px;
+  text-align: center;
+  overflow: none;
+  text-overflow: ellipsis;
+  width: 152px;
+}
+.list-header-main-title > span {
+  margin-top: -4px;
+  margin-right: 6px;
 }
 .list-header-main-count {
   font-size: 0.9rem;
   color: rgba(0, 0, 0, 0.4);
+  text-align: center;
 }
 .list-header-options,
 .list-header-icon {

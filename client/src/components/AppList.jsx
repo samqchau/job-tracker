@@ -8,6 +8,14 @@ import { Col } from 'react-bootstrap';
 
 const AppList = ({ name, icon, listIntFromDB }) => {
   const [showModal, setShowModal] = useState(false);
+  const [content, setContent] = useState({
+    wishlist: 'For later',
+    applied: 'Applied',
+    phone: 'Phone Interview',
+    'on site': 'On Site Interview',
+    offer: 'Offer Recieved',
+    rejected: 'Rejected',
+  });
 
   const userApps = useSelector((state) => state.userApps);
   const { apps } = userApps;
@@ -24,11 +32,13 @@ const AppList = ({ name, icon, listIntFromDB }) => {
     <>
       <Col className='list-container' xs={6} sm={4} md={4} lg={4} xl={2}>
         <div className='list-header'>
-          <span className='list-header-icon'>
-            <i className={icon}></i>
-          </span>
           <div className='list-header-main'>
-            <div className='list-header-main-title'>{name}</div>
+            <div className='list-header-main-title'>
+              <span>
+                <i className={icon}></i>
+              </span>
+              {content[name]}
+            </div>
             <div className='list-header-main-count'>
               {apps[name] && apps[name].length ? apps[name].length : 0} job
               {`${apps[name].length === 1 ? '' : 's'}`}

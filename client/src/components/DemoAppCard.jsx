@@ -2,7 +2,7 @@ import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import FavoriteButton from './FavoriteButton';
 
-const DemoAppCard = ({ app, index }) => {
+const DemoAppCard = ({ app, index, setApps }) => {
   const { id, job_title, company_name } = app;
   return (
     <Draggable draggableId={`${id}`} index={index}>
@@ -19,7 +19,12 @@ const DemoAppCard = ({ app, index }) => {
               <span className='app-card-body-company'>{company_name}</span>
             </div>
             <div className='app-card-body-right'>
-              <FavoriteButton app={app} color={app.color} />
+              <FavoriteButton
+                app={app}
+                color={app.color}
+                demoButton={true}
+                setApps={setApps}
+              />
             </div>
           </div>
           <div className='app-card-footer'>

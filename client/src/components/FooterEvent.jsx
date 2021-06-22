@@ -26,7 +26,7 @@ const FooterEvent = ({ app }) => {
   } else {
     text = `Created On: ${formatDate(trimDate(date_applied))}`;
   }
-  return <div style={{ fontSize: '11px' }}>{text}</div>;
+  return <div>{text}</div>;
 };
 
 export default FooterEvent;
