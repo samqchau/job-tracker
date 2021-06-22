@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { UPDATE_APP_RESET } from '../constants/appConstants';
 import '../styles/modalNav.css';
 
 const DetailModalNav = ({ app }) => {
+  const dispatch = useDispatch();
   const location = useLocation();
   const path = location.pathname;
   const routeName = path.split('/')[1];
@@ -29,6 +32,7 @@ const DetailModalNav = ({ app }) => {
         }`}
         onClick={(e) => {
           e.stopPropagation();
+          dispatch({ type: UPDATE_APP_RESET });
         }}
       >
         Notes

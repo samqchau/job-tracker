@@ -77,7 +77,7 @@ const AppCard = ({ app, favslist, index }) => {
                 onMouseOver={disableDetailsModal}
                 onMouseLeave={enableDetailsModal}
               >
-                <FavoriteButton app={app} />
+                <FavoriteButton app={app} color={app.color} />
                 <i
                   className='far fa-trash-alt'
                   onClick={openDeleteModal}

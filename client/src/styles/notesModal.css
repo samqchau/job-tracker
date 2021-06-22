@@ -22,29 +22,23 @@
   display: flex;
   align-items: center;
   padding-bottom: 1px;
-  background-color: rgb(241, 241, 241);
+  background-color: rgb(245, 245, 245);
   border-radius: 5px 5px 0px 0px;
-  box-shadow: slategrey 0px 0px 1px, slategrey 0px 0px 1px;
+  border-top: 1px solid rgb(175, 175, 175);
+  border-left: 1px solid rgb(175, 175, 175);
+  transition: all 0.1s ease-out;
 }
 .square-corner {
-  border-radius: 5px 5px 0px 5px;
+  border-radius: 0px 0px 0px 5px;
+  border-top: unset;
 }
 .notesModal-open-form-button {
   position: absolute;
   right: 0px;
   top: 171px;
 }
-.notesModal-open-form-button:hover {
-  padding: 2px;
-}
 .notesModal-body-create-right:hover {
-  background-color: white;
-  margin-top: -1px;
-  box-shadow: slategrey inset 1px 1px 1px, slategrey -1px -1px 1px;
-  padding-bottom: 0px;
-}
-.notesModal-body-create-right:hover .notesModal-body-create-text {
-  margin-top: 2px;
+  background-color: #ffffff;
 }
 .notesModal-body-button-container {
   display: flex;

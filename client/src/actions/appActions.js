@@ -9,6 +9,7 @@ import {
   UPDATE_APP_REQUEST,
   UPDATE_APP_SUCCESS,
   UPDATE_APP_FAIL,
+  UPDATE_APP_RESET,
 } from '../constants/appConstants';
 import listNameValuePairs from '../data/lookUpTables/listNameValuePairs';
 
@@ -157,6 +158,9 @@ export const updateAppById = (app) => async (dispatch, getState) => {
     dispatch({ type: USER_APPS_SUCCESS, payload: appsCopy });
     await axios.put('/api/apps', app, config);
     dispatch({ type: UPDATE_APP_SUCCESS });
+    setTimeout(() => {
+      dispatch({ type: UPDATE_APP_RESET });
+    }, 1500);
   } catch (error) {
     dispatch({
       type: UPDATE_APP_FAIL,

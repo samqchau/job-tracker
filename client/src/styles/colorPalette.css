@@ -2,123 +2,216 @@
   background-color: white;
   color: black;
 }
+.white-body {
+  background-color: #efefef;
+}
 .red {
   background-color: #ff0000;
   color: white;
+}
+.red-body {
+  background-color: #efefef;
 }
 .light-red {
   background-color: rgb(255, 189, 189);
   color: black;
 }
+.light-red-body {
+  background-color: #efefef;
+}
 .salmon {
-  background-color: #ff6b6b;
-  color: white;
+  background-color: #ff9999;
+  color: black;
+}
+.salmon-body {
+  background-color: #efefef;
 }
 .orange {
   background-color: #ff8162;
   color: white;
 }
+.orange-body {
+  background-color: #efefef;
+}
 .light-yellow {
   background-color: rgb(255, 254, 182);
   color: black;
+}
+.light-yellow-body {
+  background-color: #efefef;
 }
 .gold {
   background-color: #ffcd60;
   color: black;
 }
+.gold-body {
+  background-color: #efefef;
+}
 .yellow {
   background-color: rgb(251, 255, 0);
   color: black;
+}
+.yellow-body {
+  background-color: #efefef;
 }
 .off-white {
   background-color: cornsilk;
   color: black;
 }
+.off-white-body {
+  background-color: #efefef;
+}
 .orange {
   background-color: rgb(255, 166, 0);
   color: black;
+}
+.orange-body {
+  background-color: #efefef;
 }
 .hot-pink {
   background-color: rgb(255, 0, 179);
   color: white;
 }
+.hot-pink-body {
+  background-color: #efefef;
+}
 .light-orange {
   background-color: rgb(255, 213, 183);
   color: black;
+}
+.light-orange-body {
+  background-color: #efefef;
 }
 .light-green {
   background-color: #85ffae;
   color: black;
 }
+.light-green-body {
+  background-color: #efefef;
+}
 .green {
   color: white;
   background-color: #00e448;
+}
+.green-body {
+  background-color: #efefef;
 }
 .dark-green {
   background-color: #25c47b;
   color: white;
 }
+.dark-green-body {
+  background-color: #efefef;
+}
 .cyan {
   background-color: rgb(0, 255, 255);
   color: black;
+}
+.cyan-body {
+  background-color: #efefef;
 }
 .light-cyan {
   background-color: rgb(184, 255, 255);
   color: black;
 }
+.light-cyan-body {
+  background-color: #efefef;
+}
 .baby-blue {
   background-color: #8bfff7;
   color: rgb(0, 0, 0);
+}
+.baby-blue-body {
+  background-color: #efefef;
 }
 .light-blue {
   background-color: #1ca8e3;
   color: white;
 }
+.light-blue-body {
+  background-color: #efefef;
+}
 .blue {
   background-color: #0070fb;
   color: white;
+}
+.blue-body {
+  background-color: #efefef;
 }
 .true-blue {
   background-color: #0004ff;
   color: white;
 }
+.true-blue-body {
+  background-color: #efefef;
+}
 .navy {
   background-color: #1c3554;
   color: white;
+}
+.navy-body {
+  background-color: #efefef;
 }
 .royal-purple {
   background-color: rgb(81, 0, 128);
   color: white;
 }
+.royal-purple-body {
+  background-color: #efefef;
+}
 .purple {
   background-color: #6a4feb;
   color: white;
+}
+.purple-body {
+  background-color: #efefef;
 }
 .light-purple {
   background-color: rgb(188, 43, 255);
   color: white;
 }
+.light-purple-body {
+  background-color: #efefef;
+}
 .black {
   background-color: #190445;
   color: white;
+}
+.black-body {
+  background-color: #efefef;
 }
 .gray {
   background-color: #5c636b;
   color: white;
 }
+.gray-body {
+  background-color: #efefef;
+}
 .light-pink {
   background-color: #ffdbfd;
   color: black;
+}
+.light-pink-body {
+  background-color: #efefef;
 }
 .bubblegum {
   background-color: rgb(255, 167, 255);
   color: white;
 }
+.bubblegum-body {
+  background-color: #efefef;
+}
 .silver {
   background-color: rgb(216, 216, 216);
   color: black;
 }
+.silver-body {
+  background-color: #efefef;
+}
 .ashe {
   background-color: azure;
   color: black;
+}
+.ashe-body {
+  background-color: #efefef;
 }

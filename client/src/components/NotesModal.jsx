@@ -87,7 +87,7 @@ const NotesModal = ({ app, handleClose }) => {
   return (
     <>
       <Modal.Header
-        className='detailModal-header'
+        className={`detailModal-header ${app.color}`}
         onClick={(e) => {
           e.stopPropagation();
           closeListSelect();
@@ -132,13 +132,15 @@ const NotesModal = ({ app, handleClose }) => {
                 {app.job_title}
               </p>
             </div>
-            <FavoriteButton app={app} />
+            <FavoriteButton app={app} color={app.color} />
           </div>
           <DetailModalNav app={app} />
         </Row>
       </Modal.Header>
       <Modal.Body
-        className='notesModal-body detailModal-body'
+        className={`notesModal-body detailModal-body ${
+          app.color ? app.color : 'white'
+        }-body`}
         ref={notesModalBodyRef}
         onClick={() => {
           closeListSelect();

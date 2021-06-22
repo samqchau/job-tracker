@@ -110,7 +110,7 @@ const DetailModal = ({ app, handleClose }) => {
   return (
     <>
       <Modal.Header
-        className='detailModal-header'
+        className={`detailModal-header ${color}`}
         onClick={(e) => {
           closeListSelect();
           closeColorSelect();
@@ -151,13 +151,13 @@ const DetailModal = ({ app, handleClose }) => {
                 {app.job_title}
               </p>
             </div>
-            <FavoriteButton app={app} />
+            <FavoriteButton app={app} color={color} />
           </div>
           <DetailModalNav app={app} />
         </Row>
       </Modal.Header>
       <Modal.Body
-        className='detailModal-body'
+        className={`detailModal-body ${app.color ? app.color : 'white'}-body`}
         as={Row}
         onClick={() => {
           closeListSelect();

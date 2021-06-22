@@ -15,6 +15,7 @@ a:hover {
   text-transform: unset;
   font-size: 13px;
   filter: brightness(100%);
+  transition: all 0.2s ease-out;
 }
 
 .modal-button:hover {

@@ -1,6 +1,5 @@
 .detailModal-header {
   padding-bottom: 0px !important;
-  background-color: #00126d;
 }
 .detailModal-header-nav {
   width: 100%;
@@ -25,7 +24,6 @@
 }
 .detailModal-header-main-text {
   margin-right: 15px;
-  color: white;
 }
 .detailModal-header-main-favorited {
   cursor: pointer;
@@ -33,7 +31,6 @@
   padding-top: 3px;
 }
 .detailModal-header-main-text-company {
-  color: white;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   letter-spacing: 0px;
   margin: 0px 0px 7px;
@@ -51,7 +48,6 @@
   font-size: 1.1rem;
 }
 .detailModal-body {
-  background-color: #d9e0ff;
   width: 100%;
   margin-left: 0px !important;
   margin-right: 0px !important;
@@ -62,9 +58,6 @@
 }
 .detailModal-body-right-content > .form-group {
   padding: 0px 13px;
-}
-.detailModal-header-main > .favoriteButton {
-  color: white;
 }
 .detailModal-updateButton-xs {
   width: 100%;

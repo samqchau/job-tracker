@@ -19,7 +19,7 @@ const DemoAppCard = ({ app, index }) => {
               <span className='app-card-body-company'>{company_name}</span>
             </div>
             <div className='app-card-body-right'>
-              <FavoriteButton app={app} />
+              <FavoriteButton app={app} color={app.color} />
             </div>
           </div>
           <div className='app-card-footer'>

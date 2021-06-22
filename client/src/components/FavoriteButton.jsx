@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import '../styles/favoriteButton.css';
 import { favoriteAppById } from '../actions/appActions';
 
-const FavoriteButton = ({ app }) => {
+const FavoriteButton = ({ app, color }) => {
   const dispatch = useDispatch();
   let { favorited } = app;
 
@@ -17,7 +17,7 @@ const FavoriteButton = ({ app }) => {
     <i
       className={` ${`${
         favorited ? 'fas' : 'far'
-      } fa-bookmark`} favoriteButton`}
+      } fa-bookmark`} favoriteButton ${color && color}`}
       onClick={handleClick}
       title='Favorite'
     ></i>

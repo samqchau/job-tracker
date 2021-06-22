@@ -1,9 +1,8 @@
 .app-main {
-  min-height: 94%;
   height: 86%;
   display: flex;
   justify-content: center;
-  padding-top: 30px;
+  padding-top: 15px;
 }
 .app-main-container {
   display: flex;
