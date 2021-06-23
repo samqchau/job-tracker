@@ -61,7 +61,9 @@ const AppCard = ({ app, favslist, index }) => {
       <Draggable draggableId={id} index={index}>
         {(provided) => (
           <div
-            className={`app-card ${color ? color : 'white'}`}
+            className={`app-card ${
+              color ? color : 'white'
+            } ${color}-card-border`}
             ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}

@@ -28,3 +28,8 @@
   border: none;
   background: none;
 }
+.favoritesModal-body {
+  background: none !important;
+  background-color: none !important;
+  border: unset !important;
+}

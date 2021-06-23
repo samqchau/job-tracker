@@ -69,11 +69,9 @@
 .detailModal-date-clear {
   margin-left: auto;
   cursor: pointer;
-  border-bottom: 1px solid white;
-  transition: border-bottom 0.2s;
 }
-.detailModal-date-clear:hover {
-  border-bottom: 1px solid black;
+.detail-modal-updateButton {
+  border-radius: 5px !important;
 }
 @media only screen and (max-width: 768px) {
   .detailModal-updateButton-xs {

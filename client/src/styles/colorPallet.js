@@ -49,5 +49,6 @@ export let colorsArr = [
   'gray',
   'navy',
   'black',
+  'default',
 ];
 export default colors;

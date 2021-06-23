@@ -110,7 +110,9 @@ const DetailModal = ({ app, handleClose }) => {
   return (
     <>
       <Modal.Header
-        className={`detailModal-header ${color ? color : 'white'}`}
+        className={`detailModal-header ${
+          color ? color : 'default'
+        } ${color}-modal-header-border`}
         onClick={(e) => {
           closeListSelect();
           closeColorSelect();
@@ -120,7 +122,7 @@ const DetailModal = ({ app, handleClose }) => {
           <div className='detailModal-header-nav-buttonContainer'>
             <div className='detailModal-moveButton-container'>
               <Button
-                className='modal-button detail-modal-moveButton'
+                className={`modal-button detail-modal-moveButton ${color}-accent-border`}
                 onClick={openListSelect}
               >
                 Move
@@ -130,13 +132,13 @@ const DetailModal = ({ app, handleClose }) => {
               )}
             </div>
             <Button
-              className='modal-button detail-modal-updateButton'
+              className={`${color}-accent-border modal-button detail-modal-updateButton`}
               onClick={handleUpdateButtonClick}
             >
               Update
             </Button>
             <Button
-              className='modal-button detail-modal-closeButton'
+              className={`${color}-accent-border modal-button detail-modal-closeButton`}
               onClick={handleCloseButtonClick}
             >
               Close
@@ -144,10 +146,10 @@ const DetailModal = ({ app, handleClose }) => {
           </div>
           <div className='detailModal-header-main'>
             <div className='detailModal-header-main-text'>
-              <p className='detailModal-header-main-text-company'>
+              <p className={`detailModal-header-main-text-company`}>
                 {app.company_name}
               </p>
-              <p className='detailModal-header-main-text-job'>
+              <p className={`detailModal-header-main-text-job`}>
                 {app.job_title}
               </p>
             </div>
@@ -157,7 +159,9 @@ const DetailModal = ({ app, handleClose }) => {
         </Row>
       </Modal.Header>
       <Modal.Body
-        className={`detailModal-body ${app.color ? app.color : 'white'}-body`}
+        className={`detailModal-body ${
+          app.color ? app.color : 'default'
+        }-body  ${color}-modal-body-border`}
         as={Row}
         onClick={() => {
           closeListSelect();
@@ -266,7 +270,7 @@ const DetailModal = ({ app, handleClose }) => {
                   Application Deadline
                 </span>
                 <span
-                  className='detailModal-date-clear'
+                  className={`clear-border detailModal-date-clear ${color}-clear-border`}
                   onClick={(e) => {
                     setDeadline('');
                   }}
@@ -286,7 +290,7 @@ const DetailModal = ({ app, handleClose }) => {
               <Form.Label className='detailModal-date-container'>
                 <span className='detailModal-date-title'>Applied on</span>
                 <span
-                  className='detailModal-date-clear'
+                  className={`clear-border detailModal-date-clear ${color}-clear-border`}
                   onClick={(e) => {
                     setApplicationDate('');
                   }}
@@ -306,7 +310,7 @@ const DetailModal = ({ app, handleClose }) => {
               <Form.Label className='detailModal-date-container'>
                 <span className='detailModal-date-title'>Interview Date</span>
                 <span
-                  className='detailModal-date-clear'
+                  className={`clear-border detailModal-date-clear ${color}-clear-border`}
                   onClick={(e) => {
                     setInterviewDate('');
                   }}
@@ -326,7 +330,7 @@ const DetailModal = ({ app, handleClose }) => {
               <Form.Label className='detailModal-date-container'>
                 <span className='detailModal-date-title'>Offer Recieved</span>
                 <span
-                  className='detailModal-date-clear'
+                  className={`clear-border detailModal-date-clear ${color}-clear-border`}
                   onClick={(e) => {
                     setOfferDate('');
                   }}
@@ -346,7 +350,7 @@ const DetailModal = ({ app, handleClose }) => {
               <Form.Label className='detailModal-date-container'>
                 <span className='detailModal-date-title'>Accept Offer by</span>
                 <span
-                  className='detailModal-date-clear'
+                  className={`clear-border detailModal-date-clear ${color}-clear-border`}
                   onClick={(e) => {
                     setOfferAcceptanceDate('');
                   }}

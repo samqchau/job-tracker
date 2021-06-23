@@ -5,6 +5,13 @@ a:hover {
   text-decoration: unset;
   color: #1a1a1a;
 }
+.modal-body {
+  background-color: black;
+  color: white;
+  border-right: 1px solid rgb(255, 212, 156);
+  border-left: 1px solid rgb(255, 212, 156);
+  border-radius: 0px 0px 8px 8px;
+}
 .modal-button {
   padding: 0px 10px;
   margin-right: 8px;
@@ -28,18 +35,22 @@ a:hover {
   filter: brightness(112%);
   border: 1px solid rgb(201, 201, 201);
 }
+.modal-header {
+  border-bottom: unset;
+  border-radius: 8px 8px 0px 0px;
+}
+.modal-footer {
+  border-top: unset;
+  border-right: 1px solid rgb(255, 212, 156);
+  border-left: 1px solid rgb(255, 212, 156);
+  border-bottom: 1px solid rgb(255, 212, 156);
+}
 .form-label {
   font-weight: 500;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.modal-content {
-  border: 1px solid #ffbf00;
-}
 textarea.form-control {
   height: 130px;
-}
-.modal-header {
-  border-bottom: 1px solid black;
 }
 .modal-title {
   color: unset;

@@ -87,7 +87,9 @@ const NotesModal = ({ app, handleClose }) => {
   return (
     <>
       <Modal.Header
-        className={`detailModal-header ${app.color ? app.color : 'white'}`}
+        className={`detailModal-header ${app.color ? app.color : 'white'} ${
+          app.color
+        }-modal-header-border`}
         onClick={(e) => {
           e.stopPropagation();
           closeListSelect();
@@ -101,7 +103,7 @@ const NotesModal = ({ app, handleClose }) => {
           <div className='detailModal-header-nav-buttonContainer'>
             <div className='detailModal-moveButton-container'>
               <Button
-                className='modal-button detail-modal-moveButton'
+                className={`modal-button detail-modal-moveButton ${app.color}-accent-border`}
                 onClick={(e) => {
                   e.stopPropagation();
                   openListSelect();
@@ -114,7 +116,7 @@ const NotesModal = ({ app, handleClose }) => {
               )}
             </div>
             <Button
-              className='modal-button detail-modal-closeButton'
+              className={`modal-button ${app.color}-accent-border detail-modal-closeButton`}
               onClick={(e) => {
                 e.stopPropagation();
                 handleCloseButtonClick();
@@ -140,7 +142,7 @@ const NotesModal = ({ app, handleClose }) => {
       <Modal.Body
         className={`notesModal-body detailModal-body ${
           app.color ? app.color : 'white'
-        }-body`}
+        }-body ${app.color}-modal-body-border`}
         ref={notesModalBodyRef}
         onClick={() => {
           closeListSelect();

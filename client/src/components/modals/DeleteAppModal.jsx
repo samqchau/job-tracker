@@ -19,7 +19,7 @@ const DeleteAppModal = ({ show, handleClose, deleteHandler, item }) => {
         <p>{`Are you sure you want to delete this ${item}?`}</p>
         <div className='deleteModal-body-button-container'>
           <Button
-            className='modal-button deleteModal-delete-button'
+            className='modal-button deleteModal-delete-button default-accent-border'
             onClick={(e) => {
               e.stopPropagation();
               deleteHandler();
@@ -28,7 +28,7 @@ const DeleteAppModal = ({ show, handleClose, deleteHandler, item }) => {
             Delete
           </Button>
           <Button
-            className='modal-button deleteModal-cancel-button'
+            className='modal-button deleteModal-cancel-button default-accent-border'
             onClick={(e) => {
               e.stopPropagation();
               handleClose();

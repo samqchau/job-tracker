@@ -109,10 +109,15 @@ const NewAppModal = ({ show, handleClose, listValue }) => {
     setShowColorSelect(false);
   };
 
+  const onHide = () => {
+    handleClose();
+    closeColorSelect();
+  };
+
   return (
     <Modal
       show={show}
-      onHide={handleClose}
+      onHide={onHide}
       centered
       size='md'
       className='newAppModal'
@@ -125,6 +130,18 @@ const NewAppModal = ({ show, handleClose, listValue }) => {
     >
       <Modal.Header>
         <Modal.Title>Track a new application</Modal.Title>
+        <div className='newAppModal-button-container'>
+          <Button
+            onClick={submitHandler}
+            variant='success'
+            className='modal-button'
+          >
+            Save
+          </Button>
+          <Button variant='dark' onClick={handleClose} className='modal-button'>
+            Close
+          </Button>
+        </div>
       </Modal.Header>
       <Modal.Body>
         {validationMessages.length > 0 && (
@@ -249,14 +266,6 @@ const NewAppModal = ({ show, handleClose, listValue }) => {
           </Form.Group>
         </Form>
       </Modal.Body>
-      <Modal.Footer>
-        <Button variant='dark' onClick={handleClose}>
-          Close
-        </Button>
-        <Button onClick={submitHandler} variant='success'>
-          Save
-        </Button>
-      </Modal.Footer>
     </Modal>
   );
 };

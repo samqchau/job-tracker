@@ -43,7 +43,9 @@ const ColorSelect = ({
                   closeColorSelect();
                 }}
               >
-                <div className={`${clr} colorSelect-menu-option`}></div>
+                <div
+                  className={`${clr} colorSelect-menu-option ${clr}-accent-border`}
+                ></div>
               </div>
             </Col>
           ))}
