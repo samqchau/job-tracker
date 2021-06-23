@@ -38,20 +38,22 @@ const Demo = () => {
   };
 
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <DemoAppList
-        name='applied'
-        icon='far fa-paper-plane'
-        apps={apps}
-        setApps={changeAppsTo}
-      />
-      <DemoAppList
-        name='offer accepted'
-        icon='fas fa-award'
-        apps={apps}
-        setApps={changeAppsTo}
-      />
-    </DragDropContext>
+    <>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <DemoAppList
+          name='applied'
+          icon='far fa-paper-plane'
+          apps={apps}
+          setApps={changeAppsTo}
+        />
+        <DemoAppList
+          name='offer accepted'
+          icon='fas fa-award'
+          apps={apps}
+          setApps={changeAppsTo}
+        />
+      </DragDropContext>
+    </>
   );
 };
 

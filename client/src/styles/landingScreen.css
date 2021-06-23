@@ -20,6 +20,8 @@
   box-shadow: slategrey 4px 4px 5px, slategrey -4px -4px 5px;
   background-color: aliceblue;
   max-width: 1000px;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 .landing-main-center {
   display: flex;
@@ -27,7 +29,6 @@
   align-items: flex-end;
   flex-direction: column;
   height: 100%;
-  padding-top: 115px;
 }
 .landing-main-center-body-text {
   position: relative;
@@ -138,6 +139,17 @@
   align-items: center;
   position: relative;
 }
+.landing-main-left ul {
+  width: 275px;
+  list-style: upper-alpha;
+}
+.landing-main-left li {
+  font-size: 15px;
+  font-family: sans-serif;
+  width: 325px;
+  text-align: justify;
+}
+
 .landing-section-title {
   font-size: 20px;
   font-weight: 600;
@@ -152,13 +164,6 @@
   text-align: justify;
 }
 @media only screen and (min-width: 992px) {
-  .landing-main-center {
-    padding-right: 0px !important;
-  }
-  .landing-main-left {
-    padding-top: 115px;
-    padding-left: 0px !important;
-  }
 }
 
 @media only screen and (max-width: 992px) {

@@ -37,15 +37,21 @@ const LandingScreen = ({ history }) => {
             </div>
           </Col>
           <Col className='landing-main-left' sm={12} lg={6}>
-            <div
-              className='landing-section-title'
-              style={{ marginTop: '0px', marginBottom: '10px' }}
-            >
-              Drag & Drop for Quick Changes
+            <div className='landing-section-title' style={{ marginTop: '0px' }}>
+              Controls and Functions
             </div>
+            <ul>
+              <li>Drag & Drop to Organize</li>
+              <li>Bookmark Important Cards</li>
+              <li>Click for Details & Notes</li>
+            </ul>
             <div className='landing-main-left-demo-container'>
               <Demo />
             </div>
+            <div
+              className='landing-main-left-demo-caption'
+              style={{ marginTop: '5px' }}
+            ></div>
 
             <div className='landing-section-title'>
               Changes are automatically saved
