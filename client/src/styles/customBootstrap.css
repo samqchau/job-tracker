@@ -33,7 +33,6 @@ a:hover {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .modal-content {
-  border-radius: 10px;
   border: 1px solid #ffbf00;
 }
 textarea.form-control {

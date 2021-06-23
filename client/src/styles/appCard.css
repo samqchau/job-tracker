@@ -73,12 +73,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.app-card-footer-border {
-  width: 80%;
-  height: 1px;
-  border-top: 1px dashed rgb(0, 0, 0);
-  margin-bottom: 2px;
-}
+
 .app-card-footer-content {
   width: 100%;
   font-size: 11px;

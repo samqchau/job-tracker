@@ -28,7 +28,6 @@ const DemoAppCard = ({ app, index, setApps }) => {
             </div>
           </div>
           <div className='app-card-footer'>
-            <div className='app-card-footer-border'></div>
             <div className='app-card-footer-content'></div>
           </div>
         </div>

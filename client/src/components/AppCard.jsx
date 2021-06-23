@@ -86,7 +86,6 @@ const AppCard = ({ app, favslist, index }) => {
               </div>
             </div>
             <div className='app-card-footer'>
-              <div className='app-card-footer-border'></div>
               <div className='app-card-footer-content'>
                 <FooterEvent app={app} />
               </div>
