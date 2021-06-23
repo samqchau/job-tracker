@@ -53,9 +53,7 @@ const LandingScreen = ({ history }) => {
               style={{ marginTop: '5px' }}
             ></div>
 
-            <div className='landing-section-title'>
-              Changes are automatically saved
-            </div>
+            <div className='landing-section-title'>Meet the Team</div>
             <div className='landing-section-content'>
               JobTrackr is a free, secure, easily-accessible web app that helps
               users track and organize applications during the job hunt.

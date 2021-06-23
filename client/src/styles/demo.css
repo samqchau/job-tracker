@@ -13,8 +13,8 @@
   width: 252px;
 }
 .landing-main-left-demo-container {
-  box-shadow: rgb(112 128 144 / 50%) 4px 4px 10px,
-    rgb(112 128 144 / 50%) -4px -4px 10px;
+  box-shadow: inset rgba(255, 255, 255, 0.5) 1px 1px 4px,
+    inset rgba(112, 128, 144, 0.5) -1px -1px 2px;
   border-radius: 10px;
   padding: 10px 0px 17px 0px;
   height: fit-content;
@@ -23,6 +23,8 @@
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
+  background-color: black;
+  color: white;
 }
 .demo-list-container {
   height: 140px;
@@ -33,6 +35,4 @@
   padding: 0px;
   margin: 4px;
   font-weight: 900px;
-  box-shadow: rgb(255 255 255 / 50%) inset 10px 10px 5px 10px,
-    #ced4da inset -10px -10px 5px;
 }

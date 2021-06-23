@@ -87,7 +87,7 @@ const NotesModal = ({ app, handleClose }) => {
   return (
     <>
       <Modal.Header
-        className={`detailModal-header ${app.color}`}
+        className={`detailModal-header ${app.color ? app.color : 'white'}`}
         onClick={(e) => {
           e.stopPropagation();
           closeListSelect();

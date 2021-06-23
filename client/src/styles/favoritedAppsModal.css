@@ -24,3 +24,7 @@
 .favoritesModal-body > .list-container > .list-body-main {
   height: 525px;
 }
+.favoritesModal > div > .modal-content {
+  border: none;
+  background: none;
+}

@@ -17,7 +17,13 @@ a:hover {
   filter: brightness(100%);
   transition: all 0.2s ease-out;
 }
-
+.modal-content {
+  background: none;
+  margin-top: 60px;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
 .modal-button:hover {
   filter: brightness(112%);
   border: 1px solid rgb(201, 201, 201);
@@ -28,6 +34,7 @@ a:hover {
 }
 .modal-content {
   border-radius: 10px;
+  border: 1px solid #ffbf00;
 }
 textarea.form-control {
   height: 130px;
@@ -35,7 +42,9 @@ textarea.form-control {
 .modal-header {
   border-bottom: 1px solid black;
 }
-
+.modal-title {
+  color: unset;
+}
 .noselect {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -49,6 +58,12 @@ textarea.form-control {
   .modal-dialog {
     max-width: 600px;
     margin: 1.75rem auto;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .modal-content {
+    width: 85%;
   }
 }
 

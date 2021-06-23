@@ -1,17 +1,17 @@
 .list-container {
   vertical-align: top;
   padding: 10px 10px 10px 10px;
-  border-left: 1px solid #ddcdff;
-  border-right: 1px solid #ddcdff;
-  background-color: #e3dbff;
+  border: 1px solid rgb(255, 212, 156);
+  margin: 5px;
+  background-color: black;
   max-width: 274px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-shadow: 1px 2px 5px rgb(25 4 69), -1px -3px 3px rgb(223, 215, 215);
   min-height: 420px;
+  color: white;
 }
 .list-header {
   display: flex;
@@ -37,19 +37,16 @@
 }
 .list-header-main-count {
   font-size: 0.9rem;
-  color: rgba(0, 0, 0, 0.4);
   text-align: center;
 }
 .list-header-options,
 .list-header-icon {
-  color: #a199b4;
   padding-top: 15px;
-  cursor: pointer;
 }
 .list-add {
   display: flex;
   justify-content: center;
-  background-color: rgb(224, 245, 255);
+  background-color: rgb(255, 196, 0);
   padding: 7px 0 7px 0;
   box-shadow: 0px 2px 5px rgb(25 4 69 / 10%);
   border: 1px solid rgba(25, 4, 69, 0.15);
@@ -59,11 +56,14 @@
   margin-bottom: 3px;
   width: 100%;
 }
-.list-add:hover {
-  box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.3);
+.list-add > .fa-plus {
+  transition: 0.2s all ease-out;
+}
+.list-add:hover > .fa-plus {
+  transform: rotateZ(90deg) scale(1.3);
 }
 .list-body-main {
-  background-color: #f3f3f3;
+  background-color: #202020;
   min-height: 270px;
   display: flex;
   flex-direction: column;
@@ -72,9 +72,9 @@
   scrollbar-width: 0px;
   height: calc(46vh - 119px);
   width: 98%;
-  padding: 2px 2px 3px 2px;
+  padding: 2px 2px 2px 2px;
   border-radius: 7px;
-  box-shadow: inset 3px 3px 3px, inset -3px -3px 3px;
+  box-shadow: inset #ffe694 1px 0px 1px, inset rgb(0, 0, 0) -1px 0px 1px;
 }
 .list-body-main::-webkit-scrollbar {
   display: none;
@@ -94,6 +94,7 @@
 @media only screen and (min-width: 1200px) {
   .list-container {
     height: 100%;
+    margin: 0px;
   }
   .list-body-main {
     height: calc(100% - 119px);

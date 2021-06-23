@@ -1,3 +1,7 @@
+.newAppModal div .newAppCustomModal {
+  background: black;
+  color: white;
+}
 .newAppModal .form-group {
   margin-bottom: 8px;
 }

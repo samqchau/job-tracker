@@ -73,7 +73,6 @@ const LoginCard = () => {
           </div>
         </div>
       </div>
-      <div className='landing-center-card-footer'>Developed by Samuel Chau</div>
     </div>
   );
 };

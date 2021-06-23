@@ -12,7 +12,7 @@ const OpenFavorites = () => {
   return (
     <>
       <div
-        className='openFavorites'
+        className='openFavorites header-icon'
         title='Show Bookmarked'
         onClick={(e) => {
           e.stopPropagation();
