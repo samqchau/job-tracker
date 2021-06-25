@@ -8,7 +8,7 @@ const DemoAppCard = ({ app, index, setApps }) => {
     <Draggable draggableId={`${id}`} index={index}>
       {(provided) => (
         <div
-          className={`app-card white`}
+          className={`app-card default default-card-border`}
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
