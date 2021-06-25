@@ -3,6 +3,7 @@
   padding: 16px;
   overflow: scroll;
   scrollbar-width: 0px;
+  display: unset !important;
 }
 .notesModal-body::-webkit-scrollbar {
   display: none;

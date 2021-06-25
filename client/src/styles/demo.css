@@ -36,3 +36,9 @@
   margin: 4px;
   font-weight: 900px;
 }
+.demoModal-message-container {
+  width: 93.5% !important;
+}
+.demoModal-message-container > div {
+  border-radius: 3px;
+}

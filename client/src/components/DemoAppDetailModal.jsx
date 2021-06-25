@@ -1,105 +1,36 @@
 import React, { useState, useRef } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { Modal, Form, Row, Col, Button } from 'react-bootstrap';
-import { trimDate } from '../helpers/dateHelpers';
-import { UPDATE_APP_RESET } from '../constants/appConstants';
-import { updateAppById } from '../actions/appActions';
-import ListSelect from './ListSelect';
-import FavoriteButton from './FavoriteButton';
 import Message from './Message';
 import ColorSelect from './ColorSelect';
-import DetailModalNav from './DetailModalNav';
+import FavoriteButton from './FavoriteButton';
 
-const DetailModal = ({ app, handleClose }) => {
-  const dispatch = useDispatch();
-
-  const updateApp = useSelector((state) => state.updateApp);
-  const { success, error } = updateApp;
-
-  const [company, setCompany] = useState(app.company_name);
-  const [jobTitle, setJobTitle] = useState(app.job_title);
-  const [url, setUrl] = useState(app.url);
-  const [color, setColor] = useState(app.color);
-  const [salary, setSalary] = useState(app.salary);
-  const [location, setLocation] = useState(app.location);
-  const [description, setDescription] = useState(app.description);
-  const [validationMessages, setValidationMessages] = useState([]);
-  const [showListSelect, setShowListSelect] = useState(false);
-
-  const [deadline, setDeadline] = useState(
-    app.deadline ? trimDate(app.deadline) : ''
+const DemoAppDetailModal = ({ show, handleClose, app, setApps }) => {
+  const [company, setCompany] = useState(
+    app.company_name ? app.company_name : ''
   );
+  const [jobTitle, setJobTitle] = useState(app.job_title ? app.job_title : '');
+  const [description, setDescription] = useState(
+    app.description ? app.description : ''
+  );
+  const [deadline, setDeadline] = useState(app.deadline ? app.deadline : '');
   const [applicationDate, setApplicationDate] = useState(
-    app.application ? trimDate(app.application) : ''
+    app.application ? app.application : ''
   );
   const [interviewDate, setInterviewDate] = useState(
-    app.interview ? trimDate(app.interview) : ''
+    app.interview ? app.interview : ''
   );
-  const [offerDate, setOfferDate] = useState(
-    app.offer ? trimDate(app.offer) : ''
-  );
+  const [offerDate, setOfferDate] = useState(app.offer ? app.offer : '');
   const [offerAcceptanceDate, setOfferAcceptanceDate] = useState(
-    app.offer_acceptance ? trimDate(app.offer_acceptance) : ''
+    app.acceptance ? app.acceptance : ''
   );
-
+  const [url, setUrl] = useState(app.url ? app.url : '');
+  const [salary, setSalary] = useState(app.salary ? app.salary : '');
+  const [color, setColor] = useState(app.color ? app.color : 'default');
   const [showColorSelect, setShowColorSelect] = useState(false);
+  const [location, setLocation] = useState(app.location ? app.location : '');
+  const [validationMessages, setValidationMessages] = useState([]);
 
   const modalRef = useRef();
-
-  const validateForm = () => {
-    let arr = [];
-    if (company.length < 1) {
-      arr.push('Company name is a required field');
-    }
-    if (jobTitle.length < 1) {
-      arr.push('Job title is a required field');
-    }
-    if (arr.length < 1) {
-      return true;
-    } else {
-      setValidationMessages(arr);
-      return false;
-    }
-  };
-
-  const handleUpdateButtonClick = (e) => {
-    dispatch({ type: UPDATE_APP_RESET });
-
-    if (validateForm()) {
-      let updatedApp = app;
-      updatedApp.company_name = company;
-      updatedApp.job_title = jobTitle;
-      updatedApp.url = url;
-      updatedApp.color = color;
-      updatedApp.salary = salary;
-      updatedApp.location = location;
-      updatedApp.description = description;
-      updatedApp.deadline = deadline;
-      updatedApp.application = applicationDate;
-      updatedApp.offer = offerDate;
-      updatedApp.offer_acceptance = offerAcceptanceDate;
-      updatedApp.interview = interviewDate;
-
-      dispatch(updateAppById(updatedApp));
-    }
-  };
-
-  const openListSelect = (e) => {
-    e.stopPropagation();
-    setShowListSelect(true);
-  };
-
-  const closeListSelect = () => {
-    setShowListSelect(false);
-  };
-
-  const handleCloseButtonClick = (e) => {
-    handleClose();
-  };
-
-  const changeColorTo = (color) => {
-    setColor(color);
-  };
 
   const openColorSelect = () => {
     setShowColorSelect(true);
@@ -109,31 +40,41 @@ const DetailModal = ({ app, handleClose }) => {
     setShowColorSelect(false);
   };
 
+  const handleUpdateButtonClick = () => {
+    setValidationMessages(['Login to start saving data']);
+  };
+
+  const handleCloseButtonClick = () => {
+    setValidationMessages([]);
+    handleClose();
+  };
+
+  const changeColorTo = (color) => {
+    setColor(color);
+  };
+
   return (
-    <>
+    <Modal
+      show={show}
+      onHide={() => {
+        setValidationMessages([]);
+        handleClose();
+      }}
+      centered
+      size='xl'
+      className='detailModal'
+    >
       <Modal.Header
+        ref={modalRef}
         className={`detailModal-header ${
           color ? color : 'default'
         } ${color}-modal-header-border`}
         onClick={(e) => {
-          closeListSelect();
           closeColorSelect();
         }}
-        ref={modalRef}
       >
         <Row className='detailModal-header-nav'>
           <div className='detailModal-header-nav-buttonContainer'>
-            <div className='detailModal-moveButton-container'>
-              <Button
-                className={`modal-button detail-modal-moveButton ${color}-accent-border`}
-                onClick={openListSelect}
-              >
-                Move
-              </Button>
-              {showListSelect && (
-                <ListSelect close={closeListSelect} app={app} />
-              )}
-            </div>
             <Button
               className={`${color}-accent-border modal-button detail-modal-updateButton`}
               onClick={handleUpdateButtonClick}
@@ -156,9 +97,13 @@ const DetailModal = ({ app, handleClose }) => {
                 {app.job_title}
               </p>
             </div>
-            <FavoriteButton app={app} color={color} />
+            <FavoriteButton
+              app={app}
+              color={color}
+              demoButton
+              setApps={setApps}
+            />
           </div>
-          <DetailModalNav app={app} color={color} />
         </Row>
       </Modal.Header>
       <Modal.Body
@@ -167,26 +112,22 @@ const DetailModal = ({ app, handleClose }) => {
         }-body  ${color}-modal-body-border`}
         as={Row}
         onClick={() => {
-          closeListSelect();
           closeColorSelect();
         }}
       >
-        <div className='detailModal-message-container'>
+        <div className='detailModal-message-container demoModal-message-container'>
           {validationMessages.length > 0 && (
             <Message variant='danger'>
-              <ul className='validation-list'>
+              <ul
+                className='validation-list'
+                style={{ marginBottom: '0px', listStyle: 'none' }}
+              >
                 {validationMessages.map((message, i) => (
                   <li key={i}>{message}</li>
                 ))}
               </ul>
             </Message>
           )}
-          {success && (
-            <Message variant='success'>
-              Your application has been updated successfully
-            </Message>
-          )}
-          {error && <Message variant='danger'>{error}</Message>}
         </div>
 
         <Col xs={12} sm={12} md={8} className='detailModal-body-left' as={Row}>
@@ -374,18 +315,18 @@ const DetailModal = ({ app, handleClose }) => {
         <Button
           className='detail-modal-updateButton detailModal-updateButton-xs'
           onClick={() => {
-            handleUpdateButtonClick();
             modalRef.current.scrollIntoView({
               behavior: 'smooth',
               block: 'start',
             });
+            handleUpdateButtonClick();
           }}
         >
           Update
         </Button>
       </Modal.Body>
-    </>
+    </Modal>
   );
 };
 
-export default DetailModal;
+export default DemoAppDetailModal;
