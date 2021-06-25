@@ -33,7 +33,7 @@ const NewAppModal = ({ show, handleClose, listValue }) => {
   const [url, setUrl] = useState('');
   const [salary, setSalary] = useState('');
   const [location, setLocation] = useState('');
-  const [color, setColor] = useState('');
+  const [color, setColor] = useState('default');
   const [description, setDescription] = useState('');
   const [validationMessages, setValidationMessages] = useState([]);
 

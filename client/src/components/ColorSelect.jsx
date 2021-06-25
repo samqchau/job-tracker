@@ -34,18 +34,18 @@ const ColorSelect = ({
               sm={2}
               md={4}
               key={i}
-              className='colorSelect-menu-option-container'
+              className={`colorSelect-menu-option-container`}
             >
               <div
-                className='colorSelect-menu-option-border'
+                className={`colorSelect-menu-option-border ${
+                  clr === color && 'colorSelect-menu-option-active'
+                }`}
                 onClick={(e) => {
                   setColor(clr);
                   closeColorSelect();
                 }}
               >
-                <div
-                  className={`${clr} colorSelect-menu-option ${clr}-accent-border`}
-                ></div>
+                <div className={`colorSelect-menu-option  ${clr} `}></div>
               </div>
             </Col>
           ))}

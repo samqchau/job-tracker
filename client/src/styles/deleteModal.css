@@ -12,6 +12,7 @@
   align-items: center;
   padding: 75px 50px 70px;
   text-align: center;
+  background-color: black;
   border-top: 1px solid rgb(255, 212, 156);
   border-bottom: 1px solid rgb(255, 212, 156);
   border-radius: 8px !important;

@@ -3,13 +3,10 @@ body {
 }
 a:hover {
   text-decoration: unset;
-  color: #1a1a1a;
+  color: unset;
 }
 .modal-body {
-  background-color: black;
   color: white;
-  border-right: 1px solid rgb(255, 212, 156);
-  border-left: 1px solid rgb(255, 212, 156);
   border-radius: 0px 0px 8px 8px;
 }
 .modal-button {

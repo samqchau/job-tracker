@@ -49,6 +49,9 @@
   position: relative;
   margin: 3px;
 }
+.colorSelect-menu-option-active {
+  border: 1px solid black;
+}
 .colorSelect-menu-option-container {
   width: 30px;
   padding: 0px !important;

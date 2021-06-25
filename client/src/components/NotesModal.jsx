@@ -136,7 +136,7 @@ const NotesModal = ({ app, handleClose }) => {
             </div>
             <FavoriteButton app={app} color={app.color} />
           </div>
-          <DetailModalNav app={app} />
+          <DetailModalNav app={app} color={app.color} />
         </Row>
       </Modal.Header>
       <Modal.Body

@@ -155,12 +155,12 @@ const DetailModal = ({ app, handleClose }) => {
             </div>
             <FavoriteButton app={app} color={color} />
           </div>
-          <DetailModalNav app={app} />
+          <DetailModalNav app={app} color={color} />
         </Row>
       </Modal.Header>
       <Modal.Body
         className={`detailModal-body ${
-          app.color ? app.color : 'default'
+          color ? color : 'default'
         }-body  ${color}-modal-body-border`}
         as={Row}
         onClick={() => {

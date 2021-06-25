@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { UPDATE_APP_RESET } from '../constants/appConstants';
 import '../styles/modalNav.css';
 
-const DetailModalNav = ({ app }) => {
+const DetailModalNav = ({ app, color }) => {
   const dispatch = useDispatch();
   const location = useLocation();
   const path = location.pathname;
@@ -19,7 +19,7 @@ const DetailModalNav = ({ app }) => {
         }}
         className={`modal-nav-link ${
           routeName === 'app_details' ? 'modal-nav-link-active' : ''
-        }`}
+        } ${color} ${color}-accent-border`}
       >
         Details
       </Link>
@@ -29,7 +29,7 @@ const DetailModalNav = ({ app }) => {
         }`}
         className={`modal-nav-link ${
           routeName === 'app_notes' ? 'modal-nav-link-active' : ''
-        }`}
+        } ${color} ${color}-accent-border`}
         onClick={(e) => {
           e.stopPropagation();
           dispatch({ type: UPDATE_APP_RESET });
