@@ -14,7 +14,7 @@ const AppNote = ({ note, app }) => {
   const location = useLocation();
   let path = location.pathname;
   let noteId = location.pathname.split('/')[4];
-  const [content, setContent] = useState(note.content);
+  const [content, setContent] = useState(note ? note.content : '');
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const closeDeleteModal = () => {
@@ -46,113 +46,113 @@ const AppNote = ({ note, app }) => {
 
   useEffect(() => {
     setErrorMessage('');
-    setContent(note.content);
     return () => {
       setErrorMessage('');
-      setContent(note.content);
     };
   }, [path]);
 
   return (
-    <>
-      <div
-        className='note'
-        onClick={(e) => {
-          if (noteId === note.id) {
-            e.stopPropagation();
-          }
-        }}
-      >
-        <div className='note-header'>
-          <div className='note-header-date'>
-            {formatDate(trimDate(note.created_on))}
+    note && (
+      <>
+        <div
+          className='note'
+          onClick={(e) => {
+            if (noteId === note.id) {
+              e.stopPropagation();
+            }
+          }}
+        >
+          <div className='note-header'>
+            <div className='note-header-date'>
+              {formatDate(trimDate(note.created_on))}
+            </div>
+            <div className='note-header-border'></div>
+            <div className='note-header-buttons'>
+              <i
+                className={`${
+                  noteId === note.id ? 'fas fa-times' : 'far fa-edit'
+                }`}
+                title={`${noteId === note.id ? 'Close' : 'Edit'}`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (noteId === note.id) {
+                    history.push(`/app_notes/${app.id}`);
+                  } else {
+                    history.push(`/app_notes/${app.id}/edit/${note.id}`);
+                  }
+                }}
+              />
+              <i
+                className='far fa-trash-alt'
+                title='Delete'
+                onClick={() => {
+                  openDeleteModal();
+                }}
+              ></i>
+            </div>
           </div>
-          <div className='note-header-border'></div>
-          <div className='note-header-buttons'>
-            <i
-              className={`${
-                noteId === note.id ? 'fas fa-times' : 'far fa-edit'
-              }`}
-              title={`${noteId === note.id ? 'Close' : 'Edit'}`}
-              onClick={(e) => {
-                e.stopPropagation();
-                if (noteId === note.id) {
-                  history.push(`/app_notes/${app.id}`);
-                } else {
-                  history.push(`/app_notes/${app.id}/edit/${note.id}`);
-                }
-              }}
-            />
-            <i
-              className='far fa-trash-alt'
-              title='Delete'
-              onClick={() => {
-                openDeleteModal();
-              }}
-            ></i>
-          </div>
-        </div>
-        <div className='note-body'>
-          {noteId !== note.id && (
-            <div className='note-body-content'>{note.content}</div>
-          )}
-          <Route
-            render={(props) =>
-              note.id === location.pathname.split('/')[4] && (
-                <Form>
-                  <Form.Control
-                    as='textarea'
-                    className='noteupdate-textarea'
-                    value={content}
-                    onChange={(e) => {
-                      setContent(e.target.value);
-                    }}
-                    placeholder='Update note...'
-                  ></Form.Control>
-                  <div className='noteupdateform-update-button'>
-                    {errorMessage && (
-                      <Message
-                        variant='danger'
-                        style={{
-                          margin: '0px',
-                          padding: '0px',
-                          height: '30px',
-                          display: 'flex',
-                          alignItems: 'center',
-                          paddingTop: '3px',
-                          paddingLeft: '23px',
-                          borderRadius: '5px',
-                          width: '561px',
+          <div className='note-body'>
+            {noteId !== note.id && (
+              <div className='note-body-content'>{note.content}</div>
+            )}
+            <Route
+              render={(props) =>
+                note.id === location.pathname.split('/')[4] && (
+                  <Form>
+                    <Form.Control
+                      as='textarea'
+                      className='noteupdate-textarea'
+                      value={content}
+                      onChange={(e) => {
+                        setContent(e.target.value);
+                      }}
+                      placeholder='Update note...'
+                    ></Form.Control>
+                    <div className='noteupdateform-update-button'>
+                      {errorMessage && (
+                        <Message
+                          variant='danger'
+                          style={{
+                            margin: '0px',
+                            padding: '0px',
+                            height: '30px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            paddingTop: '3px',
+                            paddingLeft: '23px',
+                            borderRadius: '5px',
+                            width: '561px',
+                          }}
+                        >
+                          {errorMessage}
+                        </Message>
+                      )}
+                      <Button
+                        className='modal-button detail-modal-updateButton'
+                        style={{ marginRight: '5px' }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleUpdateClick();
                         }}
                       >
-                        {errorMessage}
-                      </Message>
-                    )}
-                    <Button
-                      className='modal-button detail-modal-updateButton'
-                      style={{ marginRight: '5px' }}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleUpdateClick();
-                      }}
-                    >
-                      Update
-                    </Button>
-                  </div>
-                </Form>
-              )
-            }
-            path={'/app_notes/:id/edit/:noteId'}
-          />
+                        Update
+                      </Button>
+                    </div>
+                  </Form>
+                )
+              }
+              path={'/app_notes/:id/edit/:noteId'}
+            />
+          </div>
         </div>
-      </div>
-      <DeleteAppModal
-        show={showDeleteModal}
-        handleClose={closeDeleteModal}
-        deleteHandler={deleteHandler}
-        item='note'
-      />
-    </>
+        <DeleteAppModal
+          show={showDeleteModal}
+          handleClose={closeDeleteModal}
+          deleteHandler={deleteHandler}
+          item='note'
+        />
+      </>
+    )
   );
 };
 

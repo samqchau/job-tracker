@@ -33,34 +33,10 @@ const NotesModal = ({ app, handleClose }) => {
   const { id, list } = app;
 
   useEffect(() => {
-    const fetchNotesByAppId = async () => {
-      const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
-
-      let { data } = await axios.get(`/api/apps/notes/${id}`, config);
-      let appsCopy = apps;
-      let listName = nameValuePairs[list];
-      let arr = appsCopy[listName];
-      let updatedApp = arr.filter((e) => e.id === id)[0];
-      updatedApp.notes = data;
-      let idx = arr.findIndex((e) => e.id === id);
-      arr[idx] = updatedApp;
-      appsCopy[listName] = arr;
-      dispatch({ type: USER_APPS_SUCCESS, payload: appsCopy });
-      if (app.notes.length === 0) {
-        history.push(`/app_notes/${app.id}/create`);
-      }
-    };
-
-    fetchNotesByAppId();
-  }, [id, userInfo.token, apps, list, dispatch, history, app]);
-
-  useEffect(() => {
-    if (app.notes) {
-      if (app.notes.length === 0) {
-        history.push(`/app_notes/${app.id}/create`);
-      }
+    if (app.notes.length === 0) {
+      history.push(`/app_notes/${app.id}/create`);
     }
-  }, [app.notes, history, app.id]);
+  });
 
   const openListSelect = () => {
     setShowListSelect(true);
@@ -231,7 +207,7 @@ const NotesModal = ({ app, handleClose }) => {
               </>
             )}
           />
-          {app.notes &&
+          {app.notes.length > 0 &&
             app.notes.map((note, i) => (
               <AppNote note={note} key={i} app={app} />
             ))}

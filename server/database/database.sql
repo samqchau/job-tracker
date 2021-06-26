@@ -56,3 +56,12 @@ GET USER BY email
 SELECT * FROM users WHERE email = 'sam@example.com';
 
 UPDATE applications SET color = '#ffffff' WHERE color = '#FFFFFF';
+
+SELECT a.id, jsonb_agg(n.application_id) 
+FROM applications a
+  LEFT JOIN notes n ON a.id = n.application_id
+WHERE user_id = '1KjQ76oKYLUO8Fe5W8pNB1012ui1'
+GROUP BY 1
+ORDER BY a.id;
+
+SELECT a.id, a.company_name, a.job_title, a.date_applied, a.last_updated, a.favorited, a.list, a.url, a.color, a.salary, a.location, a.location, a.description, a.index, a.deadline, a.application, a.offer, a.offer_acceptance, a.interview, a.fav_index, jsonb_agg(n.application_id) FROM applications a LEFT JOIN notes n ON a.id = n.application_id WHERE user_id = '1KjQ76oKYLUO8Fe5W8pNB1012ui1' GROUP BY 1 ORDER BY a.id;

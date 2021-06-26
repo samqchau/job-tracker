@@ -50,7 +50,7 @@ export const createNewApplication = expressAsyncHandler(async (req, res) => {
 export const getApplicationsByUserId = expressAsyncHandler(async (req, res) => {
   try {
     const applications = await pool.query(
-      'SELECT id, company_name, job_title, date_applied, last_updated, favorited, list, url, color, salary, location, description, index, deadline, application, offer, offer_acceptance, interview, fav_index FROM applications WHERE user_id = $1;',
+      'SELECT a.id, a.company_name, a.job_title, a.date_applied, a.last_updated, a.favorited, a.list, a.url, a.color, a.salary, a.location, a.location, a.description, a.index, a.deadline, a.application, a.offer, a.offer_acceptance, a.interview, a.fav_index, jsonb_agg(n) AS notes FROM applications a LEFT JOIN notes n ON a.id = n.application_id WHERE user_id = $1 GROUP BY 1 ORDER BY a.list;',
       [req.user.id]
     );
     res.json(applications.rows);
@@ -58,6 +58,20 @@ export const getApplicationsByUserId = expressAsyncHandler(async (req, res) => {
     console.error(error.message);
   }
 });
+
+export const getApplicationsWithNotesByUserId = expressAsyncHandler(
+  async (req, res) => {
+    try {
+      const applications = await pool.query(
+        'SELECT a.id, a.company_name, a.job_title, a.date_applied, a.last_updated, a.favorited, a.list, a.url, a.color, a.salary, a.location, a.location, a.description, a.index, a.deadline, a.application, a.offer, a.offer_acceptance, a.interview, a.fav_index, jsonb_agg(n) AS notes FROM applications a LEFT JOIN notes n ON a.id = n.application_id WHERE user_id = $1 GROUP BY 1 ORDER BY a.list;',
+        [req.user.id]
+      );
+      res.json(applications.rows);
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
+);
 
 export const updateAppIndices = expressAsyncHandler(async (req, res) => {
   const { sourceIndex, destinationIndex, sourceList, destinationList, appId } =
