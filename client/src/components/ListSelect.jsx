@@ -70,7 +70,7 @@ const ListSelect = ({ close, app }) => {
             <Col
               className={`list-select-item noselect ${
                 app.list === i ? 'current-active-list' : ''
-              }`}
+              } modal-nav-link ${app.color} ${app.color}-card-border`}
               key={i}
               xs={12}
               onClick={(e) => {

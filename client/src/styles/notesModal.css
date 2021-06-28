@@ -12,7 +12,8 @@
   padding-top: 28px;
 }
 .notesModal-body-create-container {
-  margin-bottom: 1px;
+  margin-bottom: -1px;
+  margin-left: -1px;
 }
 .notesModal-body-create-right {
   margin-right: auto;
@@ -23,11 +24,12 @@
   display: flex;
   align-items: center;
   padding-bottom: 1px;
-  background-color: rgb(245, 245, 245);
   border-radius: 5px 5px 0px 0px;
-  border-top: 1px solid rgb(175, 175, 175);
-  border-left: 1px solid rgb(175, 175, 175);
   transition: all 0.1s ease-out;
+  filter: invert(20%);
+}
+.notesModal-body-create-right:hover {
+  filter: invert(0%);
 }
 .square-corner {
   border-radius: 0px 0px 0px 5px;
@@ -38,43 +40,19 @@
   right: 0px;
   top: 171px;
 }
-.notesModal-body-create-right:hover {
-  background-color: #ffffff;
-}
 .notesModal-body-button-container {
   display: flex;
   justify-content: flex-end;
   margin-top: -22px;
   align-items: center;
 }
-.notesModal-body-create-icon {
-  background-color: rgb(36, 206, 36);
-  color: white;
-  height: 20px;
-  width: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  padding-left: 1px;
-}
-.notesModal-body-close-icon {
-  background-color: rgb(245, 98, 98);
-  height: 20px;
-  color: white;
-  width: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-}
+
 .notesModal-body-create-text {
   margin-left: 5px;
   font-size: 18px;
   font-weight: bold;
   font-family: sans-serif;
   margin-top: 2px;
-  color: black;
 }
 @media only screen and (max-width: 768px) {
   .notesModal-body {

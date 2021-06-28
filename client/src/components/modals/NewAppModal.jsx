@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Modal, Button, Form, Col, Row } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import '../../styles/newAppModal.css';
@@ -39,27 +39,25 @@ const NewAppModal = ({ show, handleClose, listValue }) => {
 
   const [showColorSelect, setShowColorSelect] = useState(false);
 
-  const resetForm = () => {
-    handleClose();
+  const resetForm = useCallback(() => {
     setCompanyName('');
     setJobTitle('');
     setList(listValue);
     setDate(`${yyyy}-${mm}-${dd}`);
     setUrl('');
     setSalary('');
-    setColor('');
+    setColor('default');
     setDescription('');
-    setTimeout(() => {
-      dispatch({ type: POST_APP_RESET });
-    }, 500);
+    dispatch({ type: POST_APP_RESET });
     setValidationMessages([]);
-  };
+  }, [dd, dispatch, listValue, mm, yyyy]);
 
   useEffect(() => {
     if (success) {
+      handleClose();
       setTimeout(resetForm, 1000);
     }
-  }, [success]);
+  }, [success, handleClose, resetForm]);
 
   const validateForm = () => {
     let arr = [];
@@ -111,6 +109,7 @@ const NewAppModal = ({ show, handleClose, listValue }) => {
 
   const onHide = () => {
     handleClose();
+    resetForm();
     closeColorSelect();
   };
 

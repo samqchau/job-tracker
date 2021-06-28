@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import LoginForm from '../components/LoginForm';
 import '../styles/landingScreen.css';
 import { Row, Col } from 'react-bootstrap';
-import Footer from '../components/Footer';
 import LoginCard from '../components/LoginCard';
 import Demo from '../components/Demo';
 

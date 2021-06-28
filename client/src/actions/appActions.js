@@ -62,7 +62,7 @@ export const addAppToList = (application) => async (dispatch, getState) => {
     };
 
     let { data } = await axios.post('/api/apps', application, config);
-
+    data.notes = [];
     dispatch({ type: POST_APP_SUCCESS });
 
     const {
@@ -214,6 +214,6 @@ export const favoriteAppById = (app) => async (dispatch, getState) => {
   };
 
   dispatch({ type: USER_APPS_SUCCESS, payload: appsCopy });
-  await axios.put('api/apps/update/fav', app, config);
+  await axios.put('/api/apps/update/fav', app, config);
   await axios.put('/api/apps', app, config);
 };

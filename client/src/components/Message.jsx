@@ -5,14 +5,16 @@ const messageStyle = {
   width: '100%',
 };
 
-const Message = ({ variant, children, style }) => {
+const Message = ({ variant, children, style, className }) => {
   return (
-    <Alert variant={variant} style={{ ...messageStyle, ...style }}>
+    <Alert
+      variant={variant}
+      style={{ ...messageStyle, ...style }}
+      className={className}
+    >
       {children}
     </Alert>
   );
 };
-
-Message.defaultProps = { variant: 'info' };
 
 export default Message;

@@ -112,9 +112,9 @@ const DetailModal = ({ app, handleClose }) => {
   return (
     <>
       <Modal.Header
-        className={`detailModal-header ${
+        className={`detailModal-header ${color ? color : 'default'} ${
           color ? color : 'default'
-        } ${color}-modal-header-border`}
+        }-modal-header-border`}
         onClick={(e) => {
           closeListSelect();
           closeColorSelect();

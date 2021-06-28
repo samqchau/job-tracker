@@ -49,10 +49,14 @@ export const createNewApplication = expressAsyncHandler(async (req, res) => {
 
 export const getApplicationsByUserId = expressAsyncHandler(async (req, res) => {
   try {
-    const applications = await pool.query(
+    let applications = await pool.query(
       'SELECT a.id, a.company_name, a.job_title, a.date_applied, a.last_updated, a.favorited, a.list, a.url, a.color, a.salary, a.location, a.location, a.description, a.index, a.deadline, a.application, a.offer, a.offer_acceptance, a.interview, a.fav_index, jsonb_agg(n) AS notes FROM applications a LEFT JOIN notes n ON a.id = n.application_id WHERE user_id = $1 GROUP BY 1 ORDER BY a.list;',
       [req.user.id]
     );
+    applications.rows = applications.rows.map((application) => {
+      application.notes = application.notes.filter((note) => note !== null);
+      return application;
+    });
     res.json(applications.rows);
   } catch (error) {
     console.error(error.message);

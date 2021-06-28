@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Button } from 'react-bootstrap';
 import { logoutUser } from '../actions/userActions';
 import { useHistory } from 'react-router-dom';
 

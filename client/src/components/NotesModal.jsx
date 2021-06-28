@@ -4,10 +4,7 @@ import ListSelect from './ListSelect';
 import FavoriteButton from './FavoriteButton';
 import '../styles/notesModal.css';
 import DetailModalNav from './DetailModalNav';
-import axios from 'axios';
-import { useSelector, useDispatch } from 'react-redux';
-import nameValuePairs from '../data/lookUpTables/listNameValuePairs';
-import { USER_APPS_SUCCESS } from '../constants/appConstants';
+import { useDispatch } from 'react-redux';
 import AppNote from './AppNote';
 import { saveNote } from '../actions/noteActions';
 import { useHistory } from 'react-router-dom';
@@ -17,10 +14,6 @@ import Message from './Message';
 const NotesModal = ({ app, handleClose }) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
-  const userApps = useSelector((state) => state.userApps);
-  const { apps } = userApps;
   const [errorMessage, setErrorMessage] = useState('Save a new note');
 
   const [showListSelect, setShowListSelect] = useState(false);
@@ -30,13 +23,11 @@ const NotesModal = ({ app, handleClose }) => {
 
   const url = `/app_notes/${app.id}`;
 
-  const { id, list } = app;
-
   useEffect(() => {
     if (app.notes.length === 0) {
       history.push(`/app_notes/${app.id}/create`);
     }
-  });
+  }, [app.notes.length, history, app.id, app.notes]);
 
   const openListSelect = () => {
     setShowListSelect(true);
@@ -56,23 +47,23 @@ const NotesModal = ({ app, handleClose }) => {
       setNoteContent('');
       history.push(`/app_notes/${app.id}`);
     } else {
-      setErrorMessage("Notes can't be empty");
+      setErrorMessage('Empty notes cannot be saved');
     }
   };
 
   return (
     <>
       <Modal.Header
-        className={`detailModal-header ${app.color ? app.color : 'white'} ${
-          app.color
+        className={`detailModal-header ${app.color ? app.color : 'default'} ${
+          app.color ? app.color : 'default'
         }-modal-header-border`}
         onClick={(e) => {
           e.stopPropagation();
           closeListSelect();
-          if (app.notes && app.notes.length) {
+          setErrorMessage('');
+          if (app.notes.length) {
             history.push(url);
           }
-          setErrorMessage('');
         }}
       >
         <Row className='detailModal-header-nav'>
@@ -117,15 +108,15 @@ const NotesModal = ({ app, handleClose }) => {
       </Modal.Header>
       <Modal.Body
         className={`notesModal-body detailModal-body ${
-          app.color ? app.color : 'white'
+          app.color ? app.color : 'default'
         }-body ${app.color}-modal-body-border`}
         ref={notesModalBodyRef}
         onClick={() => {
           closeListSelect();
-          if (app.notes && app.notes.length) {
+          setErrorMessage('');
+          if (app.notes.length) {
             history.push(url);
           }
-          setErrorMessage('');
         }}
       >
         <div className='notesModal-body-container'>
@@ -140,23 +131,24 @@ const NotesModal = ({ app, handleClose }) => {
                     e.stopPropagation();
                   }}
                 >
-                  {errorMessage && (
-                    <Message
-                      variant='info'
-                      style={{
-                        margin: '0px',
-                        padding: '0px',
-                        height: '30px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        paddingTop: '3px',
-                        paddingLeft: '23px',
-                        borderRadius: '10px 10px 0 0',
-                      }}
-                    >
-                      {errorMessage}
-                    </Message>
-                  )}
+                  <Message
+                    style={{
+                      margin: '0px',
+                      padding: '0px',
+                      height: '30px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      paddingTop: '3px',
+                      paddingLeft: '23px',
+                      borderRadius: '10px 10px 0 0',
+                      borderBottom: 'unset !important',
+                    }}
+                    className={`${app.color ? app.color : 'default'} ${
+                      app.color ? app.color : 'default'
+                    }-accent-border`}
+                  >
+                    {errorMessage}
+                  </Message>
                   <div
                     className='notesModal-body-create-container'
                     onClick={(e) => {
@@ -164,7 +156,12 @@ const NotesModal = ({ app, handleClose }) => {
                       handleSaveClick();
                     }}
                   >
-                    <div className='notesModal-body-create-right' title='Save'>
+                    <div
+                      className={`notesModal-body-create-right ${
+                        app.color ? app.color : 'default'
+                      } ${app.color ? app.color : 'default'}-accent-border`}
+                      title='Save'
+                    >
                       <i className='fas fa-plus notesModal-body-create-icon'></i>
                       <span className='notesModal-body-create-text'>Save</span>
                     </div>
@@ -174,7 +171,7 @@ const NotesModal = ({ app, handleClose }) => {
                     onClick={(e) => {
                       e.stopPropagation();
                       if (app.notes) {
-                        if (app.notes.length) {
+                        if (app.notes.length !== 0) {
                           history.push(`/app_notes/${app.id}`);
                         } else {
                           setErrorMessage('Create your first note to display');
@@ -182,7 +179,12 @@ const NotesModal = ({ app, handleClose }) => {
                       }
                     }}
                   >
-                    <div className='notesModal-body-create-right' title='Close'>
+                    <div
+                      className={`notesModal-body-create-right ${
+                        app.color ? app.color : 'default'
+                      } ${app.color ? app.color : 'default'}-accent-border`}
+                      title='Close'
+                    >
                       <i className='fas fa-times notesModal-body-close-icon'></i>
                       <span className='notesModal-body-create-text'>Close</span>
                     </div>
@@ -218,7 +220,7 @@ const NotesModal = ({ app, handleClose }) => {
         render={(props) => (
           <div className='notesModal-open-form-button'>
             <div
-              className='notesModal-body-create-right square-corner'
+              className={`notesModal-body-create-right square-corner  ${app.color}`}
               title='Create a note'
               onClick={(e) => {
                 e.stopPropagation();

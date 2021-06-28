@@ -60,6 +60,9 @@ textarea.form-control {
   -ms-user-select: none;
   user-select: none;
 }
+.alert {
+  border-radius: 3px;
+}
 
 @media only screen and (max-width: 576px) {
   .modal-dialog {

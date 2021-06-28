@@ -58,6 +58,7 @@ const DemoAppDetailModal = ({ show, handleClose, app, setApps }) => {
       show={show}
       onHide={() => {
         setValidationMessages([]);
+        closeColorSelect();
         handleClose();
       }}
       centered
@@ -66,9 +67,9 @@ const DemoAppDetailModal = ({ show, handleClose, app, setApps }) => {
     >
       <Modal.Header
         ref={modalRef}
-        className={`detailModal-header ${
+        className={`detailModal-header ${color ? color : 'default'} ${
           color ? color : 'default'
-        } ${color}-modal-header-border`}
+        }-modal-header-border`}
         onClick={(e) => {
           closeColorSelect();
         }}
@@ -214,7 +215,9 @@ const DemoAppDetailModal = ({ show, handleClose, app, setApps }) => {
                   Application Deadline
                 </span>
                 <span
-                  className={`clear-border detailModal-date-clear ${color}-clear-border`}
+                  className={`clear-border detailModal-date-clear ${
+                    color ? color : 'default'
+                  }-clear-border`}
                   onClick={(e) => {
                     setDeadline('');
                   }}
@@ -234,7 +237,9 @@ const DemoAppDetailModal = ({ show, handleClose, app, setApps }) => {
               <Form.Label className='detailModal-date-container'>
                 <span className='detailModal-date-title'>Applied on</span>
                 <span
-                  className={`clear-border detailModal-date-clear ${color}-clear-border`}
+                  className={`clear-border detailModal-date-clear ${
+                    color ? color : 'default'
+                  }-clear-border`}
                   onClick={(e) => {
                     setApplicationDate('');
                   }}
@@ -254,7 +259,9 @@ const DemoAppDetailModal = ({ show, handleClose, app, setApps }) => {
               <Form.Label className='detailModal-date-container'>
                 <span className='detailModal-date-title'>Interview Date</span>
                 <span
-                  className={`clear-border detailModal-date-clear ${color}-clear-border`}
+                  className={`clear-border detailModal-date-clear ${
+                    color ? color : 'default'
+                  }-clear-border`}
                   onClick={(e) => {
                     setInterviewDate('');
                   }}
@@ -274,7 +281,9 @@ const DemoAppDetailModal = ({ show, handleClose, app, setApps }) => {
               <Form.Label className='detailModal-date-container'>
                 <span className='detailModal-date-title'>Offer Recieved</span>
                 <span
-                  className={`clear-border detailModal-date-clear ${color}-clear-border`}
+                  className={`clear-border detailModal-date-clear ${
+                    color ? color : 'default'
+                  }-clear-border`}
                   onClick={(e) => {
                     setOfferDate('');
                   }}
@@ -294,7 +303,9 @@ const DemoAppDetailModal = ({ show, handleClose, app, setApps }) => {
               <Form.Label className='detailModal-date-container'>
                 <span className='detailModal-date-title'>Accept Offer by</span>
                 <span
-                  className={`clear-border detailModal-date-clear ${color}-clear-border`}
+                  className={`clear-border detailModal-date-clear ${
+                    color ? color : 'default'
+                  }-clear-border`}
                   onClick={(e) => {
                     setOfferAcceptanceDate('');
                   }}

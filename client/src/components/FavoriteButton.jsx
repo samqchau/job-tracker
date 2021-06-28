@@ -7,7 +7,8 @@ const FavoriteButton = ({ app, color, demoButton, setApps }) => {
   const dispatch = useDispatch();
   let { favorited } = app;
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.stopPropagation();
     let updatedApp = app;
     updatedApp.favorited = !favorited;
     if (demoButton) {

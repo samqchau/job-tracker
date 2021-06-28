@@ -6,16 +6,17 @@ import { Droppable } from 'react-beautiful-dnd';
 import NewAppModal from './modals/NewAppModal';
 import { Col } from 'react-bootstrap';
 
+const content = {
+  wishlist: 'For later',
+  applied: 'Applied',
+  phone: 'Phone Interview',
+  'on site': 'On Site Interview',
+  offer: 'Offer Recieved',
+  rejected: 'Rejected',
+};
+
 const AppList = ({ name, icon, listIntFromDB }) => {
   const [showModal, setShowModal] = useState(false);
-  const [content, setContent] = useState({
-    wishlist: 'For later',
-    applied: 'Applied',
-    phone: 'Phone Interview',
-    'on site': 'On Site Interview',
-    offer: 'Offer Recieved',
-    rejected: 'Rejected',
-  });
 
   const userApps = useSelector((state) => state.userApps);
   const { apps } = userApps;

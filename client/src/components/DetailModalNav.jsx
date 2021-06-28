@@ -19,17 +19,19 @@ const DetailModalNav = ({ app, color }) => {
         }}
         className={`modal-nav-link ${
           routeName === 'app_details' ? 'modal-nav-link-active' : ''
-        } ${color} ${color}-accent-border`}
+        } ${color ? color : 'default'} ${
+          color ? color : 'default'
+        }-accent-border`}
       >
         Details
       </Link>
       <Link
-        to={`/app_notes/${app.id}${
-          (app.notes && app.notes.length) === 0 ? '/create' : ''
-        }`}
+        to={`/app_notes/${app.id}${app.notes.length === 0 ? '/create' : ''}`}
         className={`modal-nav-link ${
           routeName === 'app_notes' ? 'modal-nav-link-active' : ''
-        } ${color} ${color}-accent-border`}
+        } ${color ? color : 'default'} ${
+          color ? color : 'default'
+        }-accent-border`}
         onClick={(e) => {
           e.stopPropagation();
           dispatch({ type: UPDATE_APP_RESET });
