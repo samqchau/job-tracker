@@ -11,9 +11,10 @@
   width: 100%;
   max-width: 1920px;
 }
-@media only screen and (max-width: 1200px) {
+@media only screen and (min-width: 992px) {
   .app-main-container {
-    justify-content: center;
+    align-items: center;
+    height: 100%;
   }
 }
 @media only screen and (min-width: 1200px) {
