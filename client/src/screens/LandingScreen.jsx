@@ -4,6 +4,7 @@ import '../styles/landingScreen.css';
 import { Row, Col } from 'react-bootstrap';
 import LoginCard from '../components/LoginCard';
 import Demo from '../components/Demo';
+import TeamCard from '../components/TeamCard';
 
 const LandingScreen = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
@@ -51,14 +52,7 @@ const LandingScreen = ({ history }) => {
               style={{ marginTop: '5px' }}
             ></div>
 
-            <div className='landing-section-title'>Meet the Team</div>
-            <div className='landing-section-content'>
-              JobTrackr is a free, secure, easily-accessible web app that helps
-              users track and organize applications during the job hunt.
-              Visualize the state of your job search in a single board. See how
-              many applications, interviews and offers you’ve received in one
-              view.
-            </div>
+            <TeamCard />
           </Col>
         </Row>
       </div>

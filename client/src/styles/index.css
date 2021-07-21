@@ -11,7 +11,12 @@ body {
   width: 100%;
   background-color: #202020;
 }
-
+a {
+  color: unset;
+}
+a:hover {
+  color: unset;
+}
 html::-webkit-scrollbar {
   width: 6px;
   border-radius: 5px;
@@ -25,4 +30,14 @@ html::-webkit-scrollbar-thumb {
 
 .capitalize {
   text-transform: capitalize;
+}
+.external-link {
+  height: 30px;
+  width: 30px;
+}
+.external-link::before {
+  content: url('../images/link_64.png');
+  height: 16px;
+  width: 16px;
+  transform: scale(0.1);
 }
