@@ -263,3 +263,13 @@ export const getNotesByApplicationId = expressAsyncHandler(async (req, res) => {
   notes = notes.rows;
   res.json(notes);
 });
+
+export const countApplications = expressAsyncHandler(async (req, res) => {
+  try{
+    let count = await pool.query('SELECT COUNT(id) FROM applications GROUP BY user_id;');
+    count = count.rows;
+    res.json(count);
+  } catch(error){
+    console.error(error.message)
+  }
+})

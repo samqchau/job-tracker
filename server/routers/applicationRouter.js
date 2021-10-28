@@ -9,6 +9,7 @@ import {
   updateFavIndices,
   getNotesByApplicationId,
   getApplicationsWithNotesByUserId,
+  countApplications
 } from '../controllers/applicationController.js';
 import { protect } from '../middleware/authMiddleware.js';
 import { validateAppData } from '../middleware/validateAppData.js';
@@ -28,7 +29,7 @@ applicationRouter
 //get all applications with user id
 
 applicationRouter.route('/:id').post(protect, createNote);
-applicationRouter.route('/test').get(protect, getApplicationsWithNotesByUserId);
+applicationRouter.route('/test').get(countApplications);
 applicationRouter.route('/notes/:appId').get(protect, getNotesByApplicationId);
 
 applicationRouter.route('/update/index').put(protect, updateAppIndices);

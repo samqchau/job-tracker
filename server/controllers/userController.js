@@ -5,6 +5,7 @@ import generateToken from '../utils/generateToken.js';
 
 export const loginFirebaseUser = expressAsyncHandler(async (req, res) => {
   try {
+    console.log('firebase login data recieved')
     const { email, uid } = req.body;
     let user = await pool.query('SELECT * FROM users WHERE email = $1', [
       email,
@@ -25,6 +26,7 @@ export const loginFirebaseUser = expressAsyncHandler(async (req, res) => {
     }
   } catch (error) {
     res.status(400);
+    console.log('fuck')
     console.error(error.message);
   }
   /*

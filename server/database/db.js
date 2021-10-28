@@ -12,7 +12,7 @@ const database = process.env.PG_DATABASE;
 const pool = new Pool({
   user,
   password,
-  host: 'localhost',
+  host: 'host.docker.internal',
   port,
   database,
 });
