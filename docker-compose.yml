@@ -1,0 +1,68 @@
+version: '3.7'
+
+services:
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    image: jt_express_server
+    expose:
+      - '5000'
+    container_name: jt_express_server
+    command: /usr/src/app/node_modules/.bin/nodemon server.js
+    volumes:
+      - ./server/:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - '5000:5000'
+    depends_on:
+      - pg_db
+    env_file: ./server/.env
+    environment:
+      - NODE_ENV=development
+    networks:
+      - jobtracker-network
+  pg_db:
+    build:
+      context: './db'
+      dockerfile: Dockerfile
+    image: 'jt_pg_db'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=jobtracker
+    ports:
+      - '5555:5432'
+    expose:
+      - '5555'
+    networks:
+      - jobtracker-network
+    container_name: jt_pg_db
+    volumes:
+      - ./db/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    image: jt_client
+    depends_on:
+      - server
+    container_name: jt_client
+    command: npm start
+    volumes:
+      - ./client/:/usr/app
+      - /usr/app/node_modules
+    ports:
+      - '3000:3000'
+    networks:
+      - jobtracker-network
+
+networks:
+  jobtracker-network:
+    driver: bridge
+
+volumes:
+  data-volumes:
+  node_modules:
+  web-root:
+    driver: local
