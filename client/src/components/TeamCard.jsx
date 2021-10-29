@@ -5,7 +5,11 @@ const TeamCard = () => {
   return (
     <div className='team-card landing-section-content'>
       <div className='team-card-left'>
-        <img className='team-card-left-picture' />
+        <img
+          className='team-card-left-picture'
+          alt='Samuel Chau'
+          src='/pngs/jobtracker-profile-1.jpg'
+        />
       </div>
       <div className='team-card-right'>
         <p>Let's work together</p>

@@ -11,12 +11,13 @@ export const createNote = expressAsyncHandler(async (req, res) => {
       [id, content]
     );
     data = data.rows[0];
-    res.json(data);
+    res.json({ ...data, editing: false });
   } catch (error) {
     res.status(400);
     throw new Error('Invalid content');
   }
 });
+
 export const updateNoteById = expressAsyncHandler(async (req, res) => {
   let { content, noteId } = req.body;
   let data = await pool.query(
@@ -25,8 +26,9 @@ export const updateNoteById = expressAsyncHandler(async (req, res) => {
   );
   data = data.rows[0];
   delete data.user_id;
-  res.json(data);
+  res.json({ ...data, editing: false });
 });
+
 export const deleteNoteById = expressAsyncHandler(async (req, res) => {
   const { id } = req.params;
   await pool.query('DELETE FROM notes WHERE id = $1;', [id]);

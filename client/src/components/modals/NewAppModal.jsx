@@ -159,9 +159,16 @@ const NewAppModal = ({ show, handleClose, listValue }) => {
         )}
         {error && <Message variant='danger'>{error}</Message>}
         <Form as={Row}>
-          <Form.Group as={Col} controlId='companyName' xs={12} sm={6}>
+          <Form.Group
+            autoComplete='off'
+            as={Col}
+            controlId='companyName'
+            xs={12}
+            sm={6}
+          >
             <Form.Label>Company Name *</Form.Label>
             <Form.Control
+              autoComplete='off'
               placeholder='Company Name'
               value={companyName}
               onChange={(e) => {
@@ -169,9 +176,16 @@ const NewAppModal = ({ show, handleClose, listValue }) => {
               }}
             ></Form.Control>
           </Form.Group>
-          <Form.Group controlId='jobTitle' as={Col} xs={12} sm={6}>
+          <Form.Group
+            autoComplete='off'
+            controlId='jobTitle'
+            as={Col}
+            xs={12}
+            sm={6}
+          >
             <Form.Label>Job Title *</Form.Label>
             <Form.Control
+              autoComplete='off'
               placeholder='Enter Job Title'
               value={jobTitle}
               onChange={(e) => {
@@ -180,9 +194,16 @@ const NewAppModal = ({ show, handleClose, listValue }) => {
             ></Form.Control>
           </Form.Group>
 
-          <Form.Group controlId='list' as={Col} xs={12} sm={6}>
+          <Form.Group
+            autoComplete='off'
+            controlId='list'
+            as={Col}
+            xs={12}
+            sm={6}
+          >
             <Form.Label>List</Form.Label>
             <Form.Control
+              autoComplete='off'
               as='select'
               value={list}
               onChange={(e) => {
@@ -197,9 +218,16 @@ const NewAppModal = ({ show, handleClose, listValue }) => {
             </Form.Control>
           </Form.Group>
 
-          <Form.Group controlId='dateApplied' as={Col} xs={12} sm={6}>
+          <Form.Group
+            autoComplete='off'
+            controlId='dateApplied'
+            as={Col}
+            xs={12}
+            sm={6}
+          >
             <Form.Label>Date Applied</Form.Label>
             <Form.Control
+              autoComplete='off'
               type='date'
               value={date}
               onChange={(e) => {
@@ -208,9 +236,16 @@ const NewAppModal = ({ show, handleClose, listValue }) => {
             ></Form.Control>
           </Form.Group>
 
-          <Form.Group controlId='url' as={Col} xs={12} sm={6}>
+          <Form.Group
+            autoComplete='off'
+            controlId='url'
+            as={Col}
+            xs={12}
+            sm={6}
+          >
             <Form.Label>URL</Form.Label>
             <Form.Control
+              autoComplete='off'
               placeholder='+  Add URL'
               value={url}
               onChange={(e) => {
@@ -219,9 +254,16 @@ const NewAppModal = ({ show, handleClose, listValue }) => {
             ></Form.Control>
           </Form.Group>
 
-          <Form.Group controlId='salary' as={Col} xs={12} sm={6}>
+          <Form.Group
+            autoComplete='off'
+            controlId='salary'
+            as={Col}
+            xs={12}
+            sm={6}
+          >
             <Form.Label>Salary</Form.Label>
             <Form.Control
+              autoComplete='off'
               placeholder='Salary'
               value={salary}
               onChange={(e) => {
@@ -230,9 +272,16 @@ const NewAppModal = ({ show, handleClose, listValue }) => {
             ></Form.Control>
           </Form.Group>
 
-          <Form.Group controlId='location' as={Col} xs={12} sm={6}>
+          <Form.Group
+            autoComplete='off'
+            controlId='location'
+            as={Col}
+            xs={12}
+            sm={6}
+          >
             <Form.Label>Location</Form.Label>
             <Form.Control
+              autoComplete='off'
               placeholder='Location'
               value={location}
               onChange={(e) => {
@@ -241,7 +290,13 @@ const NewAppModal = ({ show, handleClose, listValue }) => {
             ></Form.Control>
           </Form.Group>
 
-          <Form.Group controlId='color' as={Col} xs={12} sm={6}>
+          <Form.Group
+            autoComplete='off'
+            controlId='color'
+            as={Col}
+            xs={12}
+            sm={6}
+          >
             <Form.Label>Color</Form.Label>
             <ColorSelect
               color={color}
@@ -252,9 +307,15 @@ const NewAppModal = ({ show, handleClose, listValue }) => {
             />
           </Form.Group>
 
-          <Form.Group controlId='description' as={Col} xs={12}>
+          <Form.Group
+            autoComplete='off'
+            controlId='description'
+            as={Col}
+            xs={12}
+          >
             <Form.Label>Description</Form.Label>
             <Form.Control
+              autoComplete='off'
               placeholder='Job Description'
               value={description}
               as='textarea'

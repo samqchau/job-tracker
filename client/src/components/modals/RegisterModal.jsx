@@ -115,6 +115,7 @@ const RegisterModal = ({ show, handleClose }) => {
         )}
         <Form as={Row}>
           <Form.Group
+            autoComplete='off'
             className='pb-2'
             as={Col}
             controlId='firstName'
@@ -123,6 +124,7 @@ const RegisterModal = ({ show, handleClose }) => {
           >
             <Form.Label>First Name *</Form.Label>
             <Form.Control
+              autoComplete='off'
               required
               placeholder='First Name'
               value={firstName}
@@ -133,6 +135,7 @@ const RegisterModal = ({ show, handleClose }) => {
           </Form.Group>
 
           <Form.Group
+            autoComplete='off'
             className='pb-2'
             as={Col}
             controlId='familyName'
@@ -141,6 +144,7 @@ const RegisterModal = ({ show, handleClose }) => {
           >
             <Form.Label>Last Name *</Form.Label>
             <Form.Control
+              autoComplete='off'
               required
               placeholder='Last Name'
               value={familyName}
@@ -151,6 +155,7 @@ const RegisterModal = ({ show, handleClose }) => {
           </Form.Group>
 
           <Form.Group
+            autoComplete='off'
             className='pb-2'
             as={Col}
             controlId='email'
@@ -159,6 +164,7 @@ const RegisterModal = ({ show, handleClose }) => {
           >
             <Form.Label>Email *</Form.Label>
             <Form.Control
+              autoComplete='off'
               required
               placeholder='Enter email'
               value={email}
@@ -168,6 +174,7 @@ const RegisterModal = ({ show, handleClose }) => {
             ></Form.Control>
           </Form.Group>
           <Form.Group
+            autoComplete='off'
             className='pb-2'
             as={Col}
             controlId='username'
@@ -176,6 +183,7 @@ const RegisterModal = ({ show, handleClose }) => {
           >
             <Form.Label>Username *</Form.Label>
             <Form.Control
+              autoComplete='off'
               required
               placeholder='Select a username'
               value={username}
@@ -186,6 +194,7 @@ const RegisterModal = ({ show, handleClose }) => {
           </Form.Group>
 
           <Form.Group
+            autoComplete='off'
             className='pb-2'
             as={Col}
             controlId='password'
@@ -194,6 +203,7 @@ const RegisterModal = ({ show, handleClose }) => {
           >
             <Form.Label>Password *</Form.Label>
             <Form.Control
+              autoComplete='off'
               type='password'
               required
               placeholder='Enter password'
@@ -205,6 +215,7 @@ const RegisterModal = ({ show, handleClose }) => {
           </Form.Group>
 
           <Form.Group
+            autoComplete='off'
             className='pb-2'
             as={Col}
             controlId='confirmPassword'
@@ -213,6 +224,7 @@ const RegisterModal = ({ show, handleClose }) => {
           >
             <Form.Label>Confirm Password *</Form.Label>
             <Form.Control
+              autoComplete='off'
               type='password'
               required
               placeholder='Confirm password'

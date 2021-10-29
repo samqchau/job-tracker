@@ -10,7 +10,7 @@ import Message from './Message';
 import ColorSelect from './ColorSelect';
 import DetailModalNav from './DetailModalNav';
 
-const DetailModal = ({ app, handleClose }) => {
+const DetailModal = ({ app, handleClose, tab, toDetails, toNotes }) => {
   const dispatch = useDispatch();
 
   const updateApp = useSelector((state) => state.updateApp);
@@ -67,8 +67,8 @@ const DetailModal = ({ app, handleClose }) => {
 
     if (validateForm()) {
       let updatedApp = app;
-      updatedApp.company_name = company;
-      updatedApp.job_title = jobTitle;
+      updatedApp.companyName = company;
+      updatedApp.jobTitle = jobTitle;
       updatedApp.url = url;
       updatedApp.color = color;
       updatedApp.salary = salary;
@@ -158,7 +158,13 @@ const DetailModal = ({ app, handleClose }) => {
             </div>
             <FavoriteButton app={app} color={color} />
           </div>
-          <DetailModalNav app={app} color={color} />
+          <DetailModalNav
+            app={app}
+            color={color}
+            tab={tab}
+            toDetails={toDetails}
+            toNotes={toNotes}
+          />
         </Row>
       </Modal.Header>
       <Modal.Body
@@ -189,10 +195,18 @@ const DetailModal = ({ app, handleClose }) => {
           {error && <Message variant='danger'>{error}</Message>}
         </div>
 
-        <Col xs={12} sm={12} md={8} className='detailModal-body-left' as={Row}>
-          <Form.Group as={Col} xs={12} sm={6} md={6} lg={6}>
+        <Col
+          xs={12}
+          sm={12}
+          md={8}
+          className='detailModal-body-left'
+          as={Row}
+          autoComplete='off'
+        >
+          <Form.Group autoComplete='off' as={Col} xs={12} sm={6} md={6} lg={6}>
             <Form.Label>Company</Form.Label>
             <Form.Control
+              autoComplete='off'
               className='capitalize'
               value={company}
               placeholder='+ Company Name'
@@ -201,9 +215,10 @@ const DetailModal = ({ app, handleClose }) => {
               }}
             ></Form.Control>
           </Form.Group>
-          <Form.Group as={Col} xs={12} sm={6} md={6} lg={6}>
+          <Form.Group autoComplete='off' as={Col} xs={12} sm={6} md={6} lg={6}>
             <Form.Label>Job Title</Form.Label>
             <Form.Control
+              autoComplete='off'
               className='capitalize'
               value={jobTitle}
               onChange={(e) => {
@@ -212,9 +227,10 @@ const DetailModal = ({ app, handleClose }) => {
               placeholder='+ Job Title'
             ></Form.Control>
           </Form.Group>
-          <Form.Group as={Col} xs={12} sm={6} md={8}>
+          <Form.Group autoComplete='off' as={Col} xs={12} sm={6} md={8}>
             <Form.Label>URL</Form.Label>
             <Form.Control
+              autoComplete='off'
               value={url}
               onChange={(e) => {
                 setUrl(e.target.value);
@@ -222,9 +238,10 @@ const DetailModal = ({ app, handleClose }) => {
               placeholder='+ Enter URL'
             ></Form.Control>
           </Form.Group>
-          <Form.Group as={Col} xs={12} sm={6} md={4}>
+          <Form.Group autoComplete='off' as={Col} xs={12} sm={6} md={4}>
             <Form.Label>Salary</Form.Label>
             <Form.Control
+              autoComplete='off'
               value={salary ? salary : ''}
               onChange={(e) => {
                 setSalary(e.target.value);
@@ -232,9 +249,10 @@ const DetailModal = ({ app, handleClose }) => {
               placeholder='+ Salary'
             ></Form.Control>
           </Form.Group>
-          <Form.Group as={Col} xs={12} sm={6} md={8}>
+          <Form.Group autoComplete='off' as={Col} xs={12} sm={6} md={8}>
             <Form.Label>Location</Form.Label>
             <Form.Control
+              autoComplete='off'
               className='capitalize'
               value={location}
               onChange={(e) => {
@@ -243,7 +261,7 @@ const DetailModal = ({ app, handleClose }) => {
               placeholder='+ Location'
             ></Form.Control>
           </Form.Group>
-          <Form.Group as={Col} xs={12} sm={6} md={4}>
+          <Form.Group autoComplete='off' as={Col} xs={12} sm={6} md={4}>
             <Form.Label>Color</Form.Label>
             <ColorSelect
               color={color}
@@ -253,9 +271,10 @@ const DetailModal = ({ app, handleClose }) => {
               closeColorSelect={closeColorSelect}
             />
           </Form.Group>
-          <Form.Group as={Col} xs={12}>
+          <Form.Group autoComplete='off' as={Col} xs={12}>
             <Form.Label>Description</Form.Label>
             <Form.Control
+              autoComplete='off'
               as='textarea'
               value={description}
               onChange={(e) => {
@@ -267,7 +286,7 @@ const DetailModal = ({ app, handleClose }) => {
         </Col>
         <Col xs={12} sm={12} md={4} className='detailModal-body-right'>
           <Row className='detailModal-body-right-content'>
-            <Form.Group as={Col}>
+            <Form.Group autoComplete='off' as={Col}>
               <Form.Label className='detailModal-date-container'>
                 <span className='detailModal-date-title'>
                   Application Deadline
@@ -282,6 +301,7 @@ const DetailModal = ({ app, handleClose }) => {
                 </span>
               </Form.Label>
               <Form.Control
+                autoComplete='off'
                 type='date'
                 value={deadline}
                 onChange={(e) => {
@@ -289,7 +309,7 @@ const DetailModal = ({ app, handleClose }) => {
                 }}
               ></Form.Control>
             </Form.Group>
-            <Form.Group as={Col}>
+            <Form.Group autoComplete='off' as={Col}>
               <Form.Label className='detailModal-date-container'>
                 <span className='detailModal-date-title'>Applied on</span>
                 <span
@@ -302,6 +322,7 @@ const DetailModal = ({ app, handleClose }) => {
                 </span>
               </Form.Label>
               <Form.Control
+                autoComplete='off'
                 type='date'
                 value={applicationDate}
                 onChange={(e) => {
@@ -309,7 +330,7 @@ const DetailModal = ({ app, handleClose }) => {
                 }}
               ></Form.Control>
             </Form.Group>
-            <Form.Group as={Col}>
+            <Form.Group autoComplete='off' as={Col}>
               <Form.Label className='detailModal-date-container'>
                 <span className='detailModal-date-title'>Interview Date</span>
                 <span
@@ -322,6 +343,7 @@ const DetailModal = ({ app, handleClose }) => {
                 </span>
               </Form.Label>
               <Form.Control
+                autoComplete='off'
                 type='date'
                 value={interviewDate}
                 onChange={(e) => {
@@ -329,7 +351,7 @@ const DetailModal = ({ app, handleClose }) => {
                 }}
               ></Form.Control>
             </Form.Group>
-            <Form.Group as={Col}>
+            <Form.Group autoComplete='off' as={Col}>
               <Form.Label className='detailModal-date-container'>
                 <span className='detailModal-date-title'>Offer Recieved</span>
                 <span
@@ -342,6 +364,7 @@ const DetailModal = ({ app, handleClose }) => {
                 </span>
               </Form.Label>
               <Form.Control
+                autoComplete='off'
                 type='date'
                 value={offerDate}
                 onChange={(e) => {
@@ -349,7 +372,7 @@ const DetailModal = ({ app, handleClose }) => {
                 }}
               ></Form.Control>
             </Form.Group>
-            <Form.Group as={Col}>
+            <Form.Group autoComplete='off' as={Col}>
               <Form.Label className='detailModal-date-container'>
                 <span className='detailModal-date-title'>Accept Offer by</span>
                 <span
@@ -362,6 +385,7 @@ const DetailModal = ({ app, handleClose }) => {
                 </span>
               </Form.Label>
               <Form.Control
+                autoComplete='off'
                 type='date'
                 value={offerAcceptanceDate}
                 onChange={(e) => {

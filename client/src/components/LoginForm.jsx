@@ -28,9 +28,10 @@ const LoginForm = () => {
     <div className='d-flex' style={{ background: 'wheat' }}>
       <div>
         <Form as={Row} onSubmit={submitHandler}>
-          <Form.Group as={Col} controlId='email'>
+          <Form.Group autoComplete='off' as={Col} controlId='email'>
             <Form.Label>Email</Form.Label>
             <Form.Control
+              autoComplete='off'
               placeholder='Enter email'
               value={email}
               onChange={(e) => {
@@ -38,9 +39,10 @@ const LoginForm = () => {
               }}
             />
           </Form.Group>
-          <Form.Group as={Col} controlId='password'>
+          <Form.Group autoComplete='off' as={Col} controlId='password'>
             <Form.Label>Password</Form.Label>
             <Form.Control
+              autoComplete='off'
               placeholder='Enter password'
               value={password}
               onChange={(e) => {

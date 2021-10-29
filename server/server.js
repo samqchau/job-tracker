@@ -20,7 +20,6 @@ app.use(express.json());
 app.use('/api/apps', applicationRouter);
 app.use('/api/users', userRouter);
 app.use('/api/notes', noteRouter);
-app.route('/test').get((req,res) => {console.log('test request recieved');res.send('response recieved')})
 
 app.use(errorHandler);
 

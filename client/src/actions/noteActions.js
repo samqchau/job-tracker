@@ -82,3 +82,32 @@ export const updateNoteById = (app, note) => async (dispatch, getState) => {
   appsCopy[listName] = arr;
   dispatch({ type: USER_APPS_SUCCESS, payload: appsCopy });
 };
+
+export const toggleEditingNote = (app, note) => (dispatch, getState) => {
+  const {
+    userApps: { apps },
+  } = getState();
+  let appsCopy = apps;
+  let listName = nameValuePairs[app.list];
+  let arr = appsCopy[listName];
+  let index = arr.findIndex((e) => e.id === app.id);
+  let noteIndex = arr[index].notes.findIndex((e) => e.id === note.id);
+  arr[index].notes[noteIndex] = {
+    ...note,
+    editing: !note.editing,
+  };
+  appsCopy[listName] = arr;
+  dispatch({ type: USER_APPS_SUCCESS, payload: appsCopy });
+};
+
+export const closeNoteEditors = (app) => (dispatch, getState) => {
+  const {
+    userApps: { apps },
+  } = getState();
+  let appsCopy = apps;
+  let listName = nameValuePairs[app.list];
+  let arr = apps[listName];
+  let index = arr.findIndex((e) => e.id === app.id);
+  appsCopy[listName][index].notes.forEach((n) => (n.editing = false));
+  dispatch({ type: USER_APPS_SUCCESS, payload: appsCopy });
+};
