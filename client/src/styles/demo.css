@@ -25,6 +25,11 @@
   flex-direction: column;
   background-color: black;
   color: white;
+  transition: 0.2s all ease-in-out;
+}
+.landing-main-left-demo-container:hover {
+  box-shadow: inset rgb(2 129 255 / 63%) 1px 1px 4px,
+    inset rgb(84 83 255 / 63%) -1px -1px 2px;
 }
 .demo-list-container {
   height: 140px;

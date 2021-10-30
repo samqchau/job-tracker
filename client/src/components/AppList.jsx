@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import '../styles/appList.css';
 import AppCard from './AppCard';
 import { Droppable } from 'react-beautiful-dnd';
 import NewAppModal from './modals/NewAppModal';
 import { Col } from 'react-bootstrap';
+import Tooltip from '../components/Tooltip';
+import { toggleTooltip } from '../actions/appActions';
+import { APP_TOOL_TIP_OFF } from '../constants/appConstants';
 
 const content = {
   wishlist: 'For later',
@@ -15,17 +18,20 @@ const content = {
   rejected: 'Rejected',
 };
 
-const AppList = ({ name, icon, listIntFromDB }) => {
-  const [showModal, setShowModal] = useState(false);
-
+const AppList = ({ name, icon, listIntFromDB, displayToolTip }) => {
+  const dispatch = useDispatch();
   const userApps = useSelector((state) => state.userApps);
   const { apps } = userApps;
 
+  const [showModal, setShowModal] = useState(false);
+
   const handleClose = () => {
+    dispatch(toggleTooltip());
     setShowModal(false);
   };
 
   const showAppModal = () => {
+    dispatch({ type: APP_TOOL_TIP_OFF });
     setShowModal(true);
   };
 
@@ -47,6 +53,7 @@ const AppList = ({ name, icon, listIntFromDB }) => {
           </div>
         </div>
         <div className='list-add' onClick={showAppModal}>
+          {displayToolTip && <Tooltip />}
           <i className='fas fa-plus' />
         </div>
         <Droppable droppableId={name}>

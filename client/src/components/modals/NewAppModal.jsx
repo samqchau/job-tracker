@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Modal, Button, Form, Col, Row } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import '../../styles/newAppModal.css';
-import { addAppToList } from '../../actions/appActions';
+import { addAppToList, toggleTooltip } from '../../actions/appActions';
 import ColorSelect from '../ColorSelect';
 import Message from '../Message';
 import { POST_APP_RESET } from '../../constants/appConstants';
@@ -109,6 +109,7 @@ const NewAppModal = ({ show, handleClose, listValue }) => {
 
   const onHide = () => {
     handleClose();
+    dispatch(toggleTooltip());
     resetForm();
     closeColorSelect();
   };
@@ -137,7 +138,7 @@ const NewAppModal = ({ show, handleClose, listValue }) => {
           >
             Save
           </Button>
-          <Button variant='dark' onClick={handleClose} className='modal-button'>
+          <Button variant='dark' onClick={onHide} className='modal-button'>
             Close
           </Button>
         </div>

@@ -63,6 +63,11 @@
   margin-bottom: 15px;
   background-color: black;
   color: white;
+  transition: 0.2s all ease-in-out;
+}
+.landing-main-center-card:hover {
+  box-shadow: inset rgb(2 129 255 / 63%) 4px 4px 10px,
+    inset rgb(84 83 255 / 63%) -4px -4px 10px;
 }
 .landing-center-card-icon {
   box-shadow: rgb(255 255 255 / 30%) inset 10px 10px 5px,

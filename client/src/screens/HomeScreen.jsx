@@ -22,7 +22,12 @@ const HomeScreen = ({ history }) => {
   return (
     <>
       <DragDropContextComponent>
-        <AppList name='wishlist' icon='fas fa-calendar-alt' listIntFromDB={1} />
+        <AppList
+          name='wishlist'
+          icon='fas fa-calendar-alt'
+          listIntFromDB={1}
+          displayToolTip={true}
+        />
         <AppList name='applied' icon='far fa-paper-plane' listIntFromDB={2} />
         <AppList
           name='phone'

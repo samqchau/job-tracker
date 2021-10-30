@@ -10,6 +10,7 @@ import {
 } from '../actions/noteActions';
 import { useDispatch } from 'react-redux';
 import Message from './Message';
+import { formatDate } from '../helpers/dateHelpers.js';
 
 const AppNote = ({ note, app, closeCreatingNote, clearNoteContent }) => {
   const dispatch = useDispatch();
@@ -47,7 +48,9 @@ const AppNote = ({ note, app, closeCreatingNote, clearNoteContent }) => {
         <div className='note'>
           <div className='note-header'>
             <div className='note-header-date'>
-              {note.updated_on ? note.updated_on : note.created_on}
+              {note.updated_on
+                ? formatDate(note.updated_on)
+                : formatDate(note.created_on)}
             </div>
             <div className='note-header-border'></div>
             <div className='note-header-buttons'>

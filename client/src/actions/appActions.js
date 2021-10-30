@@ -10,8 +10,11 @@ import {
   UPDATE_APP_SUCCESS,
   UPDATE_APP_FAIL,
   UPDATE_APP_RESET,
+  APP_TOOL_TIP_ON,
+  APP_TOOL_TIP_OFF,
 } from '../constants/appConstants';
 import listNameValuePairs from '../data/lookUpTables/listNameValuePairs';
+import { noApps } from '../helpers/noApps';
 
 export const fetchUserApps = () => async (dispatch, getState) => {
   try {
@@ -36,6 +39,7 @@ export const fetchUserApps = () => async (dispatch, getState) => {
       sortedApps[listNameValuePairs[app.list]].push(app);
     });
     dispatch({ type: USER_APPS_SUCCESS, payload: sortedApps });
+    dispatch(toggleTooltip());
   } catch (error) {
     dispatch({
       type: USER_APPS_FAIL,
@@ -80,6 +84,7 @@ export const addAppToList = (application) => async (dispatch, getState) => {
     appsCopy[list].unshift(data);
 
     dispatch({ type: USER_APPS_SUCCESS, payload: appsCopy });
+    dispatch(toggleTooltip());
   } catch (error) {
     dispatch({
       type: POST_APP_FAIL,
@@ -129,7 +134,7 @@ export const deleteAppById = (app) => async (dispatch, getState) => {
   appsArr = appsArr.filter((app) => app.id !== id);
   appsCopy[listName] = appsArr;
   dispatch({ type: USER_APPS_SUCCESS, payload: appsCopy });
-
+  dispatch(toggleTooltip());
   await axios.delete('/api/apps', data);
 };
 
@@ -216,4 +221,12 @@ export const favoriteAppById = (app) => async (dispatch, getState) => {
   dispatch({ type: USER_APPS_SUCCESS, payload: appsCopy });
   await axios.put('/api/apps/update/fav', app, config);
   await axios.put('/api/apps', app, config);
+};
+
+export const toggleTooltip = () => async (dispatch, getState) => {
+  let {
+    userApps: { apps },
+  } = getState();
+  if (noApps(apps)) dispatch({ type: APP_TOOL_TIP_ON });
+  else dispatch({ type: APP_TOOL_TIP_OFF });
 };

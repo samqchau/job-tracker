@@ -140,8 +140,8 @@ const NotesModal = ({ app, handleClose, tab, toDetails, toNotes }) => {
                     borderBottom: 'unset !important',
                   }}
                   className={`${app.color ? app.color : 'default'} ${
-                    app.color ? app.color : 'default-accent-border'
-                  }`}
+                    app.color ? app.color : 'default'
+                  }-accent-border`}
                 >
                   {errorMessage}
                 </Message>
@@ -184,29 +184,6 @@ const NotesModal = ({ app, handleClose, tab, toDetails, toNotes }) => {
                     <i className='fas fa-times notesModal-body-create-icon'></i>
                     <span className='notesModal-body-create-text'>Close</span>
                   </div>
-                </div>
-              </div>
-              <div
-                className='notesModal-body-create-container'
-                onClick={(e) => {
-                  e.stopPropagation();
-                  if (app.notes) {
-                    if (app.notes.length !== 0) {
-                      setCreatingNote(false);
-                    } else {
-                      setErrorMessage('Create your first note to display');
-                    }
-                  }
-                }}
-              >
-                <div
-                  className={`notesModal-body-create-right ${
-                    app.color ? app.color : 'default'
-                  }`}
-                  title='Close'
-                >
-                  <i className='fas fa-times notesModal-body-close-icon'></i>
-                  <span className='notesModal-body-create-text'>Close</span>
                 </div>
               </div>
               <Form
