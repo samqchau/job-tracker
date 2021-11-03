@@ -4,11 +4,11 @@
 
 ## Table of Contents
  
-  **[Core Features](https://github.com/samqchau/jobtrackr/blob/main/README.md#core-features)** | 
-  **[Usage](https://github.com/samqchau/jobtrackr/blob/main/README.md#usage)** | 
-  **[Purpose and Specifications](https://github.com/samqchau/jobtrackr/blob/main/README.md#purpose-and-specifications)** | 
-  **[Details](https://github.com/samqchau/jobtrackr/blob/main/README.md#details)** |
-  **[After Thoughts](https://github.com/samqchau/jobtrackr/blob/main/README.md#after-thoughts)**
+  **[Core Features](https://github.com/samqchau/job-tracker/blob/main/README.md#core-features)** | 
+  **[Usage](https://github.com/samqchau/job-tracker/blob/main/README.md#usage)** | 
+  **[Purpose and Specifications](https://github.com/samqchau/job-tracker/blob/main/README.md#purpose-and-specifications)** | 
+  **[Details](https://github.com/samqchau/job-tracker/blob/main/README.md#details)** |
+  **[After Thoughts](https://github.com/samqchau/job-tracker/blob/main/README.md#after-thoughts)**
 
 ![jobtrackr_demo](https://user-images.githubusercontent.com/67344952/139657832-04bd04c8-10b8-4777-96f0-f14d27d4a52d.gif)
 
@@ -37,7 +37,7 @@ Feel free to explore the code, reference it, and clone it for examples of how to
 
 </div>
  
-* git clone https://github.com/samqchau/jobtrackr.git
+* git clone https://github.com/samqchau/job-tracker.git
 * Navigate to the directory
 * docker-compose up
 
