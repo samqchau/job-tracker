@@ -17,6 +17,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 app.use(cors());
 app.use(express.json());
+
 app.use('/api/apps', applicationRouter);
 app.use('/api/users', userRouter);
 app.use('/api/notes', noteRouter);
