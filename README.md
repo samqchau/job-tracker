@@ -123,17 +123,18 @@ Each of these resources is accessible at their respective API endpoints.
 <div align="center">
  
    #### Testing
- **Version 1 - Single Tiered**
+ 
+</div>
+
+**Version 1 - Single Tiered**
 React Testing Library was used for automated integration testing. Due to the scope of JobTrackr, a single integration test was able to cover all the key features in a single app's lifecycle. This included creating, updating, bookmarking, and deleting the app. The automated tests interact JobTrackr the same way a user would. DOM elements were selected through the recommended selector priority: by role, by placeholder, by text, and finally by unique data attributes when there were no other non-brittle identifying attributes.
  
 **Version 2 - Three Tiered**
-Cypress was selected for end-to-end testing as React Testing Library is primarily designed to test React components. Cypress visually displays the tests running in any selected browser in a step wise manner. Additionally, Cypress has a better interface for waiting for asynchrnous processes to finish across different tiers of the application. Although a different testing suite was used, the app's lifecycle was the same, so a single end-to-end test was written asserting an app can be created, updated, bookmarked, and deleted successfully.
- 
-https://user-images.githubusercontent.com/67344952/142569475-d367797d-0fa9-49f9-9b5b-8cf41eea59a8.mp4
- 
 **Checkout the Cypress tests on this branch of version 2 - *[JobTrackr - Cypress End-to-End Tests](https://github.com/samqchau/job-tracker/tree/cypress-test)***
- 
-</div> 
+
+![jobtrackr-cypress](https://user-images.githubusercontent.com/67344952/142571975-6aa0c8e2-c705-48a4-a240-6ae91ac07d41.gif)
+
+Cypress was selected for end-to-end testing as React Testing Library is primarily designed to test React components. Cypress visually displays the tests running in any selected browser in a step wise manner. Additionally, Cypress has a better interface for waiting for asynchrnous processes to finish across different tiers of the application. Although a different testing suite was used, the app's lifecycle was the same, so a single end-to-end test was written asserting an app can be created, updated, bookmarked, and deleted successfully.
 
 <div align="center">
 
