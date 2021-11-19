@@ -158,11 +158,11 @@ Cypress was selected for end-to-end testing as React Testing Library is primaril
     
 <div align="center">
     
-   #### Database Type Selection
+   #### Database Selection
 
 </div> 
  
-   PostGres was selected as the database used to support JobTrackr Version 2. It is a relational database that stores data in rows organized by tables. All the rows of one table are stored together on disk. One of the greatest advantages of using a relational database is the capability to write complex queries. This empowers engineers to build relational data that can be analyzed in trival to complex ways. In hindsight, I learned a ton about Postgres, but if JobTrackr was to scale, a relational database was the incorrect choice for the current design of JobTrackr. In a way, the design I opted for leveraged the worst parts of the way Postgres stores data, and neglected the best features.
+   PostGres was selected as the database used to support JobTrackr Version 2 in order for me to learn how to interact with a new database. It is a relational database that stores data in rows organized by tables. All the rows of one table are stored together on disk. One of the greatest advantages of using a relational database is the capability to write complex queries. This empowers engineers to build relational data that can be analyzed in trival to complex ways. In hindsight, I learned a ton about Postgres, but if JobTrackr was to scale, a relational database was the incorrect choice for the current design of JobTrackr. In a way, the design I opted for leveraged the worst parts of the way Postgres stores data, and neglected the best features.
    
    JobTrackr stores job application data. The data is not analyzed or parsed further. It's a simple application, but hypothetically it could be scaled. With the current table schemas users, applications, and notes are all stored in separate tables. When a user makes a request to find their job application data, in the best case, Postgres SELECTs all applications by user.id, then has to JOIN all the notes to applications. All these tables could be sharded by user.id, but with the current use cases, a document or noSQL database would be a better option.
    
