@@ -126,15 +126,21 @@ Each of these resources is accessible at their respective API endpoints.
  
 </div>
 
-**Version 1 - Single Tiered**
+### Version 1 - Single Tiered App 
+
 React Testing Library was used for automated integration testing. Due to the scope of JobTrackr, a single integration test was able to cover all the key features in a single app's lifecycle. This included creating, updating, bookmarking, and deleting the app. The automated tests interact JobTrackr the same way a user would. DOM elements were selected through the recommended selector priority: by role, by placeholder, by text, and finally by unique data attributes when there were no other non-brittle identifying attributes.
  
-**Version 2 - Three Tiered**
-**Checkout the Cypress tests on this branch of version 2 - *[JobTrackr - Cypress End-to-End Tests](https://github.com/samqchau/job-tracker/tree/cypress-test)***
-
-![jobtrackr-cypress](https://user-images.githubusercontent.com/67344952/142571975-6aa0c8e2-c705-48a4-a240-6ae91ac07d41.gif)
+### Version 2 - Three Tiered App - (current respository)
 
 Cypress was selected for end-to-end testing as React Testing Library is primarily designed to test React components. Cypress visually displays the tests running in any selected browser in a step wise manner. Additionally, Cypress has a better interface for waiting for asynchrnous processes to finish across different tiers of the application. Although a different testing suite was used, the app's lifecycle was the same, so a single end-to-end test was written asserting an app can be created, updated, bookmarked, and deleted successfully.
+
+<div align="center">
+
+![jobtrackr-cypress](https://user-images.githubusercontent.com/67344952/142571975-6aa0c8e2-c705-48a4-a240-6ae91ac07d41.gif)
+ 
+</div>
+
+**Checkout the Cypress tests here - *[JobTrackr - Cypress End-to-End Tests](https://github.com/samqchau/job-tracker/tree/cypress-test)***
 
 <div align="center">
 
