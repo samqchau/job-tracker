@@ -126,11 +126,11 @@ Each of these resources is accessible at their respective API endpoints.
  
 </div>
 
-### Version 1 - Single Tiered App 
+#### Version 1 - Single Tiered App 
 
 React Testing Library was used for automated integration testing. Due to the scope of JobTrackr, a single integration test was able to cover all the key features in a single app's lifecycle. This included creating, updating, bookmarking, and deleting the app. The automated tests interact JobTrackr the same way a user would. DOM elements were selected through the recommended selector priority: by role, by placeholder, by text, and finally by unique data attributes when there were no other non-brittle identifying attributes.
  
-### Version 2 - Three Tiered App - (current respository)
+#### Version 2 - Three Tiered App - (current respository)
 
 **Checkout the Cypress tests here - *[JobTrackr - Cypress End-to-End Tests](https://github.com/samqchau/job-tracker/tree/cypress-test)***
 
