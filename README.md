@@ -132,7 +132,7 @@ React Testing Library was used for automated integration testing. Due to the sco
  
 ### Version 2 - Three Tiered App - (current respository)
 
-Cypress was selected for end-to-end testing as React Testing Library is primarily designed to test React components. Cypress visually displays the tests running in any selected browser in a step wise manner. Additionally, Cypress has a better interface for waiting for asynchrnous processes to finish across different tiers of the application. Although a different testing suite was used, the app's lifecycle was the same, so a single end-to-end test was written asserting an app can be created, updated, bookmarked, and deleted successfully.
+**Checkout the Cypress tests here - *[JobTrackr - Cypress End-to-End Tests](https://github.com/samqchau/job-tracker/tree/cypress-test)***
 
 <div align="center">
 
@@ -140,7 +140,7 @@ Cypress was selected for end-to-end testing as React Testing Library is primaril
  
 </div>
 
-**Checkout the Cypress tests here - *[JobTrackr - Cypress End-to-End Tests](https://github.com/samqchau/job-tracker/tree/cypress-test)***
+Cypress was selected for end-to-end testing as React Testing Library is primarily designed to test React components. Cypress visually displays the tests running in any selected browser in a step wise manner. Additionally, Cypress has a better interface for waiting for asynchrnous processes to finish across different tiers of the application. Although a different testing suite was used, the app's lifecycle was the same, so a single end-to-end test was written asserting an app can be created, updated, bookmarked, and deleted successfully.
 
 <div align="center">
 
