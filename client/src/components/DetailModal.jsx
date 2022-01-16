@@ -67,8 +67,8 @@ const DetailModal = ({ app, handleClose, tab, toDetails, toNotes }) => {
 
     if (validateForm()) {
       let updatedApp = app;
-      updatedApp.companyName = company;
-      updatedApp.jobTitle = jobTitle;
+      updatedApp.company_name = company;
+      updatedApp.job_title = jobTitle;
       updatedApp.url = url;
       updatedApp.color = color;
       updatedApp.salary = salary;
@@ -204,8 +204,9 @@ const DetailModal = ({ app, handleClose, tab, toDetails, toNotes }) => {
           autoComplete='off'
         >
           <Form.Group autoComplete='off' as={Col} xs={12} sm={6} md={6} lg={6}>
-            <Form.Label>Company</Form.Label>
+            <Form.Label htmlFor='company'>Company</Form.Label>
             <Form.Control
+              id='company'
               autoComplete='off'
               className='capitalize'
               value={company}
@@ -216,8 +217,9 @@ const DetailModal = ({ app, handleClose, tab, toDetails, toNotes }) => {
             ></Form.Control>
           </Form.Group>
           <Form.Group autoComplete='off' as={Col} xs={12} sm={6} md={6} lg={6}>
-            <Form.Label>Job Title</Form.Label>
+            <Form.Label htmlFor='job'>Job Title</Form.Label>
             <Form.Control
+              id='job'
               autoComplete='off'
               className='capitalize'
               value={jobTitle}
@@ -397,6 +399,7 @@ const DetailModal = ({ app, handleClose, tab, toDetails, toNotes }) => {
         </Col>
         <Button
           className='detail-modal-updateButton detailModal-updateButton-xs'
+          data-testid='primary-update-button'
           onClick={() => {
             handleUpdateButtonClick();
             modalRef.current.scrollIntoView({

@@ -64,6 +64,7 @@ const AppCard = ({ app, favslist, index }) => {
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             onClick={openDetailsModal}
+            data-cy={`${company_name}`}
           >
             <div className='app-card-body'>
               <div className='app-card-body-left'>
@@ -77,7 +78,7 @@ const AppCard = ({ app, favslist, index }) => {
               >
                 <FavoriteButton app={app} color={app.color} />
                 <i
-                  className='far fa-trash-alt'
+                  className='far fa-trash-alt deleteButton'
                   onClick={openDeleteModal}
                   title='Delete'
                 ></i>

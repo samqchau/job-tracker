@@ -23,7 +23,7 @@ const reducer = combineReducers({
 
 const userInfoFromStorage = sessionStorage.getItem('userInfo')
   ? JSON.parse(sessionStorage.getItem('userInfo'))
-  : null;
+  : { id: null, email: null, token: null };
 
 const initialState = {
   userLogin: { userInfo: userInfoFromStorage },

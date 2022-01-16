@@ -32,7 +32,7 @@ const FavoritedAppsModal = ({ show, onHide }) => {
               </span>
               <div className='list-header-main'>
                 <div className='list-header-main-title'>Favorited</div>
-                <div className='list-header-main-count'>
+                <div className='list-header-main-count favorite-count'>
                   {favoritedApps.filter((app) => app.favorited === true)
                     .length === 0
                     ? 0
@@ -54,6 +54,7 @@ const FavoritedAppsModal = ({ show, onHide }) => {
                   className='list-body-main'
                   ref={provided.innerRef}
                   {...provided.droppableProps}
+                  data-cy='favorited-list-body'
                 >
                   {favoritedApps &&
                     favoritedApps

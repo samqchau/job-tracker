@@ -9,7 +9,10 @@ import {
   USER_REGISTER_RESET,
 } from '../constants/userConstants.js';
 
-export const userLoginReducer = (state = {}, action) => {
+export const userLoginReducer = (
+  state = { id: null, email: null, token: null },
+  action
+) => {
   switch (action.type) {
     case USER_LOGIN_REQUEST:
       return { loading: true };
@@ -18,7 +21,7 @@ export const userLoginReducer = (state = {}, action) => {
     case USER_LOGIN_FAIL:
       return { loading: false, error: action.payload };
     case USER_LOGOUT:
-      return {};
+      return { id: null, email: null, token: null };
     default:
       return state;
   }

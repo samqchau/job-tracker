@@ -151,7 +151,7 @@ export const updateAppById = (app) => async (dispatch, getState) => {
     let list = listNameValuePairs[app.list];
     let appsCopy = apps;
     let arr = apps[list];
-    arr[arr.indexOf((e) => (e.id = app.id))] = app;
+    arr[arr.indexOf((e) => e.id === app.id)] = app;
     appsCopy[list] = arr;
 
     let config = {
@@ -163,9 +163,7 @@ export const updateAppById = (app) => async (dispatch, getState) => {
     dispatch({ type: USER_APPS_SUCCESS, payload: appsCopy });
     await axios.put('/api/apps', app, config);
     dispatch({ type: UPDATE_APP_SUCCESS });
-    setTimeout(() => {
-      dispatch({ type: UPDATE_APP_RESET });
-    }, 1500);
+    dispatch({ type: UPDATE_APP_RESET });
   } catch (error) {
     dispatch({
       type: UPDATE_APP_FAIL,

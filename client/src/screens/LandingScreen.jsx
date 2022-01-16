@@ -1,17 +1,29 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import firebase from 'firebase';
+import { useSelector, useDispatch } from 'react-redux';
 import '../styles/landingScreen.css';
 import { Row, Col } from 'react-bootstrap';
 import LoginCard from '../components/LoginCard';
 import Demo from '../components/Demo';
 import TeamCard from '../components/TeamCard';
+import { loginFirebaseUser } from '../actions/userActions';
 
 const LandingScreen = ({ history }) => {
+  const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (userInfo && userInfo.id === null) {
+        let uid = user.uid;
+        let email = 'sam@example.com';
+        dispatch(loginFirebaseUser({ email, uid }));
+      }
+    });
+  }, [dispatch, userInfo]);
 
   useEffect(() => {
-    if (userInfo) {
+    if (userInfo && userInfo.id !== null) {
       history.push('/');
     }
   }, [history, userInfo]);

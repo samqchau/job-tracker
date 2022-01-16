@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import '../styles/appList.css';
 import AppCard from './AppCard';
@@ -25,10 +25,10 @@ const AppList = ({ name, icon, listIntFromDB, displayToolTip }) => {
 
   const [showModal, setShowModal] = useState(false);
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     dispatch(toggleTooltip());
     setShowModal(false);
-  };
+  }, [dispatch]);
 
   const showAppModal = () => {
     dispatch({ type: APP_TOOL_TIP_OFF });
@@ -52,7 +52,11 @@ const AppList = ({ name, icon, listIntFromDB, displayToolTip }) => {
             </div>
           </div>
         </div>
-        <div className='list-add' onClick={showAppModal}>
+        <div
+          className='list-add'
+          onClick={showAppModal}
+          data-testid={`create-new-app-${listIntFromDB}`}
+        >
           {displayToolTip && <Tooltip />}
           <i className='fas fa-plus' />
         </div>
@@ -60,6 +64,7 @@ const AppList = ({ name, icon, listIntFromDB, displayToolTip }) => {
           {(provided) => (
             <div
               className='list-body-main'
+              data-testid={`list-body-main-${listIntFromDB}`}
               ref={provided.innerRef}
               {...provided.droppableProps}
             >

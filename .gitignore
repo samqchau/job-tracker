@@ -2,4 +2,3 @@ node_modules
 build
 serviceAccount.json
 cypress.env.json
-cypress.env.json

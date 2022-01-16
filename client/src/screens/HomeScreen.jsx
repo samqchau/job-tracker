@@ -10,7 +10,7 @@ const HomeScreen = ({ history }) => {
   const { userInfo } = userLogin;
 
   useEffect(() => {
-    if (!userInfo) {
+    if (userInfo.id === null) {
       history.push('/info');
     }
   }, [userInfo, history]);
