@@ -132,7 +132,7 @@ React Testing Library was used for automated integration testing. Due to the sco
  
 #### Version 2 - Three Tiered App - (current respository)
 
-**Checkout the Cypress tests here - *[JobTrackr - Cypress End-to-End Tests](https://github.com/samqchau/job-tracker/tree/cypress-test)***
+**Checkout the Cypress tests here - *[JobTrackr - Cypress End-to-End Tests](https://github.com/samqchau/job-tracker/blob/cypress-test/client/cypress/integration/app_lifecycle_spec.js)***
 
 <div align="center">
 
